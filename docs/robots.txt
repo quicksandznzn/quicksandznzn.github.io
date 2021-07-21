@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://quicksandznzn.github.io/sitemap.xml
