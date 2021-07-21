@@ -13,6 +13,38 @@ categories: ["redis"]
 * [Set： 去重、赞、踩、共同好友等](#set)
 * [Sorted Set： 访问量排行榜、点击量排行榜等](#sorted-set)
 
+### Redis Object
+```C
+typedef struct redisObject {
+    unsigned type:4; // 类型
+    unsigned encoding:4; // 一个对象可能包含多个encoding
+    unsigned lru:LRU_BITS; /* lru time (relative to server.lruclock) */
+    int refcount; // 引用计数 实现内存回收机制
+    void *ptr; // 存储的值
+} robj;
+
+/* Object types */
+#define OBJ_STRING 0
+#define OBJ_LIST 1
+#define OBJ_SET 2
+#define OBJ_ZSET 3
+#define OBJ_HASH 4
+
+/* Objects encoding. Some kind of objects like Strings and Hashes can be
+ * internally represented in multiple ways. The 'encoding' field of the object
+ * is set to one of this fields for this object. */
+#define OBJ_ENCODING_RAW 0     /* Raw representation */ 简单动态字符串
+#define OBJ_ENCODING_INT 1     /* Encoded as integer */ 整数类型 实际上是long
+#define OBJ_ENCODING_HT 2      /* Encoded as hash table */ 字典 hashtable
+#define OBJ_ENCODING_ZIPMAP 3  /* Encoded as zipmap */ 是个旧的表示方式，已不再用
+#define OBJ_ENCODING_LINKEDLIST 4 /* Encoded as regular linked list */ 是个旧的表示方式，已不再用
+#define OBJ_ENCODING_ZIPLIST 5 /* Encoded as ziplist */ 压缩列表
+#define OBJ_ENCODING_INTSET 6  /* Encoded as intset */ 整数集合
+#define OBJ_ENCODING_SKIPLIST 7  /* Encoded as skiplist */ 跳跃表
+#define OBJ_ENCODING_EMBSTR 8  /* Embedded sds string encoding */ embstr编码的简单动态字符串
+#define OBJ_ENCODING_QUICKLIST 9 /* Encoded as linked list of ziplists */ quicklist 双向ziplist
+```
+
 ### String  
 简单动态字符串 sds (sds替代C char*)   
 * sds的好处:  
