@@ -42,10 +42,8 @@ outputs:
 
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
-    description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
+    description: "quicksandzn - https://github.com/quicksandznzn"
     author: quicksandzn
-    # author: ["Me", "You"] # multiple authors
-
     defaultTheme: auto
     # disableThemeToggle: true
     ShowShareButtons: false
