@@ -213,9 +213,14 @@ if (!doNotTrack) {
     <h2>Redis 数据类型</h2>
   </header>
   <section class="entry-content">
-    <p></p>
+    <p>数据类型及使用场景  String：缓存、计数器、分布式锁等 List：链表、队列、微博关注人时间轴列表等 Hash： 用户信息、Hash 表等 Set： 去重、赞、踩、共同好友等 Sorted Set： 访问量排行榜、点击量排行榜等  String 简单动态字符串 sds (sds替代C char*)
+  sds的好处:
+ 可动态扩展内存。sds表示的字符串其内容可以修改，也可以追加 二进制安全（Binary Safe）。sds能存储任意二进制数据，而不仅仅是可打印字符 与传统的C语言字符串类型兼容    内部OBJ ENCODING:
+ OBJ_ENCODING_RAW 最原生的表示方式。其实只有string类型才会用这个encoding值（表示成sds） OBJ_ENCODING_INT 表示成数字。实际用long表示 OBJ_ENCODING_EMBSTR 表示成一种特殊的嵌入式的sds    set命令:
+ 源码object.c中的tryObjectEncoding 第1步检查，检查type。确保只对string类型的对象进行操作。 第2步检查，检查encoding。sdsEncodedObject是定义在server.h中的一个宏，确保只对OBJ_ENCODING_RAW和OBJ_ENCODING_EMBSTR编码的string对象进行操作。这两种编码的string都采用sds来存储，可以尝试进一步编码处理 第3步检查，检查refcount。引用计数大于1的共享对象，在多处被引用。由于编码过程结束后robj的对象指针可能会变化（我们在前一篇介绍sdscatlen函数的时候提到过类似这种接口使用模式），这样对于引用计数大于1的对象，就需要更新所有地方的引用，这不容易做到。因此，对于计数大于1的对象不做编码处理  第一种情况：如果Redis的配置不要求运行LRU替换算法，且转成的long型数字的值又比较小（小于OBJ_SHARED_INTEGERS，在目前的实现中这个值是10000），那么会使用共享数字对象来表示。之所以这里的判断跟LRU有关，是因为LRU算法要求每个robj有不同的lru字段值，所以用了LRU就不能共享robj。shared.integers是一个长度为10000的数组，里面预存了10000个小的数字对象。这些小数字对象都是encoding = OBJ_ENCODING_INT的string robj对象。 第二种情况：如果前一步不能使用共享小对象来表示，那么将原来的robj编码成encoding = OBJ_ENCODING_INT，这时ptr字段直接存成这个long型的值。注意ptr字段本来是一个void *指针（即存储的是内存地址），因此在64位机器上有64位宽度，正好能存储一个64位的long型值。这样，除了robj本身之外，它就不再需要额外的内存空间来存储字符串值。   试图将字符串转成64位的long。64位的long所能表达的数据范围是-2^63到2^63-1，用十进制表达出来最长是20位数（包括负号），string2l如果将字符串转成long转成功了，那么会返回1并且将转好的long存到value变量里 如果字符串长度足够小（小于等于OBJ_ENCODING_EMBSTR_SIZE_LIMIT，定义为44），那么调用createEmbeddedStringObject编码成encoding = OBJ_ENCODING_EMBSTR 如果前面所有的编码尝试都没有成功（仍然是OBJ_ENCODING_RAW），且sds里空余字节过多，那么做最后一次努力，调用sds的sdsRemoveFreeSpace接口来释放空余字节    get命令
+ object.c中的getDecodedObject 编码为OBJ_ENCODING_RAW和OBJ_ENCODING_EMBSTR的字符串robj对象，不做变化，原封不动返回。站在使用者的角度，这两种编码没有什么区别，内部都是封装的sds。 编码为数字的字符串robj对象，将long重新转为十进制字符串的形式，然后调用createStringObject转为sds的表示。注意：这里由long转成的sds字符串长度肯定不超过20，而根据createStringObject的实现，它们肯定会被编码成OBJ_ENCODING_EMBSTR的对象    List quicklist（是一个ziplist的双向链表）...</p>
   </section>
-  <footer class="entry-footer">July 21, 2021&nbsp;·&nbsp;0 min&nbsp;·&nbsp;quicksandzn</footer>
+  <footer class="entry-footer">July 21, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
   <a class="entry-link" aria-label="post link to Redis 数据类型" href="https://quicksandznzn.github.io/posts/redis_data_type/"></a>
 </article>
     </main>
