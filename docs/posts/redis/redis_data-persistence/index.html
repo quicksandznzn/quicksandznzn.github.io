@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <title>Redis 持久化方式 | quicksandzn</title>
-<meta name="keywords" content="2021" />
+<meta name="keywords" content="Redis, RDB, AOF" />
 <meta name="description" content="Redis 持久化方式">
 <meta name="author" content="quicksandzn">
 <link rel="canonical" href="https://quicksandznzn.github.io/posts/redis/redis_data-persistence/" />
@@ -75,7 +75,7 @@ if (!doNotTrack) {
   "name": "Redis 持久化方式",
   "description": "Redis 持久化方式",
   "keywords": [
-    "2021"
+    "Redis", "RDB", "AOF"
   ],
   "articleBody": "Redis 的两种持久化方式(RDB与AOF) RDB RDB (Redis DataBase) 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。\n RDB触发机制分为手动触发和自动触发  手动触发  SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止 BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程   自动触发 配置(redis.conf) == BGSAVE  save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改 save 300 10 //服务器在300秒之内，对数据库执行了至少10修改 save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改     优势  整个 Redis 数据库将只包含一个文件，十分易于备份 性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作 相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快   劣势  无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失 由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒    AOF AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录\n 同步策略  appendsync always #每次有数据修改发生时都会写入AOF文件 appendsync everysec #每秒同步一次，该策略为AOF的缺省策略 appendsync no #从不同步。高效但是数据不会被持久化   优势  最大限度地避免数据丢失，默认的 everysec 策略可以记录下每秒的修改操作，但如果一秒内宕机，有数据丢失 AOF 对日志文件的写入操作采用的是 append 模式，因此在写入过程中即使出现宕机现象，也不会破坏日志文件中已经存在的内容。   劣势  对于同一份数据来说，AOF 文件通常要大于 RDB 文件。RDB 在恢复大数据集时的速度比 AOF 的恢复速度要快。 根据同步策略的不同，AOF 在运行效率上往往会慢于 RDB。但是每秒同步策略的效率还是比较高的。    总结 二者选择的标准，就是愿意牺牲一些性能，换取最少的数据丢失(AOF)，还是牺牲一些数据来换取更高的性能(RDB)。实际中应该综合使用 AOF 和 RDB 两种持久化机制，用 AOF 来保证数据不丢失，作为数据恢复的第一选择; 用 RDB 来做不同程度的冷备，在 AOF 文件都丢失或损坏不可用的时候，还可以使用 RDB 来进行快速的数据恢复\nRedis参考文章  https://marticles.github.io/2018/12/25/Redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/ https://github.com/redis/redis  ",
   "wordCount" : "105",

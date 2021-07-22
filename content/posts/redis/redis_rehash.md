@@ -3,7 +3,8 @@ title: "Redis Rehash"
 date: "2021-07-22"
 description: "Redis Rehash 参考Redis3.2源码"
 tags: ["2021"]
-categories: ["redis"]
+categories: ["Redis"]
+keywords: ["Redis","Rehash"]
 ---
 ### Rehash
 

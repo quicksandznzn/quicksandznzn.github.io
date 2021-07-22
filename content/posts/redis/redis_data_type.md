@@ -3,7 +3,8 @@ title: "Redis 数据类型"
 date: "2021-07-21"
 description: "Redis 数据类型 参考Redis3.2源码"
 tags: ["2021"]
-categories: ["redis"]
+categories: ["Redis"]
+keywords: ["Redis","Redis数据结构","Redis数据类型"]
 ---
 
 ### 数据类型及使用场景
