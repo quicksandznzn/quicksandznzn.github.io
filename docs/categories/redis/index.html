@@ -155,9 +155,9 @@ if (!doNotTrack) {
     <h2>Redis Rehash</h2>
   </header>
   <section class="entry-content">
-    <p></p>
+    <p>Rehash  rehash执行条件  关键说明  负载因子:：load_factor = ht[0].used / ht[0].size BGSAVE:：fork一个子进程来创建RDB文件，父进程可以继续处理命令请求 BGREWRITEAOF：AOF重写缓冲区,由于redis是单进程的，为了不在进行重写时阻塞服务，redis使用了子进程的方式进行AOF重写 redis中每次开始执行aof文件重写或者开始生成新的RDB文件或者执行aof重写/生成RDB的子进程结束时，都会调用updateDictResizePolicy-&gt;dictDisableResize函数，所以从该函数中，也可以看出来，如果当前没有子进程在执行aof文件重写或者生成RDB文件，则运行进行字典扩容；否则禁止字典扩容。   扩容  以下条件中的任意一个被满足时执行扩容  服务器目前没有在执行 BGSAVE 命令或者 BGREWRITEAOF 命令， 并且哈希表的负载因子大于等于 1 服务器目前正在执行 BGSAVE 命令或者 BGREWRITEAOF 命令， 并且哈希表的负载因子大于等于 5     缩容  databasesCron-&gt;tryResizeHashTables函数检查用于保存键值对的redis数据库字典是否需要缩容 最小size是4 服务器目前没有在执行 BGSAVE 命令或者 BGREWRITEAOF 命令，并且哈希表的负载因子小于 0.1 时， 程序自动开始对哈希表执行收缩操作     rehash执行过程  为字典的 ht[1] 哈希表分配空间=ht[0].used= ht[0] 当前包含的键值对数量  如果执行的是扩展操作， 那么 ht[1] 的大小为 为第一个大于等于ht[0].used * 2 的 2^n 如果执行的是收缩操作， 那么 ht[1] 的大小为为第一个大于等于 ht[0]....</p>
   </section>
-  <footer class="entry-footer">July 22, 2021&nbsp;·&nbsp;0 min&nbsp;·&nbsp;quicksandzn</footer>
+  <footer class="entry-footer">July 22, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
   <a class="entry-link" aria-label="post link to Redis Rehash" href="https://quicksandznzn.github.io/posts/redis/redis_rehash/"></a>
 </article>
 
