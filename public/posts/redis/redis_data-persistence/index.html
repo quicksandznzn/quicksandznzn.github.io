@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<title>Redis 持久化方式 | quicksandzn</title>
+<meta name="keywords" content="2021" />
+<meta name="description" content="Redis 持久化方式">
+<meta name="author" content="quicksandzn">
+<link rel="canonical" href="https://quicksandznzn.github.io/posts/redis/redis_data-persistence/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://quicksandznzn.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://quicksandznzn.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://quicksandznzn.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://quicksandznzn.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://quicksandznzn.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.83.1" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-123-45', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script><meta property="og:title" content="Redis 持久化方式" />
+<meta property="og:description" content="Redis 持久化方式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quicksandznzn.github.io/posts/redis/redis_data-persistence/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-21T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-07-21T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
+
+<meta name="twitter:title" content="Redis 持久化方式"/>
+<meta name="twitter:description" content="Redis 持久化方式"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://quicksandznzn.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Redis 持久化方式",
+      "item": "https://quicksandznzn.github.io/posts/redis/redis_data-persistence/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Redis 持久化方式",
+  "name": "Redis 持久化方式",
+  "description": "Redis 持久化方式",
+  "keywords": [
+    "2021"
+  ],
+  "articleBody": "Redis 的两种持久化方式(RDB与AOF) RDB RDB (Redis DataBase) 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。\n RDB触发机制分为手动触发和自动触发  手动触发  SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止 BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程   自动触发 配置(redis.conf) == BGSAVE  save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改 save 300 10 //服务器在300秒之内，对数据库执行了至少10修改 save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改     优势  整个 Redis 数据库将只包含一个文件，十分易于备份 性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作 相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快   劣势  无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失 由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒    AOF AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录\n 同步策略  appendsync always #每次有数据修改发生时都会写入AOF文件 appendsync everysec #每秒同步一次，该策略为AOF的缺省策略 appendsync no #从不同步。高效但是数据不会被持久化   优势  最大限度地避免数据丢失，默认的 everysec 策略可以记录下每秒的修改操作，但如果一秒内宕机，有数据丢失 AOF 对日志文件的写入操作采用的是 append 模式，因此在写入过程中即使出现宕机现象，也不会破坏日志文件中已经存在的内容。   劣势  对于同一份数据来说，AOF 文件通常要大于 RDB 文件。RDB 在恢复大数据集时的速度比 AOF 的恢复速度要快。 根据同步策略的不同，AOF 在运行效率上往往会慢于 RDB。但是每秒同步策略的效率还是比较高的。    总结 二者选择的标准，就是愿意牺牲一些性能，换取最少的数据丢失(AOF)，还是牺牲一些数据来换取更高的性能(RDB)。实际中应该综合使用 AOF 和 RDB 两种持久化机制，用 AOF 来保证数据不丢失，作为数据恢复的第一选择; 用 RDB 来做不同程度的冷备，在 AOF 文件都丢失或损坏不可用的时候，还可以使用 RDB 来进行快速的数据恢复\nRedis参考文章  https://marticles.github.io/2018/12/25/Redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/ https://github.com/redis/redis  ",
+  "wordCount" : "105",
+  "inLanguage": "en",
+  "datePublished": "2021-07-21T00:00:00Z",
+  "dateModified": "2021-07-21T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "quicksandzn"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://quicksandznzn.github.io/posts/redis/redis_data-persistence/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "quicksandzn",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://quicksandznzn.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://quicksandznzn.github.io/" accesskey="h" title="quicksandzn (Alt + H)">quicksandzn</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://quicksandznzn.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Redis 持久化方式
+    </h1>
+    <div class="post-description">
+      Redis 持久化方式
+    </div>
+    <div class="post-meta">July 21, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn
+</div>
+  </header> 
+  <div class="post-content"><h2 id="redis-的两种持久化方式rdb与aof">Redis 的两种持久化方式(RDB与AOF)<a hidden class="anchor" aria-hidden="true" href="#redis-的两种持久化方式rdb与aof">#</a></h2>
+<h3 id="rdb">RDB<a hidden class="anchor" aria-hidden="true" href="#rdb">#</a></h3>
+<p>RDB (Redis DataBase) 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。</p>
+<ul>
+<li>RDB触发机制分为手动触发和自动触发
+<ul>
+<li>手动触发
+<ul>
+<li>SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止</li>
+<li>BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程</li>
+</ul>
+</li>
+<li>自动触发 配置(redis.conf) == BGSAVE
+<ul>
+<li>save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改</li>
+<li>save 300 10 //服务器在300秒之内，对数据库执行了至少10修改</li>
+<li>save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>优势
+<ul>
+<li>整个 Redis 数据库将只包含一个文件，十分易于备份</li>
+<li>性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作</li>
+<li>相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快</li>
+</ul>
+</li>
+<li>劣势
+<ul>
+<li>无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失</li>
+<li>由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒</li>
+</ul>
+</li>
+</ul>
+<h3 id="aof">AOF<a hidden class="anchor" aria-hidden="true" href="#aof">#</a></h3>
+<p>AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录</p>
+<ul>
+<li>同步策略
+<ul>
+<li>appendsync always #每次有数据修改发生时都会写入AOF文件</li>
+<li>appendsync everysec #每秒同步一次，该策略为AOF的缺省策略</li>
+<li>appendsync no #从不同步。高效但是数据不会被持久化</li>
+</ul>
+</li>
+<li>优势
+<ul>
+<li>最大限度地避免数据丢失，默认的 everysec 策略可以记录下每秒的修改操作，但如果一秒内宕机，有数据丢失</li>
+<li>AOF 对日志文件的写入操作采用的是 append 模式，因此在写入过程中即使出现宕机现象，也不会破坏日志文件中已经存在的内容。</li>
+</ul>
+</li>
+<li>劣势
+<ul>
+<li>对于同一份数据来说，AOF 文件通常要大于 RDB 文件。RDB 在恢复大数据集时的速度比 AOF 的恢复速度要快。</li>
+<li>根据同步策略的不同，AOF 在运行效率上往往会慢于 RDB。但是每秒同步策略的效率还是比较高的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>二者选择的标准，就是愿意牺牲一些性能，换取最少的数据丢失(AOF)，还是牺牲一些数据来换取更高的性能(RDB)。实际中应该综合使用 AOF 和 RDB 两种持久化机制，用 AOF 来保证数据不丢失，作为数据恢复的第一选择; 用 RDB 来做不同程度的冷备，在 AOF 文件都丢失或损坏不可用的时候，还可以使用 RDB 来进行快速的数据恢复</p>
+<h3 id="redis参考文章">Redis参考文章<a hidden class="anchor" aria-hidden="true" href="#redis参考文章">#</a></h3>
+<ul>
+<li><a href="https://marticles.github.io/2018/12/25/Redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">https://marticles.github.io/2018/12/25/Redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</a></li>
+<li><a href="https://github.com/redis/redis">https://github.com/redis/redis</a></li>
+</ul>
+
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://quicksandznzn.github.io/tags/2021/">2021</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://quicksandznzn.github.io/posts/redis/redis_data_type/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Redis 数据类型</span>
+  </a>
+</nav>
+
+
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 &lt;> <a href="https://quicksandznzn.github.io/">quicksandzn</a></span>
+
+    <span id="busuanzi_container_site_pv">
+    PV:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    &nbsp;
+    <span id="busuanzi_container_site_uv">
+    UV:<span id="busuanzi_value_site_uv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

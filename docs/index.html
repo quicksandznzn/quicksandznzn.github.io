@@ -207,7 +207,7 @@ if (!doNotTrack) {
  RDB触发机制分为手动触发和自动触发  手动触发  SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止 BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程   自动触发 配置(redis.conf) == BGSAVE  save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改 save 300 10 //服务器在300秒之内，对数据库执行了至少10修改 save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改     优势  整个 Redis 数据库将只包含一个文件，十分易于备份 性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作 相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快   劣势  无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失 由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒    AOF AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录...</p>
   </section>
   <footer class="entry-footer">July 21, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
-  <a class="entry-link" aria-label="post link to Redis 持久化方式" href="https://quicksandznzn.github.io/posts/redis_data-persistence/"></a>
+  <a class="entry-link" aria-label="post link to Redis 持久化方式" href="https://quicksandznzn.github.io/posts/redis/redis_data-persistence/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -218,7 +218,7 @@ if (!doNotTrack) {
     <p>数据类型及使用场景  String：缓存、计数器、分布式锁等 List：链表、队列、微博关注人时间轴列表等 Hash： 用户信息、Hash 表等 Set： 去重、赞、踩、共同好友等 Sorted Set： 访问量排行榜、点击量排行榜等  Redis Object typedef struct redisObject { unsigned type:4; // 类型  unsigned encoding:4; // 一个对象可能包含多个encoding  unsigned lru:LRU_BITS; /* lru time (relative to server.lruclock) */ int refcount; // 引用计数 实现内存回收机制  void *ptr; // 存储的值 } robj; /* Object types */ #define OBJ_STRING 0 #define OBJ_LIST 1 #define OBJ_SET 2 #define OBJ_ZSET 3 #define OBJ_HASH 4  /* Objects encoding....</p>
   </section>
   <footer class="entry-footer">July 21, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;quicksandzn</footer>
-  <a class="entry-link" aria-label="post link to Redis 数据类型" href="https://quicksandznzn.github.io/posts/redis_data_type/"></a>
+  <a class="entry-link" aria-label="post link to Redis 数据类型" href="https://quicksandznzn.github.io/posts/redis/redis_data_type/"></a>
 </article>
     </main>
     <footer class="footer">

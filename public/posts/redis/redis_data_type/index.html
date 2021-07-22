@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<title>Redis 数据类型 | quicksandzn</title>
+<meta name="keywords" content="2021" />
+<meta name="description" content="Redis 数据类型 参考Redis3.2源码">
+<meta name="author" content="quicksandzn">
+<link rel="canonical" href="https://quicksandznzn.github.io/posts/redis/redis_data_type/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://quicksandznzn.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://quicksandznzn.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://quicksandznzn.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://quicksandznzn.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://quicksandznzn.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.83.1" />
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-123-45', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script><meta property="og:title" content="Redis 数据类型" />
+<meta property="og:description" content="Redis 数据类型 参考Redis3.2源码" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quicksandznzn.github.io/posts/redis/redis_data_type/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-21T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-07-21T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
+
+<meta name="twitter:title" content="Redis 数据类型"/>
+<meta name="twitter:description" content="Redis 数据类型 参考Redis3.2源码"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://quicksandznzn.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Redis 数据类型",
+      "item": "https://quicksandznzn.github.io/posts/redis/redis_data_type/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Redis 数据类型",
+  "name": "Redis 数据类型",
+  "description": "Redis 数据类型 参考Redis3.2源码",
+  "keywords": [
+    "2021"
+  ],
+  "articleBody": "数据类型及使用场景  String：缓存、计数器、分布式锁等 List：链表、队列、微博关注人时间轴列表等 Hash： 用户信息、Hash 表等 Set： 去重、赞、踩、共同好友等 Sorted Set： 访问量排行榜、点击量排行榜等  Redis Object typedef struct redisObject { unsigned type:4; // 类型  unsigned encoding:4; // 一个对象可能包含多个encoding  unsigned lru:LRU_BITS; /* lru time (relative to server.lruclock) */ int refcount; // 引用计数 实现内存回收机制  void *ptr; // 存储的值 } robj; /* Object types */ #define OBJ_STRING 0 #define OBJ_LIST 1 #define OBJ_SET 2 #define OBJ_ZSET 3 #define OBJ_HASH 4  /* Objects encoding. Some kind of objects like Strings and Hashes can be * internally represented in multiple ways. The 'encoding' field of the object * is set to one of this fields for this object. */ #define OBJ_ENCODING_RAW 0 /* Raw representation */简单动态字符串 #define OBJ_ENCODING_INT 1 /* Encoded as integer */整数类型 实际上是long #define OBJ_ENCODING_HT 2 /* Encoded as hash table */字典 hashtable #define OBJ_ENCODING_ZIPMAP 3 /* Encoded as zipmap */是个旧的表示方式，已不再用 #define OBJ_ENCODING_LINKEDLIST 4 /* Encoded as regular linked list */是个旧的表示方式，已不再用 #define OBJ_ENCODING_ZIPLIST 5 /* Encoded as ziplist */压缩列表 #define OBJ_ENCODING_INTSET 6 /* Encoded as intset */整数集合 #define OBJ_ENCODING_SKIPLIST 7 /* Encoded as skiplist */跳跃表 #define OBJ_ENCODING_EMBSTR 8 /* Embedded sds string encoding */embstr编码的简单动态字符串 #define OBJ_ENCODING_QUICKLIST 9 /* Encoded as linked list of ziplists */quicklist 双向ziplist String 简单动态字符串 sds (sds替代C char*)\n  sds的好处:\n 可动态扩展内存。sds表示的字符串其内容可以修改，也可以追加 二进制安全（Binary Safe）。sds能存储任意二进制数据，而不仅仅是可打印字符 与传统的C语言字符串类型兼容    内部OBJ ENCODING:\n OBJ_ENCODING_RAW 最原生的表示方式。其实只有string类型才会用这个encoding值（表示成sds） OBJ_ENCODING_INT 表示成数字。实际用long表示 OBJ_ENCODING_EMBSTR 表示成一种特殊的嵌入式的sds    set命令:\n 源码object.c中的tryObjectEncoding 第1步检查，检查type。确保只对string类型的对象进行操作。 第2步检查，检查encoding。sdsEncodedObject是定义在server.h中的一个宏，确保只对OBJ_ENCODING_RAW和OBJ_ENCODING_EMBSTR编码的string对象进行操作。这两种编码的string都采用sds来存储，可以尝试进一步编码处理 第3步检查，检查refcount。引用计数大于1的共享对象，在多处被引用。由于编码过程结束后robj的对象指针可能会变化（我们在前一篇介绍sdscatlen函数的时候提到过类似这种接口使用模式），这样对于引用计数大于1的对象，就需要更新所有地方的引用，这不容易做到。因此，对于计数大于1的对象不做编码处理  第一种情况：如果Redis的配置不要求运行LRU替换算法，且转成的long型数字的值又比较小（小于OBJ_SHARED_INTEGERS，在目前的实现中这个值是10000），那么会使用共享数字对象来表示。之所以这里的判断跟LRU有关，是因为LRU算法要求每个robj有不同的lru字段值，所以用了LRU就不能共享robj。shared.integers是一个长度为10000的数组，里面预存了10000个小的数字对象。这些小数字对象都是encoding = OBJ_ENCODING_INT的string robj对象。 第二种情况：如果前一步不能使用共享小对象来表示，那么将原来的robj编码成encoding = OBJ_ENCODING_INT，这时ptr字段直接存成这个long型的值。注意ptr字段本来是一个void *指针（即存储的是内存地址），因此在64位机器上有64位宽度，正好能存储一个64位的long型值。这样，除了robj本身之外，它就不再需要额外的内存空间来存储字符串值。   试图将字符串转成64位的long。64位的long所能表达的数据范围是-2^63到2^63-1，用十进制表达出来最长是20位数（包括负号），string2l如果将字符串转成long转成功了，那么会返回1并且将转好的long存到value变量里 如果字符串长度足够小（小于等于OBJ_ENCODING_EMBSTR_SIZE_LIMIT，定义为44），那么调用createEmbeddedStringObject编码成encoding = OBJ_ENCODING_EMBSTR 如果前面所有的编码尝试都没有成功（仍然是OBJ_ENCODING_RAW），且sds里空余字节过多，那么做最后一次努力，调用sds的sdsRemoveFreeSpace接口来释放空余字节    get命令\n object.c中的getDecodedObject 编码为OBJ_ENCODING_RAW和OBJ_ENCODING_EMBSTR的字符串robj对象，不做变化，原封不动返回。站在使用者的角度，这两种编码没有什么区别，内部都是封装的sds。 编码为数字的字符串robj对象，将long重新转为十进制字符串的形式，然后调用createStringObject转为sds的表示。注意：这里由long转成的sds字符串长度肯定不超过20，而根据createStringObject的实现，它们肯定会被编码成OBJ_ENCODING_EMBSTR的对象    List quicklist（是一个ziplist的双向链表）\n 内部OBJ ENCODING:  OBJ_ENCODING_QUICKLIST   关键参数  list-max-ziplist-size  正值  当这个参数配置成5的时候，表示每个quicklist节点的ziplist最多包含5个数据项   负值  -5: 每个quicklist节点上的ziplist大小不能超过64 Kb。（注：1kb = 1024 bytes） -4: 每个quicklist节点上的ziplist大小不能超过32 Kb。 -3: 每个quicklist节点上的ziplist大小不能超过16 Kb。 -2: 每个quicklist节点上的ziplist大小不能超过8 Kb。（-2是Redis给出的默认值） -4: -1: 每个quicklist节点上的ziplist大小不能超过4 Kb。     list-compress-depth  0: 是个特殊值，表示都不压缩。这是Redis的默认值。 1: 表示quicklist两端各有1个节点不压缩，中间的节点压缩。 2: 表示quicklist两端各有2个节点不压缩，中间的节点压缩。 依此类推…     压缩算法  采用的LZF无损压缩算法 quicklist.h  typedef struct quicklistLZF { unsigned int sz; /* LZF size in bytes*/ char compressed[]; } quicklistLZF;   Hash 压缩列表+哈希表\n 内部OBJ ENCODING:  OBJ_ENCODING_HT OBJ_ENCODING_ZIPLIST   hash的底层存储有两种数据结构，一种是ziplist，另外一种是hashtable，hash对象只有同时满足以下条件，才会采用ziplist编码：  当列表元素小于hash_max_ziplist_entries:512 当列表元素的值都小于hash_max_ziplist_value:64字节    Set 哈希表+整数数组\n 内部OBJ ENCODING:  OBJ_ENCODING_HT OBJ_ENCODING_INTSET   set的底层存储有两种数据结构，intset，另外一种是hashtable，set对象只有同时满足以下条件，才会采用intset编码：  当集合元素小于set_max_intset_entries:512 当集合元素都是数字 isObjectRepresentableAsLongLong   intset是有序的 里面都是数字类型 hashtable 的key是字符串类型对象 value是null  Sorted Set 压缩列表+跳表（跳表+字典）\n 内部OBJ ENCODING:  OBJ_ENCODING_ZIPLIST OBJ_ENCODING_SKIPLIST   当集合元素大于zset_max_ziplist_entries（默认128） 或者 当集合元素值大于zset_max_ziplist_value（默认64字节）转换为跳表 可以相互转换 skiplist 编码的 Zset 底层为一个被称为 zset 的结构体，这个结构体中包含一个字典和一个跳跃表 跳跃表按 score 从小到大保存所有集合元素，查找时间复杂度为平均 O(logN)，最坏 O(N) 。字典则保存着从 member 到 score 的映射，这样就可以用 O(1) 的复杂度来查找 member 对应的 score 值。虽然同时使用两种结构，但它们会通过指针来共享相同元素的 member 和 score，因此不会浪费额外的内存。  Redis参考文章  https://marticles.github.io/2018/12/25/Redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/ https://github.com/menwenjun/redis_source_annotation https://github.com/redis/redis  ",
+  "wordCount" : "350",
+  "inLanguage": "en",
+  "datePublished": "2021-07-21T00:00:00Z",
+  "dateModified": "2021-07-21T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "quicksandzn"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://quicksandznzn.github.io/posts/redis/redis_data_type/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "quicksandzn",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://quicksandznzn.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://quicksandznzn.github.io/" accesskey="h" title="quicksandzn (Alt + H)">quicksandzn</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://quicksandznzn.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Redis 数据类型
+    </h1>
+    <div class="post-description">
+      Redis 数据类型 参考Redis3.2源码
+    </div>
+    <div class="post-meta">July 21, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;quicksandzn
+</div>
+  </header> 
+  <div class="post-content"><h3 id="数据类型及使用场景">数据类型及使用场景<a hidden class="anchor" aria-hidden="true" href="#数据类型及使用场景">#</a></h3>
+<ul>
+<li><a href="#string">String：缓存、计数器、分布式锁等</a></li>
+<li><a href="#list">List：链表、队列、微博关注人时间轴列表等</a></li>
+<li><a href="#hash">Hash： 用户信息、Hash 表等</a></li>
+<li><a href="#set">Set： 去重、赞、踩、共同好友等</a></li>
+<li><a href="#sorted-set">Sorted Set： 访问量排行榜、点击量排行榜等</a></li>
+</ul>
+<h3 id="redis-object">Redis Object<a hidden class="anchor" aria-hidden="true" href="#redis-object">#</a></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> redisObject {
+    <span style="color:#66d9ef">unsigned</span> type:<span style="color:#ae81ff">4</span>; <span style="color:#75715e">// 类型
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> encoding:<span style="color:#ae81ff">4</span>; <span style="color:#75715e">// 一个对象可能包含多个encoding
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">unsigned</span> lru:LRU_BITS; <span style="color:#75715e">/* lru time (relative to server.lruclock) */</span>
+    <span style="color:#66d9ef">int</span> refcount; <span style="color:#75715e">// 引用计数 实现内存回收机制
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>ptr; <span style="color:#75715e">// 存储的值
+</span><span style="color:#75715e"></span>} robj;
+
+<span style="color:#75715e">/* Object types */</span>
+<span style="color:#75715e">#define OBJ_STRING 0
+</span><span style="color:#75715e">#define OBJ_LIST 1
+</span><span style="color:#75715e">#define OBJ_SET 2
+</span><span style="color:#75715e">#define OBJ_ZSET 3
+</span><span style="color:#75715e">#define OBJ_HASH 4
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">/* Objects encoding. Some kind of objects like Strings and Hashes can be
+</span><span style="color:#75715e"> * internally represented in multiple ways. The &#39;encoding&#39; field of the object
+</span><span style="color:#75715e"> * is set to one of this fields for this object. */</span>
+<span style="color:#75715e">#define OBJ_ENCODING_RAW 0     </span><span style="color:#75715e">/* Raw representation */</span><span style="color:#75715e"> 简单动态字符串
+</span><span style="color:#75715e">#define OBJ_ENCODING_INT 1     </span><span style="color:#75715e">/* Encoded as integer */</span><span style="color:#75715e"> 整数类型 实际上是long
+</span><span style="color:#75715e">#define OBJ_ENCODING_HT 2      </span><span style="color:#75715e">/* Encoded as hash table */</span><span style="color:#75715e"> 字典 hashtable
+</span><span style="color:#75715e">#define OBJ_ENCODING_ZIPMAP 3  </span><span style="color:#75715e">/* Encoded as zipmap */</span><span style="color:#75715e"> 是个旧的表示方式，已不再用
+</span><span style="color:#75715e">#define OBJ_ENCODING_LINKEDLIST 4 </span><span style="color:#75715e">/* Encoded as regular linked list */</span><span style="color:#75715e"> 是个旧的表示方式，已不再用
+</span><span style="color:#75715e">#define OBJ_ENCODING_ZIPLIST 5 </span><span style="color:#75715e">/* Encoded as ziplist */</span><span style="color:#75715e"> 压缩列表
+</span><span style="color:#75715e">#define OBJ_ENCODING_INTSET 6  </span><span style="color:#75715e">/* Encoded as intset */</span><span style="color:#75715e"> 整数集合
+</span><span style="color:#75715e">#define OBJ_ENCODING_SKIPLIST 7  </span><span style="color:#75715e">/* Encoded as skiplist */</span><span style="color:#75715e"> 跳跃表
+</span><span style="color:#75715e">#define OBJ_ENCODING_EMBSTR 8  </span><span style="color:#75715e">/* Embedded sds string encoding */</span><span style="color:#75715e"> embstr编码的简单动态字符串
+</span><span style="color:#75715e">#define OBJ_ENCODING_QUICKLIST 9 </span><span style="color:#75715e">/* Encoded as linked list of ziplists */</span><span style="color:#75715e"> quicklist 双向ziplist
+</span></code></pre></div><h3 id="string">String<a hidden class="anchor" aria-hidden="true" href="#string">#</a></h3>
+<p>简单动态字符串 sds (sds替代C char*)</p>
+<ul>
+<li>
+<p>sds的好处:</p>
+<ul>
+<li>可动态扩展内存。sds表示的字符串其内容可以修改，也可以追加</li>
+<li>二进制安全（Binary Safe）。sds能存储任意二进制数据，而不仅仅是可打印字符</li>
+<li>与传统的C语言字符串类型兼容</li>
+</ul>
+</li>
+<li>
+<p>内部OBJ ENCODING:</p>
+<ul>
+<li>OBJ_ENCODING_RAW 最原生的表示方式。其实只有string类型才会用这个encoding值（表示成sds）</li>
+<li>OBJ_ENCODING_INT 表示成数字。实际用long表示</li>
+<li>OBJ_ENCODING_EMBSTR  表示成一种特殊的嵌入式的sds</li>
+</ul>
+</li>
+<li>
+<p>set命令:</p>
+<ul>
+<li>源码object.c中的tryObjectEncoding</li>
+<li>第1步检查，检查type。确保只对string类型的对象进行操作。</li>
+<li>第2步检查，检查encoding。sdsEncodedObject是定义在server.h中的一个宏，确保只对OBJ_ENCODING_RAW和OBJ_ENCODING_EMBSTR编码的string对象进行操作。这两种编码的string都采用sds来存储，可以尝试进一步编码处理</li>
+<li>第3步检查，检查refcount。引用计数大于1的共享对象，在多处被引用。由于编码过程结束后robj的对象指针可能会变化（我们在前一篇介绍sdscatlen函数的时候提到过类似这种接口使用模式），这样对于引用计数大于1的对象，就需要更新所有地方的引用，这不容易做到。因此，对于计数大于1的对象不做编码处理
+<ul>
+<li>第一种情况：如果Redis的配置不要求运行LRU替换算法，且转成的long型数字的值又比较小（小于OBJ_SHARED_INTEGERS，在目前的实现中这个值是10000），那么会使用共享数字对象来表示。之所以这里的判断跟LRU有关，是因为LRU算法要求每个robj有不同的lru字段值，所以用了LRU就不能共享robj。shared.integers是一个长度为10000的数组，里面预存了10000个小的数字对象。这些小数字对象都是encoding = OBJ_ENCODING_INT的string robj对象。</li>
+<li>第二种情况：如果前一步不能使用共享小对象来表示，那么将原来的robj编码成encoding = OBJ_ENCODING_INT，这时ptr字段直接存成这个long型的值。注意ptr字段本来是一个void *指针（即存储的是内存地址），因此在64位机器上有64位宽度，正好能存储一个64位的long型值。这样，除了robj本身之外，它就不再需要额外的内存空间来存储字符串值。</li>
+</ul>
+</li>
+<li>试图将字符串转成64位的long。64位的long所能表达的数据范围是-2^63到2^63-1，用十进制表达出来最长是20位数（包括负号），string2l如果将字符串转成long转成功了，那么会返回1并且将转好的long存到value变量里</li>
+<li>如果字符串长度足够小（小于等于OBJ_ENCODING_EMBSTR_SIZE_LIMIT，定义为44），那么调用createEmbeddedStringObject编码成encoding = OBJ_ENCODING_EMBSTR</li>
+<li>如果前面所有的编码尝试都没有成功（仍然是OBJ_ENCODING_RAW），且sds里空余字节过多，那么做最后一次努力，调用sds的sdsRemoveFreeSpace接口来释放空余字节</li>
+</ul>
+</li>
+<li>
+<p>get命令</p>
+<ul>
+<li>object.c中的getDecodedObject</li>
+<li>编码为OBJ_ENCODING_RAW和OBJ_ENCODING_EMBSTR的字符串robj对象，不做变化，原封不动返回。站在使用者的角度，这两种编码没有什么区别，内部都是封装的sds。</li>
+<li>编码为数字的字符串robj对象，将long重新转为十进制字符串的形式，然后调用createStringObject转为sds的表示。注意：这里由long转成的sds字符串长度肯定不超过20，而根据createStringObject的实现，它们肯定会被编码成OBJ_ENCODING_EMBSTR的对象</li>
+</ul>
+</li>
+</ul>
+<h3 id="list">List<a hidden class="anchor" aria-hidden="true" href="#list">#</a></h3>
+<p>quicklist（是一个ziplist的双向链表）</p>
+<ul>
+<li>内部OBJ ENCODING:
+<ul>
+<li>OBJ_ENCODING_QUICKLIST</li>
+</ul>
+</li>
+<li>关键参数
+<ul>
+<li>list-max-ziplist-size
+<ul>
+<li>正值
+<ul>
+<li>当这个参数配置成5的时候，表示每个quicklist节点的ziplist最多包含5个数据项</li>
+</ul>
+</li>
+<li>负值
+<ul>
+<li>-5: 每个quicklist节点上的ziplist大小不能超过64 Kb。（注：1kb =&gt; 1024 bytes）</li>
+<li>-4: 每个quicklist节点上的ziplist大小不能超过32 Kb。</li>
+<li>-3: 每个quicklist节点上的ziplist大小不能超过16 Kb。</li>
+<li>-2: 每个quicklist节点上的ziplist大小不能超过8 Kb。（-2是Redis给出的默认值）</li>
+<li>-4: -1: 每个quicklist节点上的ziplist大小不能超过4 Kb。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>list-compress-depth
+<ul>
+<li>0: 是个特殊值，表示都不压缩。这是Redis的默认值。</li>
+<li>1: 表示quicklist两端各有1个节点不压缩，中间的节点压缩。</li>
+<li>2: 表示quicklist两端各有2个节点不压缩，中间的节点压缩。</li>
+<li>依此类推…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>压缩算法
+<ul>
+<li>采用的LZF无损压缩算法 quicklist.h</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">   <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> quicklistLZF {
+       <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> sz; <span style="color:#75715e">/* LZF size in bytes*/</span>
+       <span style="color:#66d9ef">char</span> compressed[];
+   } quicklistLZF; 
+</code></pre></div></li>
+</ul>
+<h3 id="hash">Hash<a hidden class="anchor" aria-hidden="true" href="#hash">#</a></h3>
+<p>压缩列表+哈希表</p>
+<ul>
+<li>内部OBJ ENCODING:
+<ul>
+<li>OBJ_ENCODING_HT</li>
+<li>OBJ_ENCODING_ZIPLIST</li>
+</ul>
+</li>
+<li>hash的底层存储有两种数据结构，一种是ziplist，另外一种是hashtable，hash对象只有同时满足以下条件，才会采用ziplist编码：
+<ul>
+<li>当列表元素小于hash_max_ziplist_entries:512</li>
+<li>当列表元素的值都小于hash_max_ziplist_value:64字节</li>
+</ul>
+</li>
+</ul>
+<h3 id="set">Set<a hidden class="anchor" aria-hidden="true" href="#set">#</a></h3>
+<p>哈希表+整数数组</p>
+<ul>
+<li>内部OBJ ENCODING:
+<ul>
+<li>OBJ_ENCODING_HT</li>
+<li>OBJ_ENCODING_INTSET</li>
+</ul>
+</li>
+<li>set的底层存储有两种数据结构，intset，另外一种是hashtable，set对象只有同时满足以下条件，才会采用intset编码：
+<ul>
+<li>当集合元素小于set_max_intset_entries:512</li>
+<li>当集合元素都是数字 isObjectRepresentableAsLongLong</li>
+</ul>
+</li>
+<li>intset是有序的 里面都是数字类型  hashtable 的key是字符串类型对象 value是null</li>
+</ul>
+<h3 id="sorted-set">Sorted Set<a hidden class="anchor" aria-hidden="true" href="#sorted-set">#</a></h3>
+<p>压缩列表+跳表（跳表+字典）</p>
+<ul>
+<li>内部OBJ ENCODING:
+<ul>
+<li>OBJ_ENCODING_ZIPLIST</li>
+<li>OBJ_ENCODING_SKIPLIST</li>
+</ul>
+</li>
+<li>当集合元素大于zset_max_ziplist_entries（默认128） 或者 当集合元素值大于zset_max_ziplist_value（默认64字节）转换为跳表   可以相互转换</li>
+<li>skiplist 编码的 Zset 底层为一个被称为 zset 的结构体，这个结构体中包含一个字典和一个跳跃表
+跳跃表按 score 从小到大保存所有集合元素，查找时间复杂度为平均 O(logN)，最坏 O(N) 。字典则保存着从 member 到 score 的映射，这样就可以用 O(1) 的复杂度来查找 member 对应的 score 值。虽然同时使用两种结构，但它们会通过指针来共享相同元素的 member 和 score，因此不会浪费额外的内存。</li>
+</ul>
+<h3 id="redis参考文章">Redis参考文章<a hidden class="anchor" aria-hidden="true" href="#redis参考文章">#</a></h3>
+<ul>
+<li><a href="https://marticles.github.io/2018/12/25/Redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">https://marticles.github.io/2018/12/25/Redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</a></li>
+<li><a href="https://github.com/menwenjun/redis_source_annotation">https://github.com/menwenjun/redis_source_annotation</a></li>
+<li><a href="https://github.com/redis/redis">https://github.com/redis/redis</a></li>
+</ul>
+
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://quicksandznzn.github.io/tags/2021/">2021</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://quicksandznzn.github.io/posts/redis/redis_data-persistence/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>Redis 持久化方式</span>
+  </a>
+</nav>
+
+
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 &lt;> <a href="https://quicksandznzn.github.io/">quicksandzn</a></span>
+
+    <span id="busuanzi_container_site_pv">
+    PV:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    &nbsp;
+    <span id="busuanzi_container_site_uv">
+    UV:<span id="busuanzi_value_site_uv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
