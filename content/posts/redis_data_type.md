@@ -1,7 +1,7 @@
 ---
 title: "Redis 数据类型"
 date: "2021-07-21"
-description: "本文对Redis中的5种数据类型String、Hash、List、Set、Sorted Set做了讲解,参考Redis3.2源码"
+description: "Redis 数据类型 参考Redis3.2源码"
 tags: ["2021"]
 categories: ["redis"]
 ---
@@ -132,5 +132,6 @@ quicklist（是一个ziplist的双向链表）
 ### Redis参考文章
 * https://marticles.github.io/2018/12/25/Redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/ 
 * https://github.com/menwenjun/redis_source_annotation
+* https://github.com/redis/redis
 
 

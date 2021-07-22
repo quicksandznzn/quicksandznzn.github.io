@@ -25,7 +25,7 @@
       <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/redis_data_type/</guid>
-      <description>本文对Redis中的5种数据类型String、Hash、List、Set、Sorted Set做了讲解,参考Redis3.2源码</description>
+      <description>Redis 数据类型 参考Redis3.2源码</description>
     </item>
     
   </channel>
