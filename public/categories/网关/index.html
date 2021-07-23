@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<title>Tags | quicksandzn</title>
+<title>网关 | quicksandzn</title>
 <meta name="keywords" content="" />
 <meta name="description" content="quicksandzn - https://github.com/quicksandznzn">
 <meta name="author" content="quicksandzn">
-<link rel="canonical" href="https://quicksandznzn.github.io/tags/" />
+<link rel="canonical" href="https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://quicksandznzn.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://quicksandznzn.github.io/favicon-16x16.png">
@@ -20,7 +20,7 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.83.1" />
-<link rel="alternate" type="application/rss+xml" href="https://quicksandznzn.github.io/tags/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/index.xml">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R3QCJGM8T9"></script>
 <script>
@@ -32,15 +32,15 @@ if (!doNotTrack) {
 	gtag('config', 'G-R3QCJGM8T9', { 'anonymize_ip': false });
 }
 </script>
-<meta property="og:title" content="Tags" />
+<meta property="og:title" content="网关" />
 <meta property="og:description" content="quicksandzn - https://github.com/quicksandznzn" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://quicksandznzn.github.io/tags/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
+<meta property="og:url" content="https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
 
-<meta name="twitter:title" content="Tags"/>
+<meta name="twitter:title" content="网关"/>
 <meta name="twitter:description" content="quicksandzn - https://github.com/quicksandznzn"/>
 
 </head>
@@ -139,22 +139,29 @@ if (!doNotTrack) {
             </li>
             <li>
                 <a href="https://quicksandznzn.github.io/tags/" title="Tags">
-                    <span class="active">Tags</span>
+                    <span>Tags</span>
                 </a>
             </li>
         </ul>
     </nav>
 </header>
-<main class="main">
+<main class="main"> 
 <header class="page-header">
-    <h1>Tags</h1>
+  <h1>网关</h1>
 </header>
 
-<ul class="terms-tags">
-    <li>
-        <a href="https://quicksandznzn.github.io/tags/2021/">2021 <sup><strong><sup>4</sup></strong></sup> </a>
-    </li>
-</ul>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Zuul网关跨域问题</h2>
+  </header>
+  <section class="entry-content">
+    <p>跨域概述  跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的。简单说就是协议不通，域名不通，端口不同都会产生跨域问题  跨源资源共享（CORS)  跨源资源共享 (CORS) （或通俗地译为跨域资源共享）是一种基于HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其它origin（域，协议和端口），这样浏览器可以访问加载这些资源。跨源资源共享还通过一种机制来检查服务器是否会允许要发送的真实请求，该机制通过浏览器发起一个到服务器托管的跨源资源的&#34;预检&#34;请求。在预检中，浏览器发送的头中标示有HTTP方法和真实请求中会用到的头  遇到的问题   The ‘Access-Control-Allow-Origin’ header contains multiple values ‘, ‘, but ..
+  单个项目解决跨域问题
+  @Configuration public class WebMvcConfigurer extends WebMvcConfigurerAdapter { @Override public void addCorsMappings(CorsRegistry registry) { registry.addMapping(&#34;/**&#34;) .allowCredentials(true) .allowedHeaders(&#34;*&#34;) .allowedOrigins(&#34;*&#34;) .allowedMethods(&#34;*&#34;); } }  因为我们用Zuul做网关，在网关层也配置了CORS跨域问题解决，这样就会导致遇到上述错误 解决方法  在Zuul配置文件添加 sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials    </p>
+  </section>
+  <footer class="entry-footer">July 23, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Zuul网关跨域问题" href="https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/"></a>
+</article>
     </main>
     <footer class="footer">
     <span>&copy; 2021 &lt;> <a href="https://quicksandznzn.github.io/">quicksandzn</a></span>
