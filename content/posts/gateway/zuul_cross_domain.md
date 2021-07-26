@@ -35,8 +35,12 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
 * 因为我们用Zuul做网关，在网关层也配置了CORS跨域问题解决，这样就会导致遇到上述错误
 * 解决方法
 	- 在Zuul配置文件添加 
-	- sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials
-
+```yaml
+sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials
+```
+	
+	
+	
 
 
 
