@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script data-ad-client="ca-pub-2578522109626030" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<title>字体加密破解 | quicksandzn</title>
+<meta name="keywords" content="爬虫, 字体加密破解, woff2" />
+<meta name="description" content="记录一次某二手车网站woff2字体加密破解">
+<meta name="author" content="quicksandzn">
+<link rel="canonical" href="https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://quicksandznzn.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://quicksandznzn.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://quicksandznzn.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://quicksandznzn.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://quicksandznzn.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.83.1" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3QCJGM8T9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-R3QCJGM8T9', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="字体加密破解" />
+<meta property="og:description" content="记录一次某二手车网站woff2字体加密破解" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-27T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-07-27T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
+
+<meta name="twitter:title" content="字体加密破解"/>
+<meta name="twitter:description" content="记录一次某二手车网站woff2字体加密破解"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://quicksandznzn.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "字体加密破解",
+      "item": "https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "字体加密破解",
+  "name": "字体加密破解",
+  "description": "记录一次某二手车网站woff2字体加密破解",
+  "keywords": [
+    "爬虫", "字体加密破解", "woff2"
+  ],
+  "articleBody": "页面分析 span class=\"gzfont\" data-v-48736255\u0026#58928;\u0026#59854;\u0026#58397;\u0026#60492;-\u0026#59854;\u0026#59246;span  可以看到以上的字体是有加密的 我们通过gzfont这个class去css中寻找  .gzfont { font-family: gzfont } @font-face { font-family: \"gzfont\"; src: url(https://example.woff2) format(\"woff\"); font-weight: 400; font-style: normal } 字体文件解析  经过多次刷新发现css里面的字体文件是不会变的，我们只需要把字体文件解析出来匹配好对应关系即可 FontEditor在线浏览字体文件   通过python的TTFont把字体文件解析成XML  from fontTools.ttLib import TTFont font = TTFont('/Users/zn/Downloads/font.woff2') font.saveXML('font.xml')  一个GlyphID里面的name对应一个TTGlyph对象，它是用来绘制一个字     id=\"0\" name=\".notdef\"/  id=\"1\" name=\".null\"/  id=\"2\" name=\"nonmarkingreturn\"/  id=\"3\" name=\"x\"/  id=\"4\" name=\"uniE1D0\"/  id=\"5\" name=\"uniE325\"/  id=\"6\" name=\"uniE41D\"/  id=\"7\" name=\"uniE4D9\"/  id=\"8\" name=\"uniE52E\"/  id=\"9\" name=\"uniE630\"/  id=\"10\" name=\"uniE76E\"/  id=\"11\" name=\"uniE891\"/  id=\"12\" name=\"uniE9CE\"/  id=\"13\" name=\"uniEAF2\"/  id=\"14\" name=\"uniEC4C\"/  id=\"15\" name=\"uniF7C2\"/  id=\"16\" name=\"uniF88A\"/   name=\"uniEAF2\" xMin=\"43\" yMin=\"-40\" xMax=\"523\" yMax=\"716\"   x=\"133\" y=\"180\" on=\"1\"/  x=\"148\" y=\"103\" on=\"0\"/  x=\"185\" y=\"69\" on=\"1\"/  x=\"221\" y=\"38\" on=\"0\"/  x=\"276\" y=\"35\" on=\"1\"/  x=\"326\" y=\"35\" on=\"0\"/  x=\"384\" y=\"78\" on=\"1\"/  x=\"427\" y=\"123\" on=\"0\"/  x=\"427\" y=\"250\" on=\"0\"/  x=\"387\" y=\"290\" on=\"1\"/  x=\"345\" y=\"331\" on=\"0\"/  x=\"284\" y=\"331\" on=\"1\"/  x=\"257\" y=\"331\" on=\"0\"/  x=\"220\" y=\"321\" on=\"1\"/  x=\"230\" y=\"406\" on=\"1\"/  x=\"236\" y=\"400\" on=\"0\"/  x=\"239\" y=\"399\" on=\"1\"/  x=\"254\" y=\"399\" on=\"0\"/  x=\"245\" y=\"399\" on=\"1\"/  x=\"303\" y=\"411\" on=\"0\"/  x=\"348\" y=\"428\" on=\"1\"/  x=\"394\" y=\"459\" on=\"0\"/  x=\"394\" y=\"524\" on=\"1\"/  x=\"395\" y=\"579\" on=\"0\"/  x=\"361\" y=\"604\" on=\"1\"/  x=\"330\" y=\"635\" on=\"0\"/  x=\"274\" y=\"635\" on=\"1\"/  x=\"222\" y=\"635\" on=\"0\"/  x=\"195\" y=\"604\" on=\"1\"/  x=\"153\" y=\"572\" on=\"0\"/  x=\"142\" y=\"504\" on=\"1\"/  x=\"52\" y=\"520\" on=\"1\"/  x=\"69\" y=\"612\" on=\"0\"/  x=\"127\" y=\"660\" on=\"1\"/  x=\"186\" y=\"699\" on=\"0\"/  x=\"272\" y=\"716\" on=\"1\"/  x=\"326\" y=\"710\" on=\"0\"/  x=\"383\" y=\"683\" on=\"1\"/  x=\"433\" y=\"659\" on=\"0\"/  x=\"487\" y=\"569\" on=\"0\"/  x=\"487\" y=\"470\" on=\"0\"/  x=\"462\" y=\"432\" on=\"1\"/  x=\"445\" y=\"394\" on=\"0\"/  x=\"371\" y=\"371\" on=\"1\"/  x=\"451\" y=\"356\" on=\"0\"/  x=\"487\" y=\"309\" on=\"1\"/  x=\"519\" y=\"247\" on=\"0\"/  x=\"523\" y=\"190\" on=\"1\"/  x=\"523\" y=\"95\" on=\"0\"/  x=\"383\" y=\"-40\" on=\"0\"/  x=\"276\" y=\"-40\" on=\"1\"/  x=\"179\" y=\"-40\" on=\"0\"/  x=\"116\" y=\"18\" on=\"1\"/  x=\"52\" y=\"82\" on=\"0\"/  x=\"43\" y=\"155\" on=\"1\"/  x=\"133\" y=\"174\" on=\"1\"/      读取CMAP code是16进制的数字 对应页面的数字值 name对应字体编码  可以得出 58928==0xe630==uniE630     platformID=\"0\" platEncID=\"3\" language=\"0\"  code=\"0x78\" name=\"x\"/  code=\"0xe1d0\" name=\"uniE1D0\"/  code=\"0xe325\" name=\"uniE325\"/  code=\"0xe41d\" name=\"uniE41D\"/  code=\"0xe4d9\" name=\"uniE4D9\"/  code=\"0xe52e\" name=\"uniE52E\"/  code=\"0xe630\" name=\"uniE630\"/  code=\"0xe76e\" name=\"uniE76E\"/  code=\"0xe891\" name=\"uniE891\"/  code=\"0xe9ce\" name=\"uniE9CE\"/  code=\"0xeaf2\" name=\"uniEAF2\"/  code=\"0xec4c\" name=\"uniEC4C\"/  code=\"0xf7c2\" name=\"uniF7C2\"/  code=\"0xf88a\" name=\"uniF88A\"/   生成对应关系如下  [ {'id': '\u0026#57808;', 'uni': 'uniE1D0', 'num': '7'}, {'id': '\u0026#58149;', 'uni': 'uniE325', 'num': '4'}, {'id': '\u0026#58397;', 'uni': 'uniE41D', 'num': '1'}, {'id': '\u0026#58585;', 'uni': 'uniE4D9', 'num': ''}, {'id': '\u0026#58670;', 'uni': 'uniE52E', 'num': '9'}, {'id': '\u0026#58928;', 'uni': 'uniE630', 'num': '2'}, {'id': '\u0026#59246;', 'uni': 'uniE76E', 'num': '8'}, {'id': '\u0026#59537;', 'uni': 'uniE891', 'num': '5'}, {'id': '\u0026#59854;', 'uni': 'uniE9CE', 'num': '0'}, {'id': '\u0026#60146;', 'uni': 'uniEAF2', 'num': '3'}, {'id': '\u0026#60492;', 'uni': 'uniEC4C', 'num': '6'}, {'id': '\u0026#63426;', 'uni': 'uniF7C2', 'num': ''}, {'id': '\u0026#63626;', 'uni': 'uniF88A', 'num': '7'} ] ",
+  "wordCount" : "502",
+  "inLanguage": "en",
+  "datePublished": "2021-07-27T00:00:00Z",
+  "dateModified": "2021-07-27T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "quicksandzn"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "quicksandzn",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://quicksandznzn.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+<noscript>
+    <style type="text/css">
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #1d1e20;
+                --entry: #2e2e33;
+                --primary: rgba(255, 255, 255, 0.84);
+                --secondary: rgba(255, 255, 255, 0.56);
+                --tertiary: rgba(255, 255, 255, 0.16);
+                --content: rgba(255, 255, 255, 0.74);
+                --hljs-bg: #2e2e33;
+                --code-bg: #37383e;
+                --border: #333;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://quicksandznzn.github.io/" accesskey="h" title="quicksandzn (Alt + H)">quicksandzn</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://quicksandznzn.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      字体加密破解
+    </h1>
+    <div class="post-description">
+      记录一次某二手车网站woff2字体加密破解
+    </div>
+    <div class="post-meta">July 27, 2021&nbsp;·&nbsp;3 min&nbsp;·&nbsp;quicksandzn
+</div>
+  </header> 
+  <div class="post-content"><h3 id="页面分析">页面分析<a hidden class="anchor" aria-hidden="true" href="#页面分析">#</a></h3>
+<p><img loading="lazy" src="https://quicksandznzn.github.io/image/crawler_gua_zi_detail.png" alt="showcase"  />
+</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gzfont&#34;</span> <span style="color:#a6e22e">data-v-48736255</span>&gt;&amp;#58928;&amp;#59854;&amp;#58397;&amp;#60492;-&amp;#59854;&amp;#59246;&lt;/<span style="color:#f92672">span</span>&gt;
+</code></pre></div><ul>
+<li>可以看到以上的字体是有加密的 我们通过gzfont这个class去css中寻找</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">gzfont</span> {
+    <span style="color:#66d9ef">font-family</span>: gzfont
+}
+
+@<span style="color:#66d9ef">font-face</span> {
+    <span style="color:#f92672">font-family</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;gzfont&#34;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">src</span><span style="color:#f92672">:</span> <span style="color:#f92672">url</span><span style="color:#f92672">(</span><span style="color:#f92672">https</span><span style="color:#f92672">://</span><span style="color:#f92672">example</span>.<span style="color:#a6e22e">woff2</span><span style="color:#f92672">)</span> <span style="color:#f92672">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;woff&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">font-weight</span><span style="color:#f92672">:</span> <span style="color:#f92672">400</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">font-style</span><span style="color:#f92672">:</span> <span style="color:#f92672">normal</span>
+}
+
+</code></pre></div><h3 id="字体文件解析">字体文件解析<a hidden class="anchor" aria-hidden="true" href="#字体文件解析">#</a></h3>
+<ul>
+<li>经过多次刷新发现css里面的字体文件是不会变的，我们只需要把字体文件解析出来匹配好对应关系即可</li>
+<li><a href="https://kekee000.github.io/fonteditor/">FontEditor在线浏览字体文件</a></li>
+</ul>
+<p><img loading="lazy" src="https://quicksandznzn.github.io/image/crawler_gua_zi_detail_font.png" alt="showcase"  />
+</p>
+<ul>
+<li>通过python的TTFont把字体文件解析成XML</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> fontTools.ttLib <span style="color:#f92672">import</span> TTFont
+
+font <span style="color:#f92672">=</span> TTFont(<span style="color:#e6db74">&#39;/Users/zn/Downloads/font.woff2&#39;</span>)
+font<span style="color:#f92672">.</span>saveXML(<span style="color:#e6db74">&#39;font.xml&#39;</span>)
+</code></pre></div><ul>
+<li>一个GlyphID里面的name对应一个TTGlyph对象，它是用来绘制一个字</li>
+</ul>
+<div style='white-space: pre !important; overflow-y: scroll !important; height: 50vh !important;'>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"> <span style="color:#f92672">&lt;GlyphOrder&gt;</span>
+    <span style="color:#75715e">&lt;!-- The &#39;id&#39; attribute is only for humans; it is ignored when parsed. --&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;.notdef&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;.null&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;nonmarkingreturn&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;x&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;4&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE1D0&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;5&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE325&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;6&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE41D&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;7&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE4D9&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;8&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE52E&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;9&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE630&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;10&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE76E&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;11&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE891&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;12&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE9CE&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;13&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniEAF2&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;14&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniEC4C&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;15&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniF7C2&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;GlyphID</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;16&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniF88A&#34;</span><span style="color:#f92672">/&gt;</span>
+  <span style="color:#f92672">&lt;/GlyphOrder&gt;</span>
+  
+  <span style="color:#f92672">&lt;TTGlyph</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniEAF2&#34;</span> <span style="color:#a6e22e">xMin=</span><span style="color:#e6db74">&#34;43&#34;</span> <span style="color:#a6e22e">yMin=</span><span style="color:#e6db74">&#34;-40&#34;</span> <span style="color:#a6e22e">xMax=</span><span style="color:#e6db74">&#34;523&#34;</span> <span style="color:#a6e22e">yMax=</span><span style="color:#e6db74">&#34;716&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;contour&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;133&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;180&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;148&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;103&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;185&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;69&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;221&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;38&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;276&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;35&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;326&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;35&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;384&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;78&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;427&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;123&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;427&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;250&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;387&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;290&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;345&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;331&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;284&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;331&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;257&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;331&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;220&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;321&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;230&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;406&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;236&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;400&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;239&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;399&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;254&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;399&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;245&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;399&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;303&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;411&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;348&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;428&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;394&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;459&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;394&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;524&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;395&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;579&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;361&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;604&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;330&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;635&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;274&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;635&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;222&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;635&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;195&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;604&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;153&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;572&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;142&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;504&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;52&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;520&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;69&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;612&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;127&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;660&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;186&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;699&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;272&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;716&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;326&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;710&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;383&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;683&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;433&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;659&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;487&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;569&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;487&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;470&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;462&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;432&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;445&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;394&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;371&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;371&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;451&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;356&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;487&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;309&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;519&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;247&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;523&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;190&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;523&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;95&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;383&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;-40&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;276&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;-40&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;179&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;-40&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;116&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;18&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;52&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;82&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;43&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;155&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;pt</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;133&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;174&#34;</span> <span style="color:#a6e22e">on=</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;/contour&gt;</span>
+      <span style="color:#f92672">&lt;instructions/&gt;</span>
+    <span style="color:#f92672">&lt;/TTGlyph&gt;</span>
+</code></pre></div></div>
+<ul>
+<li>读取CMAP code是16进制的数字 对应页面的数字值 name对应字体编码
+<ul>
+<li>可以得出 58928==0xe630==uniE630</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;cmap_format_4</span> <span style="color:#a6e22e">platformID=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">platEncID=</span><span style="color:#e6db74">&#34;3&#34;</span> <span style="color:#a6e22e">language=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0x78&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;x&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- LATIN SMALL LETTER X --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe1d0&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE1D0&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe325&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE325&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe41d&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE41D&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe4d9&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE4D9&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe52e&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE52E&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe630&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE630&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe76e&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE76E&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe891&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE891&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xe9ce&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniE9CE&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xeaf2&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniEAF2&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xec4c&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniEC4C&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xf7c2&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniF7C2&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+      <span style="color:#f92672">&lt;map</span> <span style="color:#a6e22e">code=</span><span style="color:#e6db74">&#34;0xf88a&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uniF88A&#34;</span><span style="color:#f92672">/&gt;</span><span style="color:#75715e">&lt;!-- ???? --&gt;</span>
+    <span style="color:#f92672">&lt;/cmap_format_4&gt;</span>
+</code></pre></div><ul>
+<li>生成对应关系如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"> [
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#57808;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE1D0&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;7&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#58149;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE325&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;4&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#58397;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE41D&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;1&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#58585;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE4D9&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#58670;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE52E&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;9&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#58928;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE630&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;2&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#59246;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE76E&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;8&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#59537;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE891&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;5&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#59854;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniE9CE&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;0&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#60146;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniEAF2&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;3&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#60492;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniEC4C&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;6&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#63426;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniF7C2&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&#39;</span>},
+            {<span style="color:#960050;background-color:#1e0010">&#39;id&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;&amp;#63626;&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;uni&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;uniF88A&#39;,</span> <span style="color:#960050;background-color:#1e0010">&#39;num&#39;:</span> <span style="color:#960050;background-color:#1e0010">&#39;7&#39;</span>}
+ ]
+</code></pre></div>
+
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://quicksandznzn.github.io/tags/2021/">2021</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Zuul网关跨域问题</span>
+  </a>
+</nav>
+
+
+  </footer>
+</article>
+    </main>
+    <footer class="footer">
+    <span>&copy; 2021 &lt;> <a href="https://quicksandznzn.github.io/">quicksandzn</a></span>
+
+    <span id="busuanzi_container_site_pv">
+    PV:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    &nbsp;
+    <span id="busuanzi_container_site_uv">
+    UV:<span id="busuanzi_value_site_uv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)">
+    <button class="top-link" id="top-link" type="button" accesskey="g">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+            <path d="M12 6H0l6-6z" />
+        </svg>
+    </button>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+    menu.onscroll = function () {
+        localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
