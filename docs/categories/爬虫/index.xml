@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>爬虫 on quicksandzn</title>
+    <link>https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/</link>
+    <description>Recent content in 爬虫 on quicksandzn</description>
+    <image>
+      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
+      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 27 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>字体加密破解</title>
+      <link>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</link>
+      <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</guid>
+      <description>记录一次某二手车网站woff2字体加密破解，静态字体文件</description>
+    </item>
+    
+  </channel>
+</rss>

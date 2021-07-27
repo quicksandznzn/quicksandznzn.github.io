@@ -9,16 +9,7 @@
       <link>https://quicksandznzn.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 27 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>字体加密破解</title>
-      <link>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</link>
-      <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</guid>
-      <description>记录一次某二手车网站woff2字体加密破解，静态字体文件</description>
-    </item>
-    
+    <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Zuul网关跨域问题</title>
       <link>https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/</link>
