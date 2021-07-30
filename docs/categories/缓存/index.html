@@ -153,6 +153,29 @@ if (!doNotTrack) {
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Redis Rehash</h2>
+  </header>
+  <section class="entry-content">
+    <p>Rehash  rehash执行条件  关键说明  负载因子:：load_factor = ht[0].used / ht[0].size BGSAVE:：fork一个子进程来创建RDB文件，父进程可以继续处理命令请求 BGREWRITEAOF：AOF重写缓冲区,由于redis是单进程的，为了不在进行重写时阻塞服务，redis使用了子进程的方式进行AOF重写 redis中每次开始执行aof文件重写或者开始生成新的RDB文件或者执行aof重写/生成RDB的子进程结束时，都会调用updateDictResizePolicy-&gt;dictDisableResize函数，所以从该函数中，也可以看出来，如果当前没有子进程在执行aof文件重写或者生成RDB文件，则运行进行字典扩容；否则禁止字典扩容。   扩容  以下条件中的任意一个被满足时执行扩容  服务器目前没有在执行 BGSAVE 命令或者 BGREWRITEAOF 命令， 并且哈希表的负载因子大于等于 1 服务器目前正在执行 BGSAVE 命令或者 BGREWRITEAOF 命令， 并且哈希表的负载因子大于等于 5     缩容  databasesCron-&gt;tryResizeHashTables函数检查用于保存键值对的redis数据库字典是否需要缩容 最小size是4 服务器目前没有在执行 BGSAVE 命令或者 BGREWRITEAOF 命令，并且哈希表的负载因子小于 0.1 时， 程序自动开始对哈希表执行收缩操作     rehash执行过程  为字典的 ht[1] 哈希表分配空间=ht[0].used= ht[0] 当前包含的键值对数量  如果执行的是扩展操作， 那么 ht[1] 的大小为 为第一个大于等于ht[0].used * 2 的 2^n 如果执行的是收缩操作， 那么 ht[1] 的大小为为第一个大于等于 ht[0]....</p>
+  </section>
+  <footer class="entry-footer">July 22, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Redis Rehash" href="https://quicksandznzn.github.io/posts/redis/redis_rehash/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Redis 持久化方式</h2>
+  </header>
+  <section class="entry-content">
+    <p>Redis 的两种持久化方式(RDB与AOF) RDB RDB (Redis DataBase) 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。
+ RDB触发机制分为手动触发和自动触发  手动触发  SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止 BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程   自动触发 配置(redis.conf) == BGSAVE  save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改 save 300 10 //服务器在300秒之内，对数据库执行了至少10修改 save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改     优势  整个 Redis 数据库将只包含一个文件，十分易于备份 性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作 相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快   劣势  无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失 由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒    AOF AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录...</p>
+  </section>
+  <footer class="entry-footer">July 21, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Redis 持久化方式" href="https://quicksandznzn.github.io/posts/redis/redis_data_persistence/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>Redis 数据类型</h2>
   </header>
   <section class="entry-content">

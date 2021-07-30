@@ -9,7 +9,25 @@
       <link>https://quicksandznzn.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 21 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis Rehash</title>
+      <link>https://quicksandznzn.github.io/posts/redis/redis_rehash/</link>
+      <pubDate>Thu, 22 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://quicksandznzn.github.io/posts/redis/redis_rehash/</guid>
+      <description>Redis Rehash 参考Redis3.2源码</description>
+    </item>
+    
+    <item>
+      <title>Redis 持久化方式</title>
+      <link>https://quicksandznzn.github.io/posts/redis/redis_data_persistence/</link>
+      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://quicksandznzn.github.io/posts/redis/redis_data_persistence/</guid>
+      <description>Redis 持久化方式</description>
+    </item>
+    
     <item>
       <title>Redis 数据类型</title>
       <link>https://quicksandznzn.github.io/posts/redis/redis_data_type/</link>
