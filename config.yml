@@ -12,6 +12,7 @@ buildExpired: false
 enableEmoji: true
 googleAnalytics: G-R3QCJGM8T9
 
+
 minify:
     disableXML: true
     # minifyOutput: true

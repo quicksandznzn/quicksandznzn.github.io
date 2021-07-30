@@ -11,6 +11,8 @@ keywords: ["爬虫","字体加密破解","woff2"]
 
 ![showcase](https://quicksandznzn.github.io/image/crawler_gua_zi_detail.png)
 
+* view page source
+
 ```html
 <span class="gzfont" data-v-48736255>&#58928;&#59854;&#58397;&#60492;-&#59854;&#59246;</span>
 ```
@@ -30,6 +32,8 @@ keywords: ["爬虫","字体加密破解","woff2"]
 }
 
 ```
+
+* src中的url就是字体文件的下载地址
 
 ### 字体文件解析
 
