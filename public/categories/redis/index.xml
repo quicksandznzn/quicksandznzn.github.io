@@ -21,20 +21,11 @@
     
     <item>
       <title>Redis 持久化方式</title>
-      <link>https://quicksandznzn.github.io/posts/redis/redis_data-persistence/</link>
+      <link>https://quicksandznzn.github.io/posts/redis/redis_data_persistence/</link>
       <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://quicksandznzn.github.io/posts/redis/redis_data-persistence/</guid>
+      <guid>https://quicksandznzn.github.io/posts/redis/redis_data_persistence/</guid>
       <description>Redis 持久化方式</description>
-    </item>
-    
-    <item>
-      <title>Redis 数据类型</title>
-      <link>https://quicksandznzn.github.io/posts/redis/redis_data_type/</link>
-      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://quicksandznzn.github.io/posts/redis/redis_data_type/</guid>
-      <description>Redis 数据类型 参考Redis3.2源码</description>
     </item>
     
   </channel>
