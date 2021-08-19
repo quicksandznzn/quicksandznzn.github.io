@@ -164,6 +164,17 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Redis 数据类型</h2>
+  </header>
+  <section class="entry-content">
+    <p>数据类型及使用场景  String：缓存、计数器、分布式锁等 List：链表、队列、微博关注人时间轴列表等 Hash： 用户信息、Hash 表等 Set： 去重、赞、踩、共同好友等 Sorted Set： 访问量排行榜、点击量排行榜等  Redis Object typedef struct redisObject { unsigned type:4; // 类型  unsigned encoding:4; // 一个对象可能包含多个encoding  unsigned lru:LRU_BITS; /* lru time (relative to server.lruclock) */ int refcount; // 引用计数 实现内存回收机制  void *ptr; // 存储的值 } robj; /* Object types */ #define OBJ_STRING 0 #define OBJ_LIST 1 #define OBJ_SET 2 #define OBJ_ZSET 3 #define OBJ_HASH 4  /* Objects encoding....</p>
+  </section>
+  <footer class="entry-footer">July 21, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Redis 数据类型" href="https://quicksandznzn.github.io/posts/redis/redis_data_type/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>缓存的场景问题及解决方案</h2>
   </header>
   <section class="entry-content">
