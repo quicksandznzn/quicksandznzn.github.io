@@ -153,10 +153,21 @@ if (!doNotTrack) {
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2>Apk拖壳</h2>
+  </header>
+  <section class="entry-content">
+    <p>准备工作  Frida  frida-15.1.14-py3.8-macosx-10.9-x86_64.egg pip install frida pip install frida-tools 网易mumu frida-server-15.1.14-android-x86_64 需要确认底层架构，网易mumu是x86_64 FRIDA-DEXDump    拖壳  adb push ~/Downloads/frida-server-15.1.14-android-x86_64 /data/local adb shell cd /data/local chmod 777 frida-server-15.1.14-android-x86_64 ./frida-server-15.1.14-android-x86_64 通过网易mumu打开APP 通过FRIDA-DEXDump执行 python main.py  done !  </p>
+  </section>
+  <footer class="entry-footer">December 13, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Apk拖壳" href="https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2>微信小程序反编译</h2>
   </header>
   <section class="entry-content">
-    <p>准备工作  网易mumu模拟器  Root Explorer APK ES文件浏览器 微信   小程序反编译工具  破解  打开微信搜索对应的小程序 通过Root Explorer找到对应目录 /data/data/com.tencent.mm/MicroMsg/7e0c9d2b7278c1fac318e91eaeae4c0f/appbrand/pkg  通过wxappUnpacker bingo.sh 反编译得到源码  </p>
+    <p>准备工作  网易mumu模拟器  Root Explorer APK ES文件浏览器 微信   小程序反编译工具  破解  打开微信搜索对应的小程序 最好提前清空微信小程序缓存这样比较好找到对应的小程序 通过Root Explorer找到对应目录 /data/data/com.tencent.mm/MicroMsg/7e0c9d2b7278c1fac318e91eaeae4c0f/appbrand/pkg  通过wxappUnpacker bingo.sh 反编译得到源码  </p>
   </section>
   <footer class="entry-footer">August 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
   <a class="entry-link" aria-label="post link to 微信小程序反编译" href="https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/"></a>

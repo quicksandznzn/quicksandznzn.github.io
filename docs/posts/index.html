@@ -168,10 +168,21 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Apk拖壳</h2>
+  </header>
+  <section class="entry-content">
+    <p>准备工作  Frida  frida-15.1.14-py3.8-macosx-10.9-x86_64.egg pip install frida pip install frida-tools 网易mumu frida-server-15.1.14-android-x86_64 需要确认底层架构，网易mumu是x86_64 FRIDA-DEXDump    拖壳  adb push ~/Downloads/frida-server-15.1.14-android-x86_64 /data/local adb shell cd /data/local chmod 777 frida-server-15.1.14-android-x86_64 ./frida-server-15.1.14-android-x86_64 通过网易mumu打开APP 通过FRIDA-DEXDump执行 python main.py  done !  </p>
+  </section>
+  <footer class="entry-footer">December 13, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Apk拖壳" href="https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>微信小程序反编译</h2>
   </header>
   <section class="entry-content">
-    <p>准备工作  网易mumu模拟器  Root Explorer APK ES文件浏览器 微信   小程序反编译工具  破解  打开微信搜索对应的小程序 通过Root Explorer找到对应目录 /data/data/com.tencent.mm/MicroMsg/7e0c9d2b7278c1fac318e91eaeae4c0f/appbrand/pkg  通过wxappUnpacker bingo.sh 反编译得到源码  </p>
+    <p>准备工作  网易mumu模拟器  Root Explorer APK ES文件浏览器 微信   小程序反编译工具  破解  打开微信搜索对应的小程序 最好提前清空微信小程序缓存这样比较好找到对应的小程序 通过Root Explorer找到对应目录 /data/data/com.tencent.mm/MicroMsg/7e0c9d2b7278c1fac318e91eaeae4c0f/appbrand/pkg  通过wxappUnpacker bingo.sh 反编译得到源码  </p>
   </section>
   <footer class="entry-footer">August 19, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
   <a class="entry-link" aria-label="post link to 微信小程序反编译" href="https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/"></a>
@@ -210,18 +221,6 @@ if (!doNotTrack) {
   </section>
   <footer class="entry-footer">July 22, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
   <a class="entry-link" aria-label="post link to Redis Rehash" href="https://quicksandznzn.github.io/posts/redis/redis_rehash/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Redis 持久化方式</h2>
-  </header>
-  <section class="entry-content">
-    <p>Redis 的两种持久化方式(RDB与AOF) RDB RDB (Redis DataBase) 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。
- RDB触发机制分为手动触发和自动触发  手动触发  SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止 BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程   自动触发 配置(redis.conf) == BGSAVE  save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改 save 300 10 //服务器在300秒之内，对数据库执行了至少10修改 save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改     优势  整个 Redis 数据库将只包含一个文件，十分易于备份 性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作 相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快   劣势  无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失 由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒    AOF AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录...</p>
-  </section>
-  <footer class="entry-footer">July 21, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
-  <a class="entry-link" aria-label="post link to Redis 持久化方式" href="https://quicksandznzn.github.io/posts/redis/redis_data_persistence/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
