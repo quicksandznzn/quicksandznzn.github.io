@@ -17,7 +17,7 @@ keywords: ["Frida","奇虎","拖壳"]
 
 * Frida
     
-    - [frida-15.1.14-py3.8-macosx-10.9-x86_64.egg](https://pypi.org/project/frida/#files)
+    - [frida-15.1.14-py3.8-macosx-10.9-x86_64.egg](https://pypi.org/project/frida/#files)放到~目录（pip install frida报错时会出现目录地址）
     - pip install frida
     - pip install frida-tools
     - 网易mumu
