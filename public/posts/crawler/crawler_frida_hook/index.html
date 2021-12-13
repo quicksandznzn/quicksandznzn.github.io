@@ -9,7 +9,7 @@
 <script data-ad-client="ca-pub-2578522109626030" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <title>Apk脱壳 | quicksandzn</title>
 <meta name="keywords" content="Frida, 奇虎, 拖壳" />
-<meta name="description" content="记录一次Apk 360qihoo拖壳">
+<meta name="description" content="记录一次Apk脱壳">
 <meta name="author" content="quicksandzn">
 <link rel="canonical" href="https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.35cd0f65a15cafa92372b8313deef5960aae04b90ad722f2bbf509eb0468137e.css" integrity="sha256-Nc0PZaFcr6kjcrgxPe71lgquBLkK1yLyu/UJ6wRoE34=" rel="preload stylesheet" as="style">
@@ -35,7 +35,7 @@ if (!doNotTrack) {
 }
 </script>
 <meta property="og:title" content="Apk脱壳" />
-<meta property="og:description" content="记录一次Apk 360qihoo拖壳" />
+<meta property="og:description" content="记录一次Apk脱壳" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-12-13T00:00:00&#43;00:00" />
@@ -45,7 +45,7 @@ if (!doNotTrack) {
 <meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
 
 <meta name="twitter:title" content="Apk脱壳"/>
-<meta name="twitter:description" content="记录一次Apk 360qihoo拖壳"/>
+<meta name="twitter:description" content="记录一次Apk脱壳"/>
 
 
 <script type="application/ld+json">
@@ -74,12 +74,12 @@ if (!doNotTrack) {
   "@type": "BlogPosting",
   "headline": "Apk脱壳",
   "name": "Apk脱壳",
-  "description": "记录一次Apk 360qihoo拖壳",
+  "description": "记录一次Apk脱壳",
   "keywords": [
     "Frida", "奇虎", "拖壳"
   ],
-  "articleBody": "准备工作  Frida  frida-15.1.14-py3.8-macosx-10.9-x86_64.egg pip install frida pip install frida-tools 网易mumu frida-server-15.1.14-android-x86_64 需要确认底层架构，网易mumu是x86_64 FRIDA-DEXDump    脱壳  adb push ~/Downloads/frida-server-15.1.14-android-x86_64 /data/local adb shell cd /data/local chmod 777 frida-server-15.1.14-android-x86_64 ./frida-server-15.1.14-android-x86_64 通过网易mumu打开APP 通过FRIDA-DEXDump执行 python main.py  done !  ",
-  "wordCount" : "32",
+  "articleBody": "Q 准备工作   Frida\n frida-15.1.14-py3.8-macosx-10.9-x86_64.egg pip install frida pip install frida-tools 网易mumu frida-server-15.1.14-android-x86_64 需要确认底层架构，网易mumu是x86_64 FRIDA-DEXDump    脱壳  adb push ~/Downloads/frida-server-15.1.14-android-x86_64 /data/local adb shell cd /data/local chmod 777 frida-server-15.1.14-android-x86_64 ./frida-server-15.1.14-android-x86_64 通过网易mumu打开APP 通过FRIDA-DEXDump执行 python main.py  done !  ",
+  "wordCount" : "33",
   "inLanguage": "en",
   "datePublished": "2021-12-13T00:00:00Z",
   "dateModified": "2021-12-13T00:00:00Z",
@@ -212,14 +212,18 @@ if (!doNotTrack) {
       Apk脱壳
     </h1>
     <div class="post-description">
-      记录一次Apk 360qihoo拖壳
+      记录一次Apk脱壳
     </div>
     <div class="post-meta">December 13, 2021&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn
 </div>
   </header> 
-  <div class="post-content"><h3 id="准备工作">准备工作<a hidden class="anchor" aria-hidden="true" href="#准备工作">#</a></h3>
+  <div class="post-content"><h3 id="q">Q<a hidden class="anchor" aria-hidden="true" href="#q">#</a></h3>
+<p><img loading="lazy" src="https://quicksandznzn.github.io/image/qihoo.png" alt="showcase"  />
+</p>
+<h3 id="准备工作">准备工作<a hidden class="anchor" aria-hidden="true" href="#准备工作">#</a></h3>
 <ul>
-<li>Frida
+<li>
+<p>Frida</p>
 <ul>
 <li><a href="https://pypi.org/project/frida/#files">frida-15.1.14-py3.8-macosx-10.9-x86_64.egg</a></li>
 <li>pip install frida</li>
