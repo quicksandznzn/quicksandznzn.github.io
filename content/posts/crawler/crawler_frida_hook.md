@@ -1,5 +1,5 @@
 ---
-title: "Apk拖壳"
+title: "Apk脱壳"
 date: "2021-12-13"
 description: "记录一次Apk 360qihoo拖壳"
 tags: ["2021"]
@@ -16,7 +16,7 @@ keywords: ["Frida","奇虎","拖壳"]
     - [frida-server-15.1.14-android-x86_64](https://github.com/frida/frida/releases) 需要确认底层架构，网易mumu是x86_64
     - [FRIDA-DEXDump](https://github.com/hluwa/FRIDA-DEXDump.git)
 
-### 拖壳
+### 脱壳
 * adb push ~/Downloads/frida-server-15.1.14-android-x86_64 /data/local
 * adb shell
 * cd  /data/local
