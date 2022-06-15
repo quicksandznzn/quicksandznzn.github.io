@@ -1,7 +1,7 @@
 ---
-title: "Nacos-1.4.1配置中心源码分析"
+title: "Nacos-1.4.1-配置中心源码分析"
 date: "2022-06-15"
-description: "Nacos-1.4.1配置中心源码分析"
+description: "Nacos-1.4.1-配置中心源码分析"
 tags: ["2022"]
 categories: ["配置中心"]
 keywords: ["Nacos","配置中心"]
@@ -19,16 +19,16 @@ com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration
 ```
 
 ```java
-public class NacosConfigBootstrapConfiguration {
-	 
-	 // 初始化Nacos配置信息
+public class NacosConfigBootstrapConfiguration { 
+    
+   // 初始化Nacos配置信息
    @Bean
    @ConditionalOnMissingBean
    public NacosConfigProperties nacosConfigProperties() {
       return new NacosConfigProperties();
    }
 	 
-	 // 初始化NacosConfigService
+   // 初始化NacosConfigService
    @Bean
    @ConditionalOnMissingBean
    public NacosConfigManager nacosConfigManager(
@@ -36,7 +36,7 @@ public class NacosConfigBootstrapConfiguration {
       return new NacosConfigManager(nacosConfigProperties);
    }
 	 
-	 // 从Nacos加载远程配置文件
+   // 从Nacos加载远程配置文件
    @Bean
    public NacosPropertySourceLocator nacosPropertySourceLocator(
          NacosConfigManager nacosConfigManager) {
@@ -76,7 +76,7 @@ public class NacosPropertySourceLocator implements PropertySourceLocator {
             NACOS_PROPERTY_SOURCE_NAME);
       
       // 优先级 本应用配置>扩展配置>共享配置
-			// 加载共享配置
+	  // 加载共享配置
       loadSharedConfiguration(composite);
       // 加载扩展配置
       loadExtConfiguration(composite);
@@ -103,7 +103,7 @@ com.alibaba.cloud.nacos.NacosConfigAutoConfiguration
 public class NacosConfigAutoConfiguration {
 
 	
-	 // 初始化NacosContextRefresher
+   // 初始化NacosContextRefresher
    @Bean
    public NacosContextRefresher nacosContextRefresher(
          NacosConfigManager nacosConfigManager,
@@ -121,7 +121,7 @@ public class NacosConfigAutoConfiguration {
 public class NacosContextRefresher
       implements ApplicationListener<ApplicationReadyEvent>, ApplicationContextAware {
 	 
-	 // 遍历所有data-id添加监听器
+   // 遍历所有data-id添加监听器
    /**
     * register Nacos Listeners.
     */
@@ -138,7 +138,7 @@ public class NacosContextRefresher
       }
    }
 	 
-	 // 有变化发送RefreshEvent事件 
+   // 有变化发送RefreshEvent事件 
    private void registerNacosListener(final String groupKey, final String dataKey) {
       String key = NacosPropertySourceRepository.getMapKey(dataKey, groupKey);
       Listener listener = listenerMap.computeIfAbsent(key,
@@ -169,8 +169,6 @@ public class NacosContextRefresher
    }
 }
 ```
-
-
 
 #### 客户端长轮询拉取Nacos配置
 
@@ -299,8 +297,6 @@ class LongPollingRunnable implements Runnable {
     }
 }					
 ```
-
-
 
 #### 服务端长轮询逻辑
 

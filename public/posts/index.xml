@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on quicksandzn</title>
     <link>https://quicksandznzn.github.io/posts/</link>
     <description>Recent content in Posts on quicksandzn</description>
+    <image>
+      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
+      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Nacos-1.4.1配置中心源码分析</title>
+      <title>Nacos-1.4.1-配置中心源码分析</title>
       <link>https://quicksandznzn.github.io/posts/nacos/nacos_1/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/nacos/nacos_1/</guid>
-      <description>基于spring-cloud-starter-alibaba-nacos-config源码分析
-初始化将参数配置追加到Environment spring.factories
-org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration public class NacosConfigBootstrapConfiguration { // 初始化Nacos配置信息  @Bean @ConditionalOnMissingBean public NacosConfigProperties nacosConfigProperties() { return new NacosConfigProperties(); } // 初始化NacosConfigService  @Bean @ConditionalOnMissingBean public NacosConfigManager nacosConfigManager( NacosConfigProperties nacosConfigProperties) { return new NacosConfigManager(nacosConfigProperties); } // 从Nacos加载远程配置文件  @Bean public NacosPropertySourceLocator nacosPropertySourceLocator( NacosConfigManager nacosConfigManager) { return new NacosPropertySourceLocator(nacosConfigManager); } } public class NacosPropertySourceLocator implements PropertySourceLocator { @Override public PropertySource&amp;lt;?&amp;gt; locate(Environment env) { nacosConfigProperties.setEnvironment(env); ConfigService configService = nacosConfigManager.getConfigService(); if (null == configService) { log.</description>
+      <description>Nacos-1.4.1-配置中心源码分析</description>
     </item>
     
     <item>
@@ -23,8 +25,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
       <pubDate>Mon, 13 Dec 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/</guid>
-      <description>Q 准备工作   Frida
- frida-15.1.14-py3.8-macosx-10.9-x86_64.egg 放到~目录（pip install frida报错时会出现目录地址） pip install frida pip install frida-tools 网易mumu frida-server-15.1.14-android-x86_64 需要确认底层架构，网易mumu是x86_64 FRIDA-DEXDump    脱壳  adb push ~/Downloads/frida-server-15.1.14-android-x86_64 /data/local adb shell cd /data/local chmod 777 frida-server-15.1.14-android-x86_64 ./frida-server-15.1.14-android-x86_64 通过网易mumu打开APP 通过FRIDA-DEXDump执行 python main.py  done !  </description>
+      <description>记录一次Apk脱壳</description>
     </item>
     
     <item>
@@ -33,7 +34,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
       <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/</guid>
-      <description>准备工作  网易mumu模拟器  Root Explorer APK ES文件浏览器 微信   小程序反编译工具  破解  打开微信搜索对应的小程序 最好提前清空微信小程序缓存这样比较好找到对应的小程序 通过Root Explorer找到对应目录 /data/data/com.tencent.mm/MicroMsg/7e0c9d2b7278c1fac318e91eaeae4c0f/appbrand/pkg  通过wxappUnpacker bingo.sh 反编译得到源码  </description>
+      <description>记录一次小程序反编译过程</description>
     </item>
     
     <item>
@@ -42,7 +43,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</guid>
-      <description>页面分析  view page source  &amp;lt;span class=&amp;#34;gzfont&amp;#34; data-v-48736255&amp;gt;&amp;amp;#58928;&amp;amp;#59854;&amp;amp;#58397;&amp;amp;#60492;-&amp;amp;#59854;&amp;amp;#59246;&amp;lt;/span&amp;gt;  可以看到以上的字体是有加密的 我们通过gzfont这个class去css中寻找  .gzfont { font-family: gzfont } @font-face { font-family: &amp;#34;gzfont&amp;#34;; src: url(https://example.woff2) format(&amp;#34;woff&amp;#34;); font-weight: 400; font-style: normal }  src中的url就是字体文件的下载地址  字体文件解析  经过多次刷新发现css里面的字体文件是不会变的，我们只需要把字体文件解析出来匹配好对应关系即可 FontEditor在线浏览字体文件   通过python的TTFont把字体文件解析成XML  from fontTools.ttLib import TTFont font = TTFont(&amp;#39;/Users/zn/Downloads/font.woff2&amp;#39;) font.saveXML(&amp;#39;font.xml&amp;#39;)  一个GlyphID里面的name对应一个TTGlyph对象，它是用来绘制一个字  &amp;lt;GlyphOrder&amp;gt; &amp;lt;!-- The &amp;#39;id&amp;#39; attribute is only for humans; it is ignored when parsed. --&amp;gt; &amp;lt;GlyphID id=&amp;#34;0&amp;#34; name=&amp;#34;.notdef&amp;#34;/&amp;gt; &amp;lt;GlyphID id=&amp;#34;1&amp;#34; name=&amp;#34;.</description>
+      <description>记录一次某二手车网站woff2字体加密破解，静态字体文件</description>
     </item>
     
     <item>
@@ -51,9 +52,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
       <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/</guid>
-      <description>跨域概述  跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的。简单说就是协议不通，域名不通，端口不同都会产生跨域问题  跨源资源共享（CORS)  跨源资源共享 (CORS) （或通俗地译为跨域资源共享）是一种基于HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其它origin（域，协议和端口），这样浏览器可以访问加载这些资源。跨源资源共享还通过一种机制来检查服务器是否会允许要发送的真实请求，该机制通过浏览器发起一个到服务器托管的跨源资源的&amp;quot;预检&amp;quot;请求。在预检中，浏览器发送的头中标示有HTTP方法和真实请求中会用到的头  遇到的问题   The &amp;lsquo;Access-Control-Allow-Origin&amp;rsquo; header contains multiple values &amp;lsquo;, &amp;lsquo;, but ..
-  单个项目解决跨域问题
-  @Configuration public class WebMvcConfigurer extends WebMvcConfigurerAdapter { @Override public void addCorsMappings(CorsRegistry registry) { registry.addMapping(&amp;#34;/**&amp;#34;) .allowCredentials(true) .allowedHeaders(&amp;#34;*&amp;#34;) .allowedOrigins(&amp;#34;*&amp;#34;) .allowedMethods(&amp;#34;*&amp;#34;); } }  因为我们用Zuul做网关，在网关层也配置了CORS跨域问题解决，这样就会导致遇到上述错误 解决方法  在Zuul配置文件添加    sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials </description>
+      <description>Zuul跨域问题，记录一次重复配置导致的问题</description>
     </item>
     
     <item>
@@ -62,7 +61,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
       <pubDate>Thu, 22 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/redis/redis_rehash/</guid>
-      <description>Rehash  rehash执行条件  关键说明  负载因子:：load_factor = ht[0].used / ht[0].size BGSAVE:：fork一个子进程来创建RDB文件，父进程可以继续处理命令请求 BGREWRITEAOF：AOF重写缓冲区,由于redis是单进程的，为了不在进行重写时阻塞服务，redis使用了子进程的方式进行AOF重写 redis中每次开始执行aof文件重写或者开始生成新的RDB文件或者执行aof重写/生成RDB的子进程结束时，都会调用updateDictResizePolicy-&amp;gt;dictDisableResize函数，所以从该函数中，也可以看出来，如果当前没有子进程在执行aof文件重写或者生成RDB文件，则运行进行字典扩容；否则禁止字典扩容。   扩容  以下条件中的任意一个被满足时执行扩容  服务器目前没有在执行 BGSAVE 命令或者 BGREWRITEAOF 命令， 并且哈希表的负载因子大于等于 1 服务器目前正在执行 BGSAVE 命令或者 BGREWRITEAOF 命令， 并且哈希表的负载因子大于等于 5     缩容  databasesCron-&amp;gt;tryResizeHashTables函数检查用于保存键值对的redis数据库字典是否需要缩容 最小size是4 服务器目前没有在执行 BGSAVE 命令或者 BGREWRITEAOF 命令，并且哈希表的负载因子小于 0.1 时， 程序自动开始对哈希表执行收缩操作     rehash执行过程  为字典的 ht[1] 哈希表分配空间=ht[0].used= ht[0] 当前包含的键值对数量  如果执行的是扩展操作， 那么 ht[1] 的大小为 为第一个大于等于ht[0].used * 2 的 2^n 如果执行的是收缩操作， 那么 ht[1] 的大小为为第一个大于等于 ht[0].</description>
+      <description>Redis Rehash 参考Redis3.2源码</description>
     </item>
     
     <item>
@@ -71,8 +70,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
       <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/redis/redis_data_persistence/</guid>
-      <description>Redis 的两种持久化方式(RDB与AOF) RDB RDB (Redis DataBase) 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。
- RDB触发机制分为手动触发和自动触发  手动触发  SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止 BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程   自动触发 配置(redis.conf) == BGSAVE  save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改 save 300 10 //服务器在300秒之内，对数据库执行了至少10修改 save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改     优势  整个 Redis 数据库将只包含一个文件，十分易于备份 性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作 相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快   劣势  无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失 由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒    AOF AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录</description>
+      <description>Redis 持久化方式</description>
     </item>
     
     <item>
@@ -81,7 +79,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
       <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/redis/redis_data_type/</guid>
-      <description>数据类型及使用场景  String：缓存、计数器、分布式锁等 List：链表、队列、微博关注人时间轴列表等 Hash： 用户信息、Hash 表等 Set： 去重、赞、踩、共同好友等 Sorted Set： 访问量排行榜、点击量排行榜等  Redis Object typedef struct redisObject { unsigned type:4; // 类型  unsigned encoding:4; // 一个对象可能包含多个encoding  unsigned lru:LRU_BITS; /* lru time (relative to server.lruclock) */ int refcount; // 引用计数 实现内存回收机制  void *ptr; // 存储的值 } robj; /* Object types */ #define OBJ_STRING 0 #define OBJ_LIST 1 #define OBJ_SET 2 #define OBJ_ZSET 3 #define OBJ_HASH 4  /* Objects encoding.</description>
+      <description>Redis 数据类型 参考Redis3.2源码</description>
     </item>
     
     <item>
@@ -90,7 +88,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
       <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/cache/cache_problem/</guid>
-      <description>缓存雪崩  描述  大量的 key 设置了相同的过期时间，导致在缓存在同一时刻全部失效，造成瞬时 DB 请求量大、压力骤增，引起雪崩。   解决方案  分级缓存 给缓存设置过期时间时加上一个随机值时间，使得每个key的过期时间分布开来，不会集中在同一时刻失效。    缓存穿透  描述  访问一个不存在的 key 时，缓存不起作用，请求会穿透到 DB ，流量大时 DB 自然就会瘫痪。   解决方案  利用互斥锁，缓存失效的时候，先去获得锁，得到锁了，再去请求数据库。没得到锁，则休眠一段时间重试。 即使查询到的数据为空，仍把该空值缓存，还需要设置过期时间。 布隆过滤器，内部维护一系列合法有效的 key 就可以迅速判断出请求所携带的key是否合法有效。如果不合法，则直接返回。    缓存击穿  描述  一个存在的 key，在缓存过期的一刻，恰好在这个时间点对这个 key 有大量的并发请求过来，这个时候大量的请求可能会瞬间瘫痪掉 DB 。   解决方案  分级缓存 互斥锁    缓存预热  描述  系统上线后，提前将数据刷到缓存。避免用户在访问的时候，先去查询数据库。   解决方案  数据量不大的时候，工程启动的时候进行加载缓存 数据量大的时候，设置一个定时任务脚本，进行缓存的刷新 数据量太大的时候，优先保证热点数据进行提前加载到缓存    缓存降级 缓存降级是指缓存失效或缓存服务器挂掉的情况下，不去访问数据库，直接返回默认数据或访问服务的内存数据</description>
+      <description>缓存的场景问题及解决方案</description>
     </item>
     
   </channel>

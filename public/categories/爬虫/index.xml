@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>爬虫 on quicksandzn</title>
     <link>https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/</link>
     <description>Recent content in 爬虫 on quicksandzn</description>
+    <image>
+      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
+      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 13 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -12,8 +16,7 @@
       <pubDate>Mon, 13 Dec 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/</guid>
-      <description>Q 准备工作   Frida
- frida-15.1.14-py3.8-macosx-10.9-x86_64.egg 放到~目录（pip install frida报错时会出现目录地址） pip install frida pip install frida-tools 网易mumu frida-server-15.1.14-android-x86_64 需要确认底层架构，网易mumu是x86_64 FRIDA-DEXDump    脱壳  adb push ~/Downloads/frida-server-15.1.14-android-x86_64 /data/local adb shell cd /data/local chmod 777 frida-server-15.1.14-android-x86_64 ./frida-server-15.1.14-android-x86_64 通过网易mumu打开APP 通过FRIDA-DEXDump执行 python main.py  done !  </description>
+      <description>记录一次Apk脱壳</description>
     </item>
     
     <item>
@@ -22,7 +25,7 @@
       <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/</guid>
-      <description>准备工作  网易mumu模拟器  Root Explorer APK ES文件浏览器 微信   小程序反编译工具  破解  打开微信搜索对应的小程序 最好提前清空微信小程序缓存这样比较好找到对应的小程序 通过Root Explorer找到对应目录 /data/data/com.tencent.mm/MicroMsg/7e0c9d2b7278c1fac318e91eaeae4c0f/appbrand/pkg  通过wxappUnpacker bingo.sh 反编译得到源码  </description>
+      <description>记录一次小程序反编译过程</description>
     </item>
     
     <item>
@@ -31,7 +34,7 @@
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</guid>
-      <description>页面分析  view page source  &amp;lt;span class=&amp;#34;gzfont&amp;#34; data-v-48736255&amp;gt;&amp;amp;#58928;&amp;amp;#59854;&amp;amp;#58397;&amp;amp;#60492;-&amp;amp;#59854;&amp;amp;#59246;&amp;lt;/span&amp;gt;  可以看到以上的字体是有加密的 我们通过gzfont这个class去css中寻找  .gzfont { font-family: gzfont } @font-face { font-family: &amp;#34;gzfont&amp;#34;; src: url(https://example.woff2) format(&amp;#34;woff&amp;#34;); font-weight: 400; font-style: normal }  src中的url就是字体文件的下载地址  字体文件解析  经过多次刷新发现css里面的字体文件是不会变的，我们只需要把字体文件解析出来匹配好对应关系即可 FontEditor在线浏览字体文件   通过python的TTFont把字体文件解析成XML  from fontTools.ttLib import TTFont font = TTFont(&amp;#39;/Users/zn/Downloads/font.woff2&amp;#39;) font.saveXML(&amp;#39;font.xml&amp;#39;)  一个GlyphID里面的name对应一个TTGlyph对象，它是用来绘制一个字  &amp;lt;GlyphOrder&amp;gt; &amp;lt;!-- The &amp;#39;id&amp;#39; attribute is only for humans; it is ignored when parsed. --&amp;gt; &amp;lt;GlyphID id=&amp;#34;0&amp;#34; name=&amp;#34;.notdef&amp;#34;/&amp;gt; &amp;lt;GlyphID id=&amp;#34;1&amp;#34; name=&amp;#34;.</description>
+      <description>记录一次某二手车网站woff2字体加密破解，静态字体文件</description>
     </item>
     
   </channel>
