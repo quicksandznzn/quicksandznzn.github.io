@@ -1,9 +1,9 @@
 ---
 title: "spring-cloud-starter-alibaba-nacos-config源码分析"
 date: "2022-06-15"
-description: "Nacos-1.4.1-配置中心源码分析"
+description: "基于Nacos-Client-1.4.1"
 tags: ["2022"]
-categories: ["配置中心"]
+categories: ["配置中心","SpringCloud"]
 keywords: ["Nacos","配置中心"]
 ---
 
@@ -522,3 +522,10 @@ public abstract class ContextRefresher {
       return keys;
    }
 ```
+
+
+
+### Tips:
+
+Nacos2.0+采用grpc替换长轮询，后面分享
+

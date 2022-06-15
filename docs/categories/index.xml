@@ -11,6 +11,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>SpringCloud</title>
+      <link>https://quicksandznzn.github.io/categories/springcloud/</link>
+      <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://quicksandznzn.github.io/categories/springcloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>配置中心</title>
       <link>https://quicksandznzn.github.io/categories/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
