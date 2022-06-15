@@ -11,11 +11,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Nacos-1.4.1-配置中心源码分析</title>
-      <link>https://quicksandznzn.github.io/posts/nacos/nacos_1/</link>
+      <title>spring-cloud-starter-alibaba-nacos-config源码分析</title>
+      <link>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://quicksandznzn.github.io/posts/nacos/nacos_1/</guid>
+      <guid>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</guid>
       <description>Nacos-1.4.1-配置中心源码分析</description>
     </item>
     

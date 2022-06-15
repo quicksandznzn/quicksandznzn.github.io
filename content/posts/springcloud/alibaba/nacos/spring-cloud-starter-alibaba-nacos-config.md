@@ -1,13 +1,11 @@
 ---
-title: "Nacos-1.4.1-配置中心源码分析"
+title: "spring-cloud-starter-alibaba-nacos-config源码分析"
 date: "2022-06-15"
 description: "Nacos-1.4.1-配置中心源码分析"
 tags: ["2022"]
 categories: ["配置中心"]
 keywords: ["Nacos","配置中心"]
 ---
-
-基于spring-cloud-starter-alibaba-nacos-config源码分析
 
 ### 初始化将参数配置追加到Environment
 
