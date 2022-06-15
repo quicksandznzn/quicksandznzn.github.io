@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网关 on quicksandzn</title>
     <link>https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/</link>
     <description>Recent content in 网关 on quicksandzn</description>
-    <image>
-      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
-      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Fri, 23 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -16,7 +12,9 @@
       <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/</guid>
-      <description>Zuul跨域问题，记录一次重复配置导致的问题</description>
+      <description>跨域概述  跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的。简单说就是协议不通，域名不通，端口不同都会产生跨域问题  跨源资源共享（CORS)  跨源资源共享 (CORS) （或通俗地译为跨域资源共享）是一种基于HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其它origin（域，协议和端口），这样浏览器可以访问加载这些资源。跨源资源共享还通过一种机制来检查服务器是否会允许要发送的真实请求，该机制通过浏览器发起一个到服务器托管的跨源资源的&amp;quot;预检&amp;quot;请求。在预检中，浏览器发送的头中标示有HTTP方法和真实请求中会用到的头  遇到的问题   The &amp;lsquo;Access-Control-Allow-Origin&amp;rsquo; header contains multiple values &amp;lsquo;, &amp;lsquo;, but ..
+  单个项目解决跨域问题
+  @Configuration public class WebMvcConfigurer extends WebMvcConfigurerAdapter { @Override public void addCorsMappings(CorsRegistry registry) { registry.addMapping(&amp;#34;/**&amp;#34;) .allowCredentials(true) .allowedHeaders(&amp;#34;*&amp;#34;) .allowedOrigins(&amp;#34;*&amp;#34;) .allowedMethods(&amp;#34;*&amp;#34;); } }  因为我们用Zuul做网关，在网关层也配置了CORS跨域问题解决，这样就会导致遇到上述错误 解决方法  在Zuul配置文件添加    sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials </description>
     </item>
     
   </channel>

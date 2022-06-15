@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2022 on quicksandzn</title>
+    <link>https://quicksandznzn.github.io/tags/2022/</link>
+    <description>Recent content in 2022 on quicksandzn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/tags/2022/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nacos-1.4.1配置中心源码分析</title>
+      <link>https://quicksandznzn.github.io/posts/nacos/nacos_1/</link>
+      <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://quicksandznzn.github.io/posts/nacos/nacos_1/</guid>
+      <description>基于spring-cloud-starter-alibaba-nacos-config源码分析
+初始化将参数配置追加到Environment spring.factories
+org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration public class NacosConfigBootstrapConfiguration { // 初始化Nacos配置信息  @Bean @ConditionalOnMissingBean public NacosConfigProperties nacosConfigProperties() { return new NacosConfigProperties(); } // 初始化NacosConfigService  @Bean @ConditionalOnMissingBean public NacosConfigManager nacosConfigManager( NacosConfigProperties nacosConfigProperties) { return new NacosConfigManager(nacosConfigProperties); } // 从Nacos加载远程配置文件  @Bean public NacosPropertySourceLocator nacosPropertySourceLocator( NacosConfigManager nacosConfigManager) { return new NacosPropertySourceLocator(nacosConfigManager); } } public class NacosPropertySourceLocator implements PropertySourceLocator { @Override public PropertySource&amp;lt;?&amp;gt; locate(Environment env) { nacosConfigProperties.setEnvironment(env); ConfigService configService = nacosConfigManager.getConfigService(); if (null == configService) { log.</description>
+    </item>
+    
+  </channel>
+</rss>
