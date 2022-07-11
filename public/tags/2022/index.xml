@@ -11,6 +11,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/tags/2022/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Scrapy</title>
+      <link>https://quicksandznzn.github.io/posts/crawler/scrapy/</link>
+      <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://quicksandznzn.github.io/posts/crawler/scrapy/</guid>
+      <description>Scrapy架构、组件和流程</description>
+    </item>
+    
+    <item>
       <title>网络是怎样连接的</title>
       <link>https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
