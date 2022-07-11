@@ -211,11 +211,43 @@ if (!doNotTrack) {
   <footer class="entry-footer"><span title='2021-07-22 00:00:00 +0000 UTC'>July 22, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
   <a class="entry-link" aria-label="post link to Redis Rehash" href="https://quicksandznzn.github.io/posts/redis/redis_rehash/"></a>
 </article>
-<footer class="page-footer">
-  <nav class="pagination">
-    <a class="next" href="https://quicksandznzn.github.io/tags/2021/page/2/">Next »</a>
-  </nav>
-</footer>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Redis 持久化方式
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Redis 的两种持久化方式(RDB与AOF) RDB RDB (Redis DataBase) 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。
+ RDB触发机制分为手动触发和自动触发  手动触发  SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止 BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程   自动触发 配置(redis.conf) == BGSAVE  save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改 save 300 10 //服务器在300秒之内，对数据库执行了至少10修改 save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改     优势  整个 Redis 数据库将只包含一个文件，十分易于备份 性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作 相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快   劣势  无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失 由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒    AOF AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录...</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-07-21 00:00:00 +0000 UTC'>July 21, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Redis 持久化方式" href="https://quicksandznzn.github.io/posts/redis/redis_data_persistence/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>Redis 数据类型
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>数据类型及使用场景  String：缓存、计数器、分布式锁等 List：链表、队列、微博关注人时间轴列表等 Hash： 用户信息、Hash 表等 Set： 去重、赞、踩、共同好友等 Sorted Set： 访问量排行榜、点击量排行榜等  Redis Object typedef struct redisObject { unsigned type:4; // 类型  unsigned encoding:4; // 一个对象可能包含多个encoding  unsigned lru:LRU_BITS; /* lru time (relative to server.lruclock) */ int refcount; // 引用计数 实现内存回收机制  void *ptr; // 存储的值 } robj; /* Object types */ #define OBJ_STRING 0 #define OBJ_LIST 1 #define OBJ_SET 2 #define OBJ_ZSET 3 #define OBJ_HASH 4  /* Objects encoding....</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-07-21 00:00:00 +0000 UTC'>July 21, 2021</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Redis 数据类型" href="https://quicksandznzn.github.io/posts/redis/redis_data_type/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2>缓存的场景问题及解决方案
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>缓存雪崩  描述  大量的 key 设置了相同的过期时间，导致在缓存在同一时刻全部失效，造成瞬时 DB 请求量大、压力骤增，引起雪崩。   解决方案  分级缓存 给缓存设置过期时间时加上一个随机值时间，使得每个key的过期时间分布开来，不会集中在同一时刻失效。    缓存穿透  描述  访问一个不存在的 key 时，缓存不起作用，请求会穿透到 DB ，流量大时 DB 自然就会瘫痪。   解决方案  利用互斥锁，缓存失效的时候，先去获得锁，得到锁了，再去请求数据库。没得到锁，则休眠一段时间重试。 即使查询到的数据为空，仍把该空值缓存，还需要设置过期时间。 布隆过滤器，内部维护一系列合法有效的 key 就可以迅速判断出请求所携带的key是否合法有效。如果不合法，则直接返回。    缓存击穿  描述  一个存在的 key，在缓存过期的一刻，恰好在这个时间点对这个 key 有大量的并发请求过来，这个时候大量的请求可能会瞬间瘫痪掉 DB 。   解决方案  分级缓存 互斥锁    缓存预热  描述  系统上线后，提前将数据刷到缓存。避免用户在访问的时候，先去查询数据库。   解决方案  数据量不大的时候，工程启动的时候进行加载缓存 数据量大的时候，设置一个定时任务脚本，进行缓存的刷新 数据量太大的时候，优先保证热点数据进行提前加载到缓存    缓存降级 缓存降级是指缓存失效或缓存服务器挂掉的情况下，不去访问数据库，直接返回默认数据或访问服务的内存数据</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-07-21 00:00:00 +0000 UTC'>July 21, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to 缓存的场景问题及解决方案" href="https://quicksandznzn.github.io/posts/cache/cache_problem/"></a>
+</article>
     </main>
     
 <footer class="footer">

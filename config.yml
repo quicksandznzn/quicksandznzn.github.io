@@ -1,6 +1,6 @@
 baseURL: "https://quicksandznzn.github.io/"
 title: quicksandzn
-paginate: 5
+paginate: 10
 theme: PaperMod
 
 
