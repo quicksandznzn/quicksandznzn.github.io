@@ -5,7 +5,7 @@ date: "2021-07-21"
 description: "Redis 持久化方式"
 tags: ["2021"]
 categories: ["缓存"]
-keywords: ["Redis","RDB","AOF"]
+keywords: ["Redis","Redis RDB","Redis AOF","持久化"]
 ---
 ## Redis 的两种持久化方式(RDB与AOF)
 

@@ -4,7 +4,7 @@ date: "2022-06-15"
 description: "基于Nacos-Client-1.4.1"
 tags: ["2022"]
 categories: ["配置中心","SpringCloud"]
-keywords: ["Nacos","配置中心"]
+keywords: ["Nacos","配置中心","SpringCloud","SpringCloud Alibaba","长轮询","gRPC"]
 ---
 
 ### 初始化将参数配置追加到Environment

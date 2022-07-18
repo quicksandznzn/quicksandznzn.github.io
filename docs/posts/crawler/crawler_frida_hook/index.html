@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Apk脱壳 | quicksandzn</title>
-<meta name="keywords" content="Frida, 奇虎, 拖壳">
+<meta name="keywords" content="Frida, 奇虎360, 脱壳, Hook, DEX">
 <meta name="description" content="记录一次Apk脱壳">
 <meta name="author" content="quicksandzn">
 <link rel="canonical" href="https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/">
@@ -109,7 +109,7 @@ if (!doNotTrack) {
   "name": "Apk脱壳",
   "description": "记录一次Apk脱壳",
   "keywords": [
-    "Frida", "奇虎", "拖壳"
+    "Frida", "奇虎360", "脱壳", "Hook", "DEX"
   ],
   "articleBody": "Q 准备工作   Frida\n frida-15.1.14-py3.8-macosx-10.9-x86_64.egg 放到~目录（pip install frida报错时会出现目录地址） pip install frida pip install frida-tools 网易mumu frida-server-15.1.14-android-x86_64 需要确认底层架构，网易mumu是x86_64 FRIDA-DEXDump    脱壳  adb push ~/Downloads/frida-server-15.1.14-android-x86_64 /data/local adb shell cd /data/local chmod 777 frida-server-15.1.14-android-x86_64 ./frida-server-15.1.14-android-x86_64 通过网易mumu打开APP 通过FRIDA-DEXDump执行 python main.py  done !  ",
   "wordCount" : "36",

@@ -4,7 +4,7 @@ date: "2021-07-23"
 description: "Zuul跨域问题，记录一次重复配置导致的问题"
 tags: ["2021"]
 categories: ["网关"]
-keywords: ["网关","Zuul","跨域"]
+keywords: ["网关","Zuul","跨域","CORS","跨域资源共享"]
 ---
 
 ### 跨域概述

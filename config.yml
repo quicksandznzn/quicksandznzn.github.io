@@ -47,12 +47,16 @@ params:
     description: "quicksandzn - https://github.com/quicksandznzn"
     keywords:
       - 技术
-      - java
+      - Java
       - quicksandzn
-      - spring
-      - redis
-      - elasticsearch
-      - python
+      - Spring
+      - Spring Cloud
+      - Spring Boot
+      - Redis
+      - Elasticsearch
+      - Python
+      - Lucene
+      - Solr
       - 爬虫
     author: quicksandzn
     defaultTheme: auto
