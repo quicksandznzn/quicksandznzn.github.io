@@ -1,6 +1,6 @@
 ---
 title: "FFmpeg"
-date: "2021-12-13"
+date: "2022-08-31"
 description: "FFmpeg 学习笔记"
 tags: ["2022"]
 categories: ["FFmpeg"]
