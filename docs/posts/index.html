@@ -228,6 +228,18 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>FFmpeg
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Command Line 压缩 ffmpeg -threads 0 -i example.mp4 -b:v 3096k -r 35 -c:v libx264 -acodec aac -y compress.mp4  描述  压缩视频码率为 3096k 35 fps 视频采用h264编码 音频采用aac编码 -threads 线程数 (auto,0) 默认为auto -b:v 视频码率 b=bit rate v=video 3096 kbit/s -r 帧率 r=frame rate 35 fps -c:v 视频编码 c=codec v=video libx264=h264 -acodec 音频编码 a=audio aac -y 直接覆盖文件不用询问    转码 mov转mp4 ffmpeg -i example.mov -c:v libx264 -y compress.mp4 截图 ffmpeg -ss 0 -i example....</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-12-13 00:00:00 +0000 UTC'>December 13, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to FFmpeg" href="https://quicksandznzn.github.io/posts/media/ffmpeg/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>微信小程序反编译
     </h2>
   </header>
@@ -274,19 +286,6 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
   </div>
   <footer class="entry-footer"><span title='2021-07-22 00:00:00 +0000 UTC'>July 22, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
   <a class="entry-link" aria-label="post link to Redis Rehash" href="https://quicksandznzn.github.io/posts/redis/redis_rehash/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Redis 持久化方式
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Redis 的两种持久化方式(RDB与AOF) RDB RDB (Redis DataBase) 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。
- RDB触发机制分为手动触发和自动触发  手动触发  SAVE命令：阻塞当前Redis服务器，知道RDB过程完成为止 BGSAVE：Redis 进程执行fork()操作创建出一个子进程，在后台完成RDB持久化的过程   自动触发 配置(redis.conf) == BGSAVE  save 900 1 //服务器在900秒之内，对数据库执行了至少1次修改 save 300 10 //服务器在300秒之内，对数据库执行了至少10修改 save 60 1000 //服务器在60秒之内，对数据库执行了至少1000修改     优势  整个 Redis 数据库将只包含一个文件，十分易于备份 性能最大化，对于 Redis 的服务进程而言，在开始持久化时，它唯一需要做的只是 fork 出子进程，之后再由子进程完成这些持久化的工作，这样就可以极大地避免服务进程执行 IO 操作 相对于 AOF，基于 RDB 数据文件来重启和恢复 Redis 会更快   劣势  无法最大限度地避免数据丢失，系统一旦在定时持久化之前出现宕机现象，此前没有来得及写入磁盘的数据都将丢失 由于 RDB 是通过 fork 子进程来协助完成数据持久化工作的，因此，如果当数据较大时，可能会导致整个服务器停止服务数毫秒，甚至数秒    AOF AOF (Append Only File) 持久化以日志的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，只许追加文件但不可以改写文件，可以打开文件看到详细的操作记录...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-07-21 00:00:00 +0000 UTC'>July 21, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
-  <a class="entry-link" aria-label="post link to Redis 持久化方式" href="https://quicksandznzn.github.io/posts/redis/redis_data_persistence/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
