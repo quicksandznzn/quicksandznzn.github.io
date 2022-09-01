@@ -6,8 +6,10 @@ tags: ["2022"]
 categories: ["FFmpeg"]
 keywords: ["FFmpeg","视频","音频"]
 ---
-### 视频文件大小的计算
+### 视频信息
 ```shell
+ffmpeg -i example.mp4
+
 Metadata:
     major_brand     : mp42
     minor_version   : 0
@@ -20,13 +22,30 @@ Metadata:
       handler_name    : ?Mainconcept Video Media Handler
       vendor_id       : [0][0][0][0]
       encoder         : AVC Coding
-  Stream #0:1[0x2](eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 317 kb/s (default)
+   Stream #0:1[0x2](eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 317 kb/s (default)
     Metadata:
       creation_time   : 2022-01-12T11:23:54.000000Z
       handler_name    : #Mainconcept MP4 Sound Media Handler
       vendor_id       : [0][0][0][0]
 ```
-* 描述
+* Metadata
+    - Stream #0:0 Video 
+      - 视频h264编码
+      - yuv420p存储格式
+      - 分辨率 1080x1920
+      - 采样纵横比 SAR 1:1
+      - 显示宽高比 DAR 9:16
+      - 码率 11802 kb/s
+      - 平均帧率 25 fps
+      - 帧率 该参数倾向于一个基准，往往tbr跟fps相同 25 tbr
+      - 视频流 timebase 25k tbn
+    - Stream #0:1 Audio
+      - 音频aac编码
+      - 采样率 48000Hz
+      - 声道是立体声 stereo
+      - 重采样 fltp格式
+      - 码率 317 kb/s
+* 视频大小描述
     - 视频文件大小：(11802 + 317) * 59.52 / 8 | (音频码率 + 视频码率) x 时长 / 8
     - 码率：视频文件大小 * 8 / 时长 (秒)
 
