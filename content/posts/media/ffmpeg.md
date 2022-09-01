@@ -1,11 +1,34 @@
 ---
 title: "FFmpeg"
-date: "2022-08-31"
+date: "2022-09-01"
 description: "FFmpeg 学习笔记"
 tags: ["2022"]
 categories: ["FFmpeg"]
 keywords: ["FFmpeg","视频","音频"]
 ---
+### 视频文件大小的计算
+```shell
+Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41
+    creation_time   : 2022-01-12T11:23:45.000000Z
+  Duration: 00:00:59.52, start: 0.000000, bitrate: 12123 kb/s
+  Stream #0:0[0x1](eng): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1080x1920 [SAR 1:1 DAR 9:16], 11802 kb/s, 25 fps, 25 tbr, 25k tbn (default)
+    Metadata:
+      creation_time   : 2022-01-12T11:23:45.000000Z
+      handler_name    : ?Mainconcept Video Media Handler
+      vendor_id       : [0][0][0][0]
+      encoder         : AVC Coding
+  Stream #0:1[0x2](eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 317 kb/s (default)
+    Metadata:
+      creation_time   : 2022-01-12T11:23:54.000000Z
+      handler_name    : #Mainconcept MP4 Sound Media Handler
+      vendor_id       : [0][0][0][0]
+```
+* 描述
+    - 视频文件大小：(11802 + 317) * 59.52 / 8 | (音频码率 + 视频码率) x 时长 / 8
+    - 码率：视频文件大小 * 8 / 时长 (秒)
 
 ### Command Line
 
@@ -41,3 +64,6 @@ ffmpeg -ss 0 -i example.mp4 -r 1 -t 1 -y output%d.jpg
     - -ss 从0秒开始 把-ss 0 放到第一个参数的位置，速度比放到放到其他位置快 
     - -vframes 截图帧数 或者使用-t : 截图时长 seconds
     - -s  图片宽高比
+
+#### 参考文章
+* https://www.cnblogs.com/anfeio/p/3712218.html
