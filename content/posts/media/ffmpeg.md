@@ -86,3 +86,4 @@ ffmpeg -ss 0 -i example.mp4 -r 1 -t 1 -y output%d.jpg
 
 #### 参考文章
 * https://www.cnblogs.com/anfeio/p/3712218.html
+* https://segmentfault.com/a/1190000040216980
