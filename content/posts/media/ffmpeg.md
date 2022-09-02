@@ -127,6 +127,29 @@ ffmpeg -y -i input.mp4 -i watermark.png -filter_complex "overlay=x=0:y=0" result
 # overlay_h(h)：水印高度
 # overlay=x=W-w:y=0 右上角
 # overlay=x=0:y=H-h 左下角 
+
+# 水印位置的写法：
+
+# 绝对位置：50:50 以左上角为0:0定位
+# 图片水印
+# 左下角50x50：x=50:y=main_h-overlay_h-50
+# 左上角50x50：x=50:y=50
+# 右下角50x50：x=main_w-overlay_w-50:y=main_h-overlay_h-50
+# 右上角50x50：x=main_w-overlay_w-50:y=50
+# 顶部居中：x=main_w/2-overlay_w/2:y=50
+# 底部居中：x=main_w/2-overlay_w/2:y=main_h-overlay_h-50
+# 左垂直居中：x=50:y=main_h/2-overlay_h/2
+# 右垂直居中：x=main_w-overlay_w-50:y=main_h/2-overlay_h/2
+# 完全居中：x=main_w/2-overlay_w/2:y=main_h/2-overlay_h/2
+
+# 文字水印： 
+# overlay_w 换成 text_w
+# overlay_h 换成 line_h
+# 顶部居中：x=main_w/2-text_w/2:y=50
+# 底部居中：x=main_w/2-text_w/2:y=main_h-line_h-50
+# 左垂直居中：x=50:y=main_h/2-line_h/2
+# 右垂直居中：x=main_w-text_w-50:y=main_h/2-line_h/2
+# 完全居中：x=main_w/2-text_w/2:y=main_h/2-line_h/2
 ffmpeg -y -i input.mp4 -i watermark.png -filter_complex "overlay=x=0:y=H-h" result.mp4 
 
 # gif水印
