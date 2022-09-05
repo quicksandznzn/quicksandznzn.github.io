@@ -4,7 +4,7 @@ date: "2022-09-01"
 description: "FFmpeg 学习笔记"
 tags: ["2022"]
 categories: ["FFmpeg"]
-keywords: ["FFmpeg","视频","音频"]
+keywords: ["FFmpeg","视频","音频","h264","h265"]
 ---
 
 ### FFmpeg官方文档
@@ -58,7 +58,7 @@ Metadata:
     - 视频文件大小：(11802 + 317) * 59.52 / 8 | (音频码率 + 视频码率) x 时长 / 8
     - 码率：视频文件大小 * 8 / 时长 (秒)
 
-### Command Line
+### Command Line (视频基于H.264Encode)
 
 #### 压缩
 
@@ -74,6 +74,7 @@ Metadata:
 | 4K        | 3840*2160 | 8000Kbps  |        5600Kbps        |
 
 ```shell
+#  固定目标码率模式
 #  压缩视频码率为 3096k 35 fps 视频采用h264编码 音频采用aac编码
 # -threads 核心线程数 (auto,0) 默认为auto
 # -b:v 视频码率 b=bit rate v=video 3096 kbit/s
@@ -82,6 +83,11 @@ Metadata:
 # -acodec 音频编码 a=audio aac
 # -y 直接覆盖文件不用询问
 ffmpeg -y -threads 0 -i input.mp4 -b:v 3096k  -r 35 -c:v libx264 -acodec aac  result.mp4
+
+# 恒定速率因子模式 crf
+# -crf 取值范围 0-51
+# https://trac.ffmpeg.org/wiki/Encode/H.264
+ffmpeg -y -i input.mp4  -c:v libx264 -crf 28 -acodec aac result.mp4
 ```
 
 #### 转码 mov转mp4
