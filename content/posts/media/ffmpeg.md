@@ -84,9 +84,12 @@ Metadata:
 # -y 直接覆盖文件不用询问
 ffmpeg -y -threads 0 -i input.mp4 -b:v 3096k  -r 35 -c:v libx264 -acodec aac  result.mp4
 
+# 参考下面几篇文章 讲解很棒
 # 恒定速率因子模式 crf
 # -crf 取值范围 0-51
 # https://trac.ffmpeg.org/wiki/Encode/H.264
+# https://www.cnblogs.com/dhcn/p/7130474.html
+# https://www.cnblogs.com/dhcn/p/7130474.html
 ffmpeg -y -i input.mp4  -c:v libx264 -crf 28 -acodec aac result.mp4
 ```
 
