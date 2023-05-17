@@ -197,6 +197,18 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Stable Diffusion
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Case  Stable Diffusion模型ReV Animated &#43; ControlNet模型 control_v11p_sd15_openpose   text2img - prompt Prompt (masterpiece, best quality, ultra-detailed), (full body:1.2, beautiful detailed face, beautiful detailed eyes, white background,simple background), 1 girl,Splatoon,cute,smile,gray blue hair,Orange sweater,light blue short skirt Negative Prompt (low quality:1.3),(worst quality:1.3)  ControlNet骨架图片   Reference  B站 Stable Diffusion Video ControlNet Stable Diffusion Models ControlNet Models  </p>
+  </div>
+  <footer class="entry-footer"><span title='2023-05-17 00:00:00 +0000 UTC'>May 17, 2023</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to Stable Diffusion" href="https://quicksandznzn.github.io/posts/stable-diffusion/sd_01/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>FFmpeg
     </h2>
   </header>
@@ -308,18 +320,6 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
   <footer class="entry-footer"><span title='2021-07-23 00:00:00 +0000 UTC'>July 23, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
   <a class="entry-link" aria-label="post link to Zuul网关跨域问题" href="https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Redis Rehash
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Rehash  rehash执行条件  关键说明  负载因子:：load_factor = ht[0].used / ht[0].size BGSAVE:：fork一个子进程来创建RDB文件，父进程可以继续处理命令请求 BGREWRITEAOF：AOF重写缓冲区,由于redis是单进程的，为了不在进行重写时阻塞服务，redis使用了子进程的方式进行AOF重写 redis中每次开始执行aof文件重写或者开始生成新的RDB文件或者执行aof重写/生成RDB的子进程结束时，都会调用updateDictResizePolicy-&gt;dictDisableResize函数，所以从该函数中，也可以看出来，如果当前没有子进程在执行aof文件重写或者生成RDB文件，则运行进行字典扩容；否则禁止字典扩容。   扩容  以下条件中的任意一个被满足时执行扩容  服务器目前没有在执行 BGSAVE 命令或者 BGREWRITEAOF 命令， 并且哈希表的负载因子大于等于 1 服务器目前正在执行 BGSAVE 命令或者 BGREWRITEAOF 命令， 并且哈希表的负载因子大于等于 5     缩容  databasesCron-&gt;tryResizeHashTables函数检查用于保存键值对的redis数据库字典是否需要缩容 最小size是4 服务器目前没有在执行 BGSAVE 命令或者 BGREWRITEAOF 命令，并且哈希表的负载因子小于 0.1 时， 程序自动开始对哈希表执行收缩操作     rehash执行过程  为字典的 ht[1] 哈希表分配空间=ht[0].used= ht[0] 当前包含的键值对数量  如果执行的是扩展操作， 那么 ht[1] 的大小为 为第一个大于等于ht[0].used * 2 的 2^n 如果执行的是收缩操作， 那么 ht[1] 的大小为为第一个大于等于 ht[0]....</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-07-22 00:00:00 +0000 UTC'>July 22, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn</footer>
-  <a class="entry-link" aria-label="post link to Redis Rehash" href="https://quicksandznzn.github.io/posts/redis/redis_rehash/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="next" href="https://quicksandznzn.github.io/page/2/">Next »</a>
@@ -328,7 +328,7 @@ org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.n
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://quicksandznzn.github.io/">Focus On Myself</a></span>
+    <span>&copy; 2023 <a href="https://quicksandznzn.github.io/">Focus On Myself</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

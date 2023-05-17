@@ -3,7 +3,7 @@ title: "FFmpeg"
 date: "2022-09-01"
 description: "FFmpeg 学习笔记"
 tags: ["2022"]
-categories: ["FFmpeg"]
+categories: ["media"]
 keywords: ["FFmpeg","视频","音频","h264","h265"]
 ---
 

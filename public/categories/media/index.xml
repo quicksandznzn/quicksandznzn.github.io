@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>media on Focus On Myself</title>
+    <link>https://quicksandznzn.github.io/categories/media/</link>
+    <description>Recent content in media on Focus On Myself</description>
+    <image>
+      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
+      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/media/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FFmpeg</title>
+      <link>https://quicksandznzn.github.io/posts/media/ffmpeg/</link>
+      <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://quicksandznzn.github.io/posts/media/ffmpeg/</guid>
+      <description>FFmpeg 学习笔记</description>
+    </item>
+    
+  </channel>
+</rss>

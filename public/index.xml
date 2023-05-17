@@ -9,7 +9,16 @@
       <link>https://quicksandznzn.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stable Diffusion</title>
+      <link>https://quicksandznzn.github.io/posts/stable-diffusion/sd_01/</link>
+      <pubDate>Wed, 17 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://quicksandznzn.github.io/posts/stable-diffusion/sd_01/</guid>
+      <description>Stable Diffusion 学习笔记</description>
+    </item>
+    
     <item>
       <title>FFmpeg</title>
       <link>https://quicksandznzn.github.io/posts/media/ffmpeg/</link>
