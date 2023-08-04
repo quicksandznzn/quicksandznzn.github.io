@@ -93,13 +93,24 @@ ffmpeg -y -threads 0 -i input.mp4 -b:v 3096k  -r 35 -c:v libx264 -acodec aac  re
 ffmpeg -y -i input.mp4  -c:v libx264 -crf 28 -acodec aac result.mp4
 ```
 
+#### 推流
+
+```shell
+# rtmp推流 隐藏banner concat拼接多个视频 
+# -stream_loop -1 循环推流
+# video_list.txt 格式
+# file '1.mp4'
+# file '2.mp4'
+ffmpeg -hide_banner -safe 0 -re -stream_loop -1 -f concat -i video_list.txt -c:v libx264 -c:a aac -f flv rtmp://127.0.0.1
+```
+
 #### 转码 mov转mp4
 
 ```shell
 ffmpeg  -y -i input.mov -c:v libx264   result.mp4
 ```
 
-#### 指定时间截图
+#### 裁剪
 
 ```shell
 # 两个例子都是从0秒开始截一张图
@@ -108,6 +119,11 @@ ffmpeg  -y -i input.mov -c:v libx264   result.mp4
 # -s  图片宽高比
 ffmpeg -ss 0 -i input.mp4 -r 1 -vframes 1 -s 352x240 -y result%d.jpg
 ffmpeg -ss 00:00:00 -i input.mp4 -r 1 -t 1 -y result%d.jpg
+
+# 截音频 0-10秒
+ffmpeg -ss 00:00:00 -i input.mp3 -to 00:00:10 -acodec copy  result.mp3
+# 截音频 10秒后
+ffmpeg -ss 00:00:10 -i input.mp3  -acodec copy  result.mp3
 ```
 
 #### 视频转图片(每隔一秒截取一张图)
