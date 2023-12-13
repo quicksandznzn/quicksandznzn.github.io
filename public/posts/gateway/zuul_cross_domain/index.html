@@ -5,19 +5,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Zuul网关跨域问题 | Focus On Myself</title>
+<title>Zuul网关跨域问题 | </title>
 <meta name="keywords" content="网关, Zuul, 跨域, CORS, 跨域资源共享">
 <meta name="description" content="Zuul跨域问题，记录一次重复配置导致的问题">
-<meta name="author" content="quicksandzn">
-<link rel="canonical" href="https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/gateway/zuul_cross_domain/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9329d037bc79464b26647fb72e079cd738f5d2418b1df4da3b515db9e22cb4d9.css" integrity="sha256-kynQN7x5RksmZH&#43;3Lgec1zj10kGLHfTaO1FdueIstNk=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://quicksandznzn.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://quicksandznzn.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://quicksandznzn.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://quicksandznzn.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://quicksandznzn.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -56,27 +56,14 @@
         }
 
     </style>
-</noscript>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3QCJGM8T9"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-R3QCJGM8T9', { 'anonymize_ip': false });
-}
-</script>
-<meta property="og:title" content="Zuul网关跨域问题" />
+</noscript><meta property="og:title" content="Zuul网关跨域问题" />
 <meta property="og:description" content="Zuul跨域问题，记录一次重复配置导致的问题" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-07-23T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-07-23T00:00:00&#43;00:00" />
+<meta property="og:url" content="/posts/gateway/zuul_cross_domain/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-07-23T00:00:00+00:00" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
-
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Zuul网关跨域问题"/>
 <meta name="twitter:description" content="Zuul跨域问题，记录一次重复配置导致的问题"/>
 
@@ -85,18 +72,18 @@ if (!doNotTrack) {
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://quicksandznzn.github.io/posts/"
-    }, 
+  "itemListElement": [, 
     {
       "@type": "ListItem",
       "position":  2 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
       "name": "Zuul网关跨域问题",
-      "item": "https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/"
+      "item": "/posts/gateway/zuul_cross_domain/"
     }
   ]
 }
@@ -111,25 +98,21 @@ if (!doNotTrack) {
   "keywords": [
     "网关", "Zuul", "跨域", "CORS", "跨域资源共享"
   ],
-  "articleBody": "跨域概述  跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的。简单说就是协议不通，域名不通，端口不同都会产生跨域问题  跨源资源共享（CORS)  跨源资源共享 (CORS) （或通俗地译为跨域资源共享）是一种基于HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其它origin（域，协议和端口），这样浏览器可以访问加载这些资源。跨源资源共享还通过一种机制来检查服务器是否会允许要发送的真实请求，该机制通过浏览器发起一个到服务器托管的跨源资源的\"预检\"请求。在预检中，浏览器发送的头中标示有HTTP方法和真实请求中会用到的头  遇到的问题   The ‘Access-Control-Allow-Origin’ header contains multiple values ‘, ‘, but ..\n  单个项目解决跨域问题\n  @Configuration public class WebMvcConfigurer extends WebMvcConfigurerAdapter { @Override public void addCorsMappings(CorsRegistry registry) { registry.addMapping(\"/**\") .allowCredentials(true) .allowedHeaders(\"*\") .allowedOrigins(\"*\") .allowedMethods(\"*\"); } }  因为我们用Zuul做网关，在网关层也配置了CORS跨域问题解决，这样就会导致遇到上述错误 解决方法  在Zuul配置文件添加    sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials ",
+  "articleBody": "跨域概述 跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的。简单说就是协议不通，域名不通，端口不同都会产生跨域问题 跨源资源共享（CORS) 跨源资源共享 (CORS) （或通俗地译为跨域资源共享）是一种基于HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其它origin（域，协议和端口），这样浏览器可以访问加载这些资源。跨源资源共享还通过一种机制来检查服务器是否会允许要发送的真实请求，该机制通过浏览器发起一个到服务器托管的跨源资源的\"预检\"请求。在预检中，浏览器发送的头中标示有HTTP方法和真实请求中会用到的头 遇到的问题 The ‘Access-Control-Allow-Origin’ header contains multiple values ‘, ‘, but ..\n单个项目解决跨域问题\n@Configuration public class WebMvcConfigurer extends WebMvcConfigurerAdapter { @Override public void addCorsMappings(CorsRegistry registry) { registry.addMapping(\"/**\") .allowCredentials(true) .allowedHeaders(\"*\") .allowedOrigins(\"*\") .allowedMethods(\"*\"); } } 因为我们用Zuul做网关，在网关层也配置了CORS跨域问题解决，这样就会导致遇到上述错误 解决方法 在Zuul配置文件添加 sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials ",
   "wordCount" : "44",
   "inLanguage": "en",
   "datePublished": "2021-07-23T00:00:00Z",
   "dateModified": "2021-07-23T00:00:00Z",
-  "author":{
-    "@type": "Person",
-    "name": "quicksandzn"
-  },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/"
+    "@id": "/posts/gateway/zuul_cross_domain/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Focus On Myself",
+    "name": "",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://quicksandznzn.github.io/favicon.ico"
+      "url": "favicon.ico"
     }
   }
 }
@@ -151,15 +134,14 @@ if (!doNotTrack) {
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://quicksandznzn.github.io/" accesskey="h" title="Focus On Myself (Alt + H)">Focus On Myself</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -176,26 +158,6 @@ if (!doNotTrack) {
             </div>
         </div>
         <ul id="menu">
-            <li>
-                <a href="https://quicksandznzn.github.io/archives" title="Archive">
-                    <span>Archive</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/tags/" title="Tags">
-                    <span>Tags</span>
-                </a>
-            </li>
         </ul>
     </nav>
 </header>
@@ -210,7 +172,7 @@ if (!doNotTrack) {
     <div class="post-description">
       Zuul跨域问题，记录一次重复配置导致的问题
     </div>
-    <div class="post-meta"><span title='2021-07-23 00:00:00 +0000 UTC'>July 23, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn
+    <div class="post-meta"><span title='2021-07-23 00:00:00 +0000 UTC'>July 23, 2021</span>
 
 </div>
   </header> 
@@ -231,19 +193,19 @@ if (!doNotTrack) {
 <p>单个项目解决跨域问题</p>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Configuration</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebMvcConfigurer</span> <span style="color:#66d9ef">extends</span> WebMvcConfigurerAdapter <span style="color:#f92672">{</span>
-  
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addCorsMappings</span><span style="color:#f92672">(</span>CorsRegistry registry<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        registry<span style="color:#f92672">.</span><span style="color:#a6e22e">addMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/**&#34;</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">allowCredentials</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">allowedHeaders</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;*&#34;</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">allowedOrigins</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;*&#34;</span><span style="color:#f92672">)</span>
-                <span style="color:#f92672">.</span><span style="color:#a6e22e">allowedMethods</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;*&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebMvcConfigurer</span> <span style="color:#66d9ef">extends</span> WebMvcConfigurerAdapter {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addCorsMappings</span>(CorsRegistry registry) {
+</span></span><span style="display:flex;"><span>        registry.<span style="color:#a6e22e">addMapping</span>(<span style="color:#e6db74">&#34;/**&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">allowCredentials</span>(<span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">allowedHeaders</span>(<span style="color:#e6db74">&#34;*&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">allowedOrigins</span>(<span style="color:#e6db74">&#34;*&#34;</span>)
+</span></span><span style="display:flex;"><span>                .<span style="color:#a6e22e">allowedMethods</span>(<span style="color:#e6db74">&#34;*&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
 <li>因为我们用Zuul做网关，在网关层也配置了CORS跨域问题解决，这样就会导致遇到上述错误</li>
 <li>解决方法
 <ul>
@@ -251,34 +213,21 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">sensitiveHeaders</span>: <span style="color:#ae81ff">Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sensitiveHeaders</span>: <span style="color:#ae81ff">Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials</span>
+</span></span></code></pre></div>
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://quicksandznzn.github.io/tags/2021/">2021</a></li>
+      <li><a href="/tags/2021/">2021</a></li>
     </ul>
-<nav class="paginav">
-  <a class="prev" href="https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>字体加密破解</span>
-  </a>
-  <a class="next" href="https://quicksandznzn.github.io/posts/redis/redis_rehash/">
-    <span class="title">Next »</span>
-    <br>
-    <span>Redis Rehash</span>
-  </a>
-</nav>
-
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://quicksandznzn.github.io/">Focus On Myself</a></span>
+    <span>&copy; 2023 <a href=""></a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -344,53 +293,6 @@ if (!doNotTrack) {
         }
     })
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
-
-        function copyingDone() {
-            copybutton.innerHTML = 'copied!';
-            setTimeout(() => {
-                copybutton.innerHTML = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
 </script>
 </body>
 

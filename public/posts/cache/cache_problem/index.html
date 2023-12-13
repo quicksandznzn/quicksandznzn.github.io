@@ -5,19 +5,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>缓存的场景问题及解决方案 | Focus On Myself</title>
+<title>缓存的场景问题及解决方案 | </title>
 <meta name="keywords" content="Redis, 缓存, 缓存雪崩, 缓存穿透, 缓存击穿, 秒杀">
 <meta name="description" content="缓存的场景问题及解决方案">
-<meta name="author" content="quicksandzn">
-<link rel="canonical" href="https://quicksandznzn.github.io/posts/cache/cache_problem/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/cache/cache_problem/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9329d037bc79464b26647fb72e079cd738f5d2418b1df4da3b515db9e22cb4d9.css" integrity="sha256-kynQN7x5RksmZH&#43;3Lgec1zj10kGLHfTaO1FdueIstNk=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://quicksandznzn.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://quicksandznzn.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://quicksandznzn.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://quicksandznzn.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://quicksandznzn.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -56,27 +56,14 @@
         }
 
     </style>
-</noscript>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3QCJGM8T9"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-R3QCJGM8T9', { 'anonymize_ip': false });
-}
-</script>
-<meta property="og:title" content="缓存的场景问题及解决方案" />
+</noscript><meta property="og:title" content="缓存的场景问题及解决方案" />
 <meta property="og:description" content="缓存的场景问题及解决方案" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quicksandznzn.github.io/posts/cache/cache_problem/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-07-21T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-07-21T00:00:00&#43;00:00" />
+<meta property="og:url" content="/posts/cache/cache_problem/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-07-21T00:00:00+00:00" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
-
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="缓存的场景问题及解决方案"/>
 <meta name="twitter:description" content="缓存的场景问题及解决方案"/>
 
@@ -85,18 +72,18 @@ if (!doNotTrack) {
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://quicksandznzn.github.io/posts/"
-    }, 
+  "itemListElement": [, 
     {
       "@type": "ListItem",
       "position":  2 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
       "name": "缓存的场景问题及解决方案",
-      "item": "https://quicksandznzn.github.io/posts/cache/cache_problem/"
+      "item": "/posts/cache/cache_problem/"
     }
   ]
 }
@@ -111,25 +98,21 @@ if (!doNotTrack) {
   "keywords": [
     "Redis", "缓存", "缓存雪崩", "缓存穿透", "缓存击穿", "秒杀"
   ],
-  "articleBody": "缓存雪崩  描述  大量的 key 设置了相同的过期时间，导致在缓存在同一时刻全部失效，造成瞬时 DB 请求量大、压力骤增，引起雪崩。   解决方案  分级缓存 给缓存设置过期时间时加上一个随机值时间，使得每个key的过期时间分布开来，不会集中在同一时刻失效。    缓存穿透  描述  访问一个不存在的 key 时，缓存不起作用，请求会穿透到 DB ，流量大时 DB 自然就会瘫痪。   解决方案  利用互斥锁，缓存失效的时候，先去获得锁，得到锁了，再去请求数据库。没得到锁，则休眠一段时间重试。 即使查询到的数据为空，仍把该空值缓存，还需要设置过期时间。 布隆过滤器，内部维护一系列合法有效的 key 就可以迅速判断出请求所携带的key是否合法有效。如果不合法，则直接返回。    缓存击穿  描述  一个存在的 key，在缓存过期的一刻，恰好在这个时间点对这个 key 有大量的并发请求过来，这个时候大量的请求可能会瞬间瘫痪掉 DB 。   解决方案  分级缓存 互斥锁    缓存预热  描述  系统上线后，提前将数据刷到缓存。避免用户在访问的时候，先去查询数据库。   解决方案  数据量不大的时候，工程启动的时候进行加载缓存 数据量大的时候，设置一个定时任务脚本，进行缓存的刷新 数据量太大的时候，优先保证热点数据进行提前加载到缓存    缓存降级 缓存降级是指缓存失效或缓存服务器挂掉的情况下，不去访问数据库，直接返回默认数据或访问服务的内存数据\n",
+  "articleBody": "缓存雪崩 描述 大量的 key 设置了相同的过期时间，导致在缓存在同一时刻全部失效，造成瞬时 DB 请求量大、压力骤增，引起雪崩。 解决方案 分级缓存 给缓存设置过期时间时加上一个随机值时间，使得每个key的过期时间分布开来，不会集中在同一时刻失效。 缓存穿透 描述 访问一个不存在的 key 时，缓存不起作用，请求会穿透到 DB ，流量大时 DB 自然就会瘫痪。 解决方案 利用互斥锁，缓存失效的时候，先去获得锁，得到锁了，再去请求数据库。没得到锁，则休眠一段时间重试。 即使查询到的数据为空，仍把该空值缓存，还需要设置过期时间。 布隆过滤器，内部维护一系列合法有效的 key 就可以迅速判断出请求所携带的key是否合法有效。如果不合法，则直接返回。 缓存击穿 描述 一个存在的 key，在缓存过期的一刻，恰好在这个时间点对这个 key 有大量的并发请求过来，这个时候大量的请求可能会瞬间瘫痪掉 DB 。 解决方案 分级缓存 互斥锁 缓存预热 描述 系统上线后，提前将数据刷到缓存。避免用户在访问的时候，先去查询数据库。 解决方案 数据量不大的时候，工程启动的时候进行加载缓存 数据量大的时候，设置一个定时任务脚本，进行缓存的刷新 数据量太大的时候，优先保证热点数据进行提前加载到缓存 缓存降级 缓存降级是指缓存失效或缓存服务器挂掉的情况下，不去访问数据库，直接返回默认数据或访问服务的内存数据\n",
   "wordCount" : "45",
   "inLanguage": "en",
   "datePublished": "2021-07-21T00:00:00Z",
   "dateModified": "2021-07-21T00:00:00Z",
-  "author":{
-    "@type": "Person",
-    "name": "quicksandzn"
-  },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://quicksandznzn.github.io/posts/cache/cache_problem/"
+    "@id": "/posts/cache/cache_problem/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Focus On Myself",
+    "name": "",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://quicksandznzn.github.io/favicon.ico"
+      "url": "favicon.ico"
     }
   }
 }
@@ -151,15 +134,14 @@ if (!doNotTrack) {
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://quicksandznzn.github.io/" accesskey="h" title="Focus On Myself (Alt + H)">Focus On Myself</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -176,26 +158,6 @@ if (!doNotTrack) {
             </div>
         </div>
         <ul id="menu">
-            <li>
-                <a href="https://quicksandznzn.github.io/archives" title="Archive">
-                    <span>Archive</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/tags/" title="Tags">
-                    <span>Tags</span>
-                </a>
-            </li>
         </ul>
     </nav>
 </header>
@@ -210,7 +172,7 @@ if (!doNotTrack) {
     <div class="post-description">
       缓存的场景问题及解决方案
     </div>
-    <div class="post-meta"><span title='2021-07-21 00:00:00 +0000 UTC'>July 21, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;quicksandzn
+    <div class="post-meta"><span title='2021-07-21 00:00:00 +0000 UTC'>July 21, 2021</span>
 
 </div>
   </header> 
@@ -280,22 +242,14 @@ if (!doNotTrack) {
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://quicksandznzn.github.io/tags/2021/">2021</a></li>
+      <li><a href="/tags/2021/">2021</a></li>
     </ul>
-<nav class="paginav">
-  <a class="prev" href="https://quicksandznzn.github.io/posts/redis/redis_data_type/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>Redis 数据类型</span>
-  </a>
-</nav>
-
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://quicksandznzn.github.io/">Focus On Myself</a></span>
+    <span>&copy; 2023 <a href=""></a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -361,53 +315,6 @@ if (!doNotTrack) {
         }
     })
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
-
-        function copyingDone() {
-            copybutton.innerHTML = 'copied!';
-            setTimeout(() => {
-                copybutton.innerHTML = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
 </script>
 </body>
 

@@ -5,19 +5,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>spring-cloud-starter-alibaba-nacos-config源码分析 | Focus On Myself</title>
+<title>spring-cloud-starter-alibaba-nacos-config源码分析 | </title>
 <meta name="keywords" content="Nacos, 配置中心, SpringCloud, SpringCloud Alibaba, 长轮询, gRPC">
 <meta name="description" content="基于Nacos-Client-1.4.1">
-<meta name="author" content="quicksandzn">
-<link rel="canonical" href="https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.d7fb4cbf980fe688a21621b06a795933c4e6bb2d4070ec940667af1715d84af2.css" integrity="sha256-1/tMv5gP5oiiFiGwanlZM8Tmuy1AcOyUBmevFxXYSvI=" rel="preload stylesheet" as="style">
+<meta name="author" content="">
+<link rel="canonical" href="/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9329d037bc79464b26647fb72e079cd738f5d2418b1df4da3b515db9e22cb4d9.css" integrity="sha256-kynQN7x5RksmZH&#43;3Lgec1zj10kGLHfTaO1FdueIstNk=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://quicksandznzn.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://quicksandznzn.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://quicksandznzn.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://quicksandznzn.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://quicksandznzn.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="mask-icon" href="safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -56,27 +56,14 @@
         }
 
     </style>
-</noscript>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3QCJGM8T9"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-R3QCJGM8T9', { 'anonymize_ip': false });
-}
-</script>
-<meta property="og:title" content="spring-cloud-starter-alibaba-nacos-config源码分析" />
+</noscript><meta property="og:title" content="spring-cloud-starter-alibaba-nacos-config源码分析" />
 <meta property="og:description" content="基于Nacos-Client-1.4.1" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-06-15T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2022-06-15T00:00:00&#43;00:00" />
+<meta property="og:url" content="/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-15T00:00:00+00:00" />
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
-
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="spring-cloud-starter-alibaba-nacos-config源码分析"/>
 <meta name="twitter:description" content="基于Nacos-Client-1.4.1"/>
 
@@ -85,18 +72,18 @@ if (!doNotTrack) {
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://quicksandznzn.github.io/posts/"
-    }, 
+  "itemListElement": [, 
     {
       "@type": "ListItem",
       "position":  2 ,
+      "name": "Posts",
+      "item": "/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
       "name": "spring-cloud-starter-alibaba-nacos-config源码分析",
-      "item": "https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/"
+      "item": "/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/"
     }
   ]
 }
@@ -111,25 +98,21 @@ if (!doNotTrack) {
   "keywords": [
     "Nacos", "配置中心", "SpringCloud", "SpringCloud Alibaba", "长轮询", "gRPC"
   ],
-  "articleBody": "初始化将参数配置追加到Environment spring.factories\norg.springframework.cloud.bootstrap.BootstrapConfiguration=\\ com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration public class NacosConfigBootstrapConfiguration { // 初始化Nacos配置信息  @Bean @ConditionalOnMissingBean public NacosConfigProperties nacosConfigProperties() { return new NacosConfigProperties(); } // 初始化NacosConfigService  @Bean @ConditionalOnMissingBean public NacosConfigManager nacosConfigManager( NacosConfigProperties nacosConfigProperties) { return new NacosConfigManager(nacosConfigProperties); } // 从Nacos加载远程配置文件  @Bean public NacosPropertySourceLocator nacosPropertySourceLocator( NacosConfigManager nacosConfigManager) { return new NacosPropertySourceLocator(nacosConfigManager); } } public class NacosPropertySourceLocator implements PropertySourceLocator { @Override public PropertySource locate(Environment env) { nacosConfigProperties.setEnvironment(env); ConfigService configService = nacosConfigManager.getConfigService(); if (null == configService) { log.warn(\"no instance of config service found, can't load config from nacos\"); return null; } long timeout = nacosConfigProperties.getTimeout(); nacosPropertySourceBuilder = new NacosPropertySourceBuilder(configService, timeout); String name = nacosConfigProperties.getName(); String dataIdPrefix = nacosConfigProperties.getPrefix(); if (StringUtils.isEmpty(dataIdPrefix)) { dataIdPrefix = name; } if (StringUtils.isEmpty(dataIdPrefix)) { dataIdPrefix = env.getProperty(\"spring.application.name\"); } CompositePropertySource composite = new CompositePropertySource( NACOS_PROPERTY_SOURCE_NAME); // 优先级 本应用配置扩展配置共享配置 \t// 加载共享配置  loadSharedConfiguration(composite); // 加载扩展配置  loadExtConfiguration(composite); // 加载本应用配置  loadApplicationConfiguration(composite, dataIdPrefix, nacosConfigProperties, env); return composite; } 三类配置的加载源码主要逻辑是从NacosConfigService.getConfigInner方法根据dataId和group远程获取配置（/v1/cs/configs），存本地快照\nNacos配置修改动态刷新 初始化NacosContextRefresher给所有data-id添加监听器 spring.factories\norg.springframework.boot.autoconfigure.EnableAutoConfiguration=\\ com.alibaba.cloud.nacos.NacosConfigAutoConfiguration public class NacosConfigAutoConfiguration { // 初始化NacosContextRefresher  @Bean public NacosContextRefresher nacosContextRefresher( NacosConfigManager nacosConfigManager, NacosRefreshHistory nacosRefreshHistory) { // Consider that it is not necessary to be compatible with the previous  // configuration  // and use the new configuration if necessary.  return new NacosContextRefresher(nacosConfigManager, nacosRefreshHistory); } } public class NacosContextRefresher implements ApplicationListenerApplicationReadyEvent, ApplicationContextAware { // 遍历所有data-id添加监听器  /** * register Nacos Listeners. */ private void registerNacosListenersForApplications() { if (isRefreshEnabled()) { for (NacosPropertySource propertySource : NacosPropertySourceRepository .getAll()) { if (!propertySource.isRefreshable()) { continue; } String dataId = propertySource.getDataId(); registerNacosListener(propertySource.getGroup(), dataId); } } } // 有变化发送RefreshEvent事件  private void registerNacosListener(final String groupKey, final String dataKey) { String key = NacosPropertySourceRepository.getMapKey(dataKey, groupKey); Listener listener = listenerMap.computeIfAbsent(key, lst - new AbstractSharedListener() { @Override public void innerReceive(String dataId, String group, String configInfo) { refreshCountIncrement(); nacosRefreshHistory.addRefreshRecord(dataId, group, configInfo); // todo feature: support single refresh for listening  applicationContext.publishEvent( new RefreshEvent(this, null, \"Refresh Nacos config\")); if (log.isDebugEnabled()) { log.debug(String.format( \"Refresh Nacos config group=%s,dataId=%s,configInfo=%s\", group, dataId, configInfo)); } } }); try { configService.addListener(dataKey, groupKey, listener); } catch (NacosException e) { log.warn(String.format( \"register fail for nacos listener ,dataId=[%s],group=[%s]\", dataKey, groupKey), e); } } } 客户端长轮询拉取Nacos配置 初始化NacosConfigService的时候会初始化ClientWorker\npublic NacosConfigService(Properties properties) throws NacosException { ValidatorUtils.checkInitParam(properties); String encodeTmp = properties.getProperty(PropertyKeyConst.ENCODE); if (StringUtils.isBlank(encodeTmp)) { this.encode = Constants.ENCODE; } else { this.encode = encodeTmp.trim(); } initNamespace(properties); this.agent = new MetricsHttpAgent(new ServerHttpAgent(properties)); this.agent.start(); // 初始化ClientWorker  this.worker = new ClientWorker(this.agent, this.configFilterChainManager, properties); } public ClientWorker(final HttpAgent agent, final ConfigFilterChainManager configFilterChainManager, final Properties properties) { // 初始化单线程线程池，每10MS执行一次checkConfigInfo()  this.executor.scheduleWithFixedDelay(new Runnable() { @Override public void run() { try { checkConfigInfo(); } catch (Throwable e) { LOGGER.error(\"[\" + agent.getName() + \"] [sub-check] rotate check error\", e); } } }, 1L, 10L, TimeUnit.MILLISECONDS); } 执行LongPollingRunnable\nclass LongPollingRunnable implements Runnable { private final int taskId; public LongPollingRunnable(int taskId) { this.taskId = taskId; } @Override public void run() { ListCacheData cacheDatas = new ArrayListCacheData(); ListString inInitializingCacheList = new ArrayListString(); try { // 检查本地配置  // check failover config  for (CacheData cacheData : cacheMap.values()) { if (cacheData.getTaskId() == taskId) { cacheDatas.add(cacheData); try { checkLocalConfig(cacheData); if (cacheData.isUseLocalConfigInfo()) { cacheData.checkListenerMd5(); } } catch (Exception e) { LOGGER.error(\"get local config info error\", e); } } } // 长轮询-根据dataId和group 服务端获取配置(/v1/cs/configs/listener)  // 如果有变化返回group  // check server config  ListString changedGroupKeys = checkUpdateDataIds(cacheDatas, inInitializingCacheList); if (!CollectionUtils.isEmpty(changedGroupKeys)) { LOGGER.info(\"get changedGroupKeys:\" + changedGroupKeys); } for (String groupKey : changedGroupKeys) { String[] key = GroupKey.parseKey(groupKey); String dataId = key[0]; String group = key[1]; String tenant = null; if (key.length == 3) { tenant = key[2]; } try { // 去服务端获取最新的配置更新本地数据cacheMap  String[] ct = getServerConfig(dataId, group, tenant, 3000L); CacheData cache = cacheMap.get(GroupKey.getKeyTenant(dataId, group, tenant)); cache.setContent(ct[0]); if (null != ct[1]) { cache.setType(ct[1]); } LOGGER.info(\"[{}] [data-received] dataId={}, group={}, tenant={}, md5={}, content={}, type={}\", agent.getName(), dataId, group, tenant, cache.getMd5(), ContentUtils.truncateContent(ct[0]), ct[1]); } catch (NacosException ioe) { String message = String .format(\"[%s] [get-update] get changed config exception. dataId=%s, group=%s, tenant=%s\", agent.getName(), dataId, group, tenant); LOGGER.error(message, ioe); } } for (CacheData cacheData : cacheDatas) { if (!cacheData.isInitializing() || inInitializingCacheList .contains(GroupKey.getKeyTenant(cacheData.dataId, cacheData.group, cacheData.tenant))) { // 遍历listeners，取到NacosContextRefresher注册的listener，执行innerReceive方法，发送RefreshEvent事件  cacheData.checkListenerMd5(); cacheData.setInitializing(false); } } inInitializingCacheList.clear(); executorService.execute(this); } catch (Throwable e) { // If the rotation training task is abnormal, the next execution time of the task will be punished  LOGGER.error(\"longPolling error : \", e); executorService.schedule(this, taskPenaltyTime, TimeUnit.MILLISECONDS); } } }\t服务端长轮询逻辑 public String doPollingConfig(HttpServletRequest request, HttpServletResponse response, MapString, String clientMd5Map, int probeRequestSize) throws IOException { // Long polling.  // 判断是否是长轮询  if (LongPollingService.isSupportLongPolling(request)) { longPollingService.addLongPollingClient(request, response, clientMd5Map, probeRequestSize); return HttpServletResponse.SC_OK + \"\"; } } public void addLongPollingClient(HttpServletRequest req, HttpServletResponse rsp, MapString, String clientMd5Map, int probeRequestSize) { String str = req.getHeader(LongPollingService.LONG_POLLING_HEADER); String noHangUpFlag = req.getHeader(LongPollingService.LONG_POLLING_NO_HANG_UP_HEADER); String appName = req.getHeader(RequestUtil.CLIENT_APPNAME_HEADER); String tag = req.getHeader(\"Vipserver-Tag\"); int delayTime = SwitchService.getSwitchInteger(SwitchService.FIXED_DELAY_TIME, 500); // 长轮询时间为30s-500ms=29.5s  // Add delay time for LoadBalance, and one response is returned 500 ms in advance to avoid client timeout.  long timeout = Math.max(10000, Long.parseLong(str) - delayTime); if (isFixedPolling()) { timeout = Math.max(10000, getFixedPollingInterval()); // Do nothing but set fix polling timeout.  } else { long start = System.currentTimeMillis(); ListString changedGroups = MD5Util.compareMd5(req, rsp, clientMd5Map); if (changedGroups.size()  0) { generateResponse(req, rsp, changedGroups); LogUtil.CLIENT_LOG.info(\"{}|{}|{}|{}|{}|{}|{}\", System.currentTimeMillis() - start, \"instant\", RequestUtil.getRemoteIp(req), \"polling\", clientMd5Map.size(), probeRequestSize, changedGroups.size()); return; } else if (noHangUpFlag != null \u0026\u0026 noHangUpFlag.equalsIgnoreCase(TRUE_STR)) { LogUtil.CLIENT_LOG.info(\"{}|{}|{}|{}|{}|{}|{}\", System.currentTimeMillis() - start, \"nohangup\", RequestUtil.getRemoteIp(req), \"polling\", clientMd5Map.size(), probeRequestSize, changedGroups.size()); return; } } String ip = RequestUtil.getRemoteIp(req); // Must be called by http thread, or send response.  final AsyncContext asyncContext = req.startAsync(); // AsyncContext.setTimeout() is incorrect, Control by oneself  asyncContext.setTimeout(0L); ConfigExecutor.executeLongPolling( new ClientLongPolling(asyncContext, clientMd5Map, ip, probeRequestSize, timeout, appName, tag)); } class ClientLongPolling implements Runnable { // 29.5s后执行  // 无变化从allSubs移除当前请求  // 响应客户端  @Override public void run() { asyncTimeoutFuture = ConfigExecutor.scheduleLongPolling(new Runnable() { @Override public void run() { try { getRetainIps().put(ClientLongPolling.this.ip, System.currentTimeMillis()); // Delete subsciber's relations.  allSubs.remove(ClientLongPolling.this); if (isFixedPolling()) { LogUtil.CLIENT_LOG .info(\"{}|{}|{}|{}|{}|{}\", (System.currentTimeMillis() - createTime), \"fix\", RequestUtil.getRemoteIp((HttpServletRequest) asyncContext.getRequest()), \"polling\", clientMd5Map.size(), probeRequestSize); ListString changedGroups = MD5Util .compareMd5((HttpServletRequest) asyncContext.getRequest(), (HttpServletResponse) asyncContext.getResponse(), clientMd5Map); if (changedGroups.size()  0) { sendResponse(changedGroups); } else { sendResponse(null); } } else { LogUtil.CLIENT_LOG .info(\"{}|{}|{}|{}|{}|{}\", (System.currentTimeMillis() - createTime), \"timeout\", RequestUtil.getRemoteIp((HttpServletRequest) asyncContext.getRequest()), \"polling\", clientMd5Map.size(), probeRequestSize); sendResponse(null); } } catch (Throwable t) { LogUtil.DEFAULT_LOG.error(\"long polling error:\" + t.getMessage(), t.getCause()); } } }, timeoutTime, TimeUnit.MILLISECONDS); // 将当前请求加入到allSubs  allSubs.add(this); } 如果这期间发生变更，会发送 LocalDataChangeEvent事件,\npublic LongPollingService() { allSubs = new ConcurrentLinkedQueueClientLongPolling(); ConfigExecutor.scheduleLongPolling(new StatTask(), 0L, 10L, TimeUnit.SECONDS); // Register LocalDataChangeEvent to NotifyCenter.  NotifyCenter.registerToPublisher(LocalDataChangeEvent.class, NotifyCenter.ringBufferSize); // 注册订阅者监听LocalDataChangeEvent事件  // Register A Subscriber to subscribe LocalDataChangeEvent.  NotifyCenter.registerSubscriber(new Subscriber() { @Override public void onEvent(Event event) { if (isFixedPolling()) { // Ignore.  } else { if (event instanceof LocalDataChangeEvent) { LocalDataChangeEvent evt = (LocalDataChangeEvent) event; ConfigExecutor.executeLongPolling(new DataChangeTask(evt.groupKey, evt.isBeta, evt.betaIps)); } } } @Override public Class extends Event subscribeType() { return LocalDataChangeEvent.class; } }); } DataChangeTask接收消息遍历allSubs 找到对应的客户端请求返回给客户端结果（group+dataId）\nclass DataChangeTask implements Runnable { @Override public void run() { try { ConfigCacheService.getContentBetaMd5(groupKey); for (IteratorClientLongPolling iter = allSubs.iterator(); iter.hasNext(); ) { ClientLongPolling clientSub = iter.next(); if (clientSub.clientMd5Map.containsKey(groupKey)) { // If published tag is not in the beta list, then it skipped.  if (isBeta \u0026\u0026 !CollectionUtils.contains(betaIps, clientSub.ip)) { continue; } // If published tag is not in the tag list, then it skipped.  if (StringUtils.isNotBlank(tag) \u0026\u0026 !tag.equals(clientSub.tag)) { continue; } getRetainIps().put(clientSub.ip, System.currentTimeMillis()); iter.remove(); // Delete subscribers' relationships.  LogUtil.CLIENT_LOG .info(\"{}|{}|{}|{}|{}|{}|{}\", (System.currentTimeMillis() - changeTime), \"in-advance\", RequestUtil .getRemoteIp((HttpServletRequest) clientSub.asyncContext.getRequest()), \"polling\", clientSub.clientMd5Map.size(), clientSub.probeRequestSize, groupKey); // 会cancelasyncTimeoutFuture  // 响应客户端变化的group  clientSub.sendResponse(Arrays.asList(groupKey)); } } } catch (Throwable t) { LogUtil.DEFAULT_LOG.error(\"data change error: {}\", ExceptionUtil.getStackTrace(t)); } } Spring RefreshEvent事件刷新配置文件解析 RefreshEvent监听者\npublic class RefreshEventListener implements SmartApplicationListener { public void handle(RefreshEvent event) { if (this.ready.get()) { // don't handle events before app is ready  log.debug(\"Event received \" + event.getEventDesc()); // 执行刷新  SetString keys = this.refresh.refresh(); log.info(\"Refresh keys changed: \" + keys); } } } public abstract class ContextRefresher { private RefreshScope scope; protected RefreshScope getScope() { return this.scope; } public synchronized SetString refresh() { // 发送EnvironmentChangeEvent事件  // 监听该事件的监听器多个，只需要关注LoggingBebinde和ConfigurationPropertiesRebinder  // ConfigurationPropertiesRebinder.rebind() 销毁原有的Bean,在重新初始化Bean  // LoggingBebinde通过LoggingSystem重新设置日志级别  SetString keys = refreshEnvironment(); // 刷新@RefreshScope注解的类  // 对于@RefreshScope注解的类，当每次被调用的时候，都会进行初始化，同时采用懒代理的方法，将作用域充当\t初始值的缓存，当缓存存在时，不会再进行初始化。因此，对于刷新@RefreshScope注解的类，只需要将其缓存\t进行清空，则在下一次访问的时候，依赖新的配置源，将生成新的缓存  this.scope.refreshAll(); return keys; } Tips: Nacos2.0+采用grpc替换长轮询，后面分享\n",
+  "articleBody": "初始化将参数配置追加到Environment spring.factories\norg.springframework.cloud.bootstrap.BootstrapConfiguration=\\ com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration public class NacosConfigBootstrapConfiguration { // 初始化Nacos配置信息 @Bean @ConditionalOnMissingBean public NacosConfigProperties nacosConfigProperties() { return new NacosConfigProperties(); } // 初始化NacosConfigService @Bean @ConditionalOnMissingBean public NacosConfigManager nacosConfigManager( NacosConfigProperties nacosConfigProperties) { return new NacosConfigManager(nacosConfigProperties); } // 从Nacos加载远程配置文件 @Bean public NacosPropertySourceLocator nacosPropertySourceLocator( NacosConfigManager nacosConfigManager) { return new NacosPropertySourceLocator(nacosConfigManager); } } public class NacosPropertySourceLocator implements PropertySourceLocator { @Override public PropertySource\u003c?\u003e locate(Environment env) { nacosConfigProperties.setEnvironment(env); ConfigService configService = nacosConfigManager.getConfigService(); if (null == configService) { log.warn(\"no instance of config service found, can't load config from nacos\"); return null; } long timeout = nacosConfigProperties.getTimeout(); nacosPropertySourceBuilder = new NacosPropertySourceBuilder(configService, timeout); String name = nacosConfigProperties.getName(); String dataIdPrefix = nacosConfigProperties.getPrefix(); if (StringUtils.isEmpty(dataIdPrefix)) { dataIdPrefix = name; } if (StringUtils.isEmpty(dataIdPrefix)) { dataIdPrefix = env.getProperty(\"spring.application.name\"); } CompositePropertySource composite = new CompositePropertySource( NACOS_PROPERTY_SOURCE_NAME); // 优先级 本应用配置\u003e扩展配置\u003e共享配置 // 加载共享配置 loadSharedConfiguration(composite); // 加载扩展配置 loadExtConfiguration(composite); // 加载本应用配置 loadApplicationConfiguration(composite, dataIdPrefix, nacosConfigProperties, env); return composite; } 三类配置的加载源码主要逻辑是从NacosConfigService.getConfigInner方法根据dataId和group远程获取配置（/v1/cs/configs），存本地快照\nNacos配置修改动态刷新 初始化NacosContextRefresher给所有data-id添加监听器 spring.factories\norg.springframework.boot.autoconfigure.EnableAutoConfiguration=\\ com.alibaba.cloud.nacos.NacosConfigAutoConfiguration public class NacosConfigAutoConfiguration { // 初始化NacosContextRefresher @Bean public NacosContextRefresher nacosContextRefresher( NacosConfigManager nacosConfigManager, NacosRefreshHistory nacosRefreshHistory) { // Consider that it is not necessary to be compatible with the previous // configuration // and use the new configuration if necessary. return new NacosContextRefresher(nacosConfigManager, nacosRefreshHistory); } } public class NacosContextRefresher implements ApplicationListener\u003cApplicationReadyEvent\u003e, ApplicationContextAware { // 遍历所有data-id添加监听器 /** * register Nacos Listeners. */ private void registerNacosListenersForApplications() { if (isRefreshEnabled()) { for (NacosPropertySource propertySource : NacosPropertySourceRepository .getAll()) { if (!propertySource.isRefreshable()) { continue; } String dataId = propertySource.getDataId(); registerNacosListener(propertySource.getGroup(), dataId); } } } // 有变化发送RefreshEvent事件 private void registerNacosListener(final String groupKey, final String dataKey) { String key = NacosPropertySourceRepository.getMapKey(dataKey, groupKey); Listener listener = listenerMap.computeIfAbsent(key, lst -\u003e new AbstractSharedListener() { @Override public void innerReceive(String dataId, String group, String configInfo) { refreshCountIncrement(); nacosRefreshHistory.addRefreshRecord(dataId, group, configInfo); // todo feature: support single refresh for listening applicationContext.publishEvent( new RefreshEvent(this, null, \"Refresh Nacos config\")); if (log.isDebugEnabled()) { log.debug(String.format( \"Refresh Nacos config group=%s,dataId=%s,configInfo=%s\", group, dataId, configInfo)); } } }); try { configService.addListener(dataKey, groupKey, listener); } catch (NacosException e) { log.warn(String.format( \"register fail for nacos listener ,dataId=[%s],group=[%s]\", dataKey, groupKey), e); } } } 客户端长轮询拉取Nacos配置 初始化NacosConfigService的时候会初始化ClientWorker\npublic NacosConfigService(Properties properties) throws NacosException { ValidatorUtils.checkInitParam(properties); String encodeTmp = properties.getProperty(PropertyKeyConst.ENCODE); if (StringUtils.isBlank(encodeTmp)) { this.encode = Constants.ENCODE; } else { this.encode = encodeTmp.trim(); } initNamespace(properties); this.agent = new MetricsHttpAgent(new ServerHttpAgent(properties)); this.agent.start(); // 初始化ClientWorker this.worker = new ClientWorker(this.agent, this.configFilterChainManager, properties); } public ClientWorker(final HttpAgent agent, final ConfigFilterChainManager configFilterChainManager, final Properties properties) { // 初始化单线程线程池，每10MS执行一次checkConfigInfo() this.executor.scheduleWithFixedDelay(new Runnable() { @Override public void run() { try { checkConfigInfo(); } catch (Throwable e) { LOGGER.error(\"[\" + agent.getName() + \"] [sub-check] rotate check error\", e); } } }, 1L, 10L, TimeUnit.MILLISECONDS); } 执行LongPollingRunnable\nclass LongPollingRunnable implements Runnable { private final int taskId; public LongPollingRunnable(int taskId) { this.taskId = taskId; } @Override public void run() { List\u003cCacheData\u003e cacheDatas = new ArrayList\u003cCacheData\u003e(); List\u003cString\u003e inInitializingCacheList = new ArrayList\u003cString\u003e(); try { // 检查本地配置 // check failover config for (CacheData cacheData : cacheMap.values()) { if (cacheData.getTaskId() == taskId) { cacheDatas.add(cacheData); try { checkLocalConfig(cacheData); if (cacheData.isUseLocalConfigInfo()) { cacheData.checkListenerMd5(); } } catch (Exception e) { LOGGER.error(\"get local config info error\", e); } } } // 长轮询-根据dataId和group 服务端获取配置(/v1/cs/configs/listener) // 如果有变化返回group // check server config List\u003cString\u003e changedGroupKeys = checkUpdateDataIds(cacheDatas, inInitializingCacheList); if (!CollectionUtils.isEmpty(changedGroupKeys)) { LOGGER.info(\"get changedGroupKeys:\" + changedGroupKeys); } for (String groupKey : changedGroupKeys) { String[] key = GroupKey.parseKey(groupKey); String dataId = key[0]; String group = key[1]; String tenant = null; if (key.length == 3) { tenant = key[2]; } try { // 去服务端获取最新的配置更新本地数据cacheMap String[] ct = getServerConfig(dataId, group, tenant, 3000L); CacheData cache = cacheMap.get(GroupKey.getKeyTenant(dataId, group, tenant)); cache.setContent(ct[0]); if (null != ct[1]) { cache.setType(ct[1]); } LOGGER.info(\"[{}] [data-received] dataId={}, group={}, tenant={}, md5={}, content={}, type={}\", agent.getName(), dataId, group, tenant, cache.getMd5(), ContentUtils.truncateContent(ct[0]), ct[1]); } catch (NacosException ioe) { String message = String .format(\"[%s] [get-update] get changed config exception. dataId=%s, group=%s, tenant=%s\", agent.getName(), dataId, group, tenant); LOGGER.error(message, ioe); } } for (CacheData cacheData : cacheDatas) { if (!cacheData.isInitializing() || inInitializingCacheList .contains(GroupKey.getKeyTenant(cacheData.dataId, cacheData.group, cacheData.tenant))) { // 遍历listeners，取到NacosContextRefresher注册的listener，执行innerReceive方法，发送RefreshEvent事件 cacheData.checkListenerMd5(); cacheData.setInitializing(false); } } inInitializingCacheList.clear(); executorService.execute(this); } catch (Throwable e) { // If the rotation training task is abnormal, the next execution time of the task will be punished LOGGER.error(\"longPolling error : \", e); executorService.schedule(this, taskPenaltyTime, TimeUnit.MILLISECONDS); } } }\t服务端长轮询逻辑 public String doPollingConfig(HttpServletRequest request, HttpServletResponse response, Map\u003cString, String\u003e clientMd5Map, int probeRequestSize) throws IOException { // Long polling. // 判断是否是长轮询 if (LongPollingService.isSupportLongPolling(request)) { longPollingService.addLongPollingClient(request, response, clientMd5Map, probeRequestSize); return HttpServletResponse.SC_OK + \"\"; } } public void addLongPollingClient(HttpServletRequest req, HttpServletResponse rsp, Map\u003cString, String\u003e clientMd5Map, int probeRequestSize) { String str = req.getHeader(LongPollingService.LONG_POLLING_HEADER); String noHangUpFlag = req.getHeader(LongPollingService.LONG_POLLING_NO_HANG_UP_HEADER); String appName = req.getHeader(RequestUtil.CLIENT_APPNAME_HEADER); String tag = req.getHeader(\"Vipserver-Tag\"); int delayTime = SwitchService.getSwitchInteger(SwitchService.FIXED_DELAY_TIME, 500); // 长轮询时间为30s-500ms=29.5s // Add delay time for LoadBalance, and one response is returned 500 ms in advance to avoid client timeout. long timeout = Math.max(10000, Long.parseLong(str) - delayTime); if (isFixedPolling()) { timeout = Math.max(10000, getFixedPollingInterval()); // Do nothing but set fix polling timeout. } else { long start = System.currentTimeMillis(); List\u003cString\u003e changedGroups = MD5Util.compareMd5(req, rsp, clientMd5Map); if (changedGroups.size() \u003e 0) { generateResponse(req, rsp, changedGroups); LogUtil.CLIENT_LOG.info(\"{}|{}|{}|{}|{}|{}|{}\", System.currentTimeMillis() - start, \"instant\", RequestUtil.getRemoteIp(req), \"polling\", clientMd5Map.size(), probeRequestSize, changedGroups.size()); return; } else if (noHangUpFlag != null \u0026\u0026 noHangUpFlag.equalsIgnoreCase(TRUE_STR)) { LogUtil.CLIENT_LOG.info(\"{}|{}|{}|{}|{}|{}|{}\", System.currentTimeMillis() - start, \"nohangup\", RequestUtil.getRemoteIp(req), \"polling\", clientMd5Map.size(), probeRequestSize, changedGroups.size()); return; } } String ip = RequestUtil.getRemoteIp(req); // Must be called by http thread, or send response. final AsyncContext asyncContext = req.startAsync(); // AsyncContext.setTimeout() is incorrect, Control by oneself asyncContext.setTimeout(0L); ConfigExecutor.executeLongPolling( new ClientLongPolling(asyncContext, clientMd5Map, ip, probeRequestSize, timeout, appName, tag)); } class ClientLongPolling implements Runnable { // 29.5s后执行 // 无变化从allSubs移除当前请求 // 响应客户端 @Override public void run() { asyncTimeoutFuture = ConfigExecutor.scheduleLongPolling(new Runnable() { @Override public void run() { try { getRetainIps().put(ClientLongPolling.this.ip, System.currentTimeMillis()); // Delete subsciber's relations. allSubs.remove(ClientLongPolling.this); if (isFixedPolling()) { LogUtil.CLIENT_LOG .info(\"{}|{}|{}|{}|{}|{}\", (System.currentTimeMillis() - createTime), \"fix\", RequestUtil.getRemoteIp((HttpServletRequest) asyncContext.getRequest()), \"polling\", clientMd5Map.size(), probeRequestSize); List\u003cString\u003e changedGroups = MD5Util .compareMd5((HttpServletRequest) asyncContext.getRequest(), (HttpServletResponse) asyncContext.getResponse(), clientMd5Map); if (changedGroups.size() \u003e 0) { sendResponse(changedGroups); } else { sendResponse(null); } } else { LogUtil.CLIENT_LOG .info(\"{}|{}|{}|{}|{}|{}\", (System.currentTimeMillis() - createTime), \"timeout\", RequestUtil.getRemoteIp((HttpServletRequest) asyncContext.getRequest()), \"polling\", clientMd5Map.size(), probeRequestSize); sendResponse(null); } } catch (Throwable t) { LogUtil.DEFAULT_LOG.error(\"long polling error:\" + t.getMessage(), t.getCause()); } } }, timeoutTime, TimeUnit.MILLISECONDS); // 将当前请求加入到allSubs allSubs.add(this); } 如果这期间发生变更，会发送 LocalDataChangeEvent事件,\npublic LongPollingService() { allSubs = new ConcurrentLinkedQueue\u003cClientLongPolling\u003e(); ConfigExecutor.scheduleLongPolling(new StatTask(), 0L, 10L, TimeUnit.SECONDS); // Register LocalDataChangeEvent to NotifyCenter. NotifyCenter.registerToPublisher(LocalDataChangeEvent.class, NotifyCenter.ringBufferSize); // 注册订阅者监听LocalDataChangeEvent事件 // Register A Subscriber to subscribe LocalDataChangeEvent. NotifyCenter.registerSubscriber(new Subscriber() { @Override public void onEvent(Event event) { if (isFixedPolling()) { // Ignore. } else { if (event instanceof LocalDataChangeEvent) { LocalDataChangeEvent evt = (LocalDataChangeEvent) event; ConfigExecutor.executeLongPolling(new DataChangeTask(evt.groupKey, evt.isBeta, evt.betaIps)); } } } @Override public Class\u003c? extends Event\u003e subscribeType() { return LocalDataChangeEvent.class; } }); } DataChangeTask接收消息遍历allSubs 找到对应的客户端请求返回给客户端结果（group+dataId）\nclass DataChangeTask implements Runnable { @Override public void run() { try { ConfigCacheService.getContentBetaMd5(groupKey); for (Iterator\u003cClientLongPolling\u003e iter = allSubs.iterator(); iter.hasNext(); ) { ClientLongPolling clientSub = iter.next(); if (clientSub.clientMd5Map.containsKey(groupKey)) { // If published tag is not in the beta list, then it skipped. if (isBeta \u0026\u0026 !CollectionUtils.contains(betaIps, clientSub.ip)) { continue; } // If published tag is not in the tag list, then it skipped. if (StringUtils.isNotBlank(tag) \u0026\u0026 !tag.equals(clientSub.tag)) { continue; } getRetainIps().put(clientSub.ip, System.currentTimeMillis()); iter.remove(); // Delete subscribers' relationships. LogUtil.CLIENT_LOG .info(\"{}|{}|{}|{}|{}|{}|{}\", (System.currentTimeMillis() - changeTime), \"in-advance\", RequestUtil .getRemoteIp((HttpServletRequest) clientSub.asyncContext.getRequest()), \"polling\", clientSub.clientMd5Map.size(), clientSub.probeRequestSize, groupKey); // 会cancelasyncTimeoutFuture // 响应客户端变化的group clientSub.sendResponse(Arrays.asList(groupKey)); } } } catch (Throwable t) { LogUtil.DEFAULT_LOG.error(\"data change error: {}\", ExceptionUtil.getStackTrace(t)); } } Spring RefreshEvent事件刷新配置文件解析 RefreshEvent监听者\npublic class RefreshEventListener implements SmartApplicationListener { public void handle(RefreshEvent event) { if (this.ready.get()) { // don't handle events before app is ready log.debug(\"Event received \" + event.getEventDesc()); // 执行刷新 Set\u003cString\u003e keys = this.refresh.refresh(); log.info(\"Refresh keys changed: \" + keys); } } } public abstract class ContextRefresher { private RefreshScope scope; protected RefreshScope getScope() { return this.scope; } public synchronized Set\u003cString\u003e refresh() { // 发送EnvironmentChangeEvent事件 // 监听该事件的监听器多个，只需要关注LoggingBebinde和ConfigurationPropertiesRebinder // ConfigurationPropertiesRebinder.rebind() 销毁原有的Bean,在重新初始化Bean // LoggingBebinde通过LoggingSystem重新设置日志级别 Set\u003cString\u003e keys = refreshEnvironment(); // 刷新@RefreshScope注解的类 // 对于@RefreshScope注解的类，当每次被调用的时候，都会进行初始化，同时采用懒代理的方法，将作用域充当\t初始值的缓存，当缓存存在时，不会再进行初始化。因此，对于刷新@RefreshScope注解的类，只需要将其缓存\t进行清空，则在下一次访问的时候，依赖新的配置源，将生成新的缓存 this.scope.refreshAll(); return keys; } Tips: Nacos2.0+采用grpc替换长轮询，后面分享\n",
   "wordCount" : "1242",
   "inLanguage": "en",
   "datePublished": "2022-06-15T00:00:00Z",
   "dateModified": "2022-06-15T00:00:00Z",
-  "author":{
-    "@type": "Person",
-    "name": "quicksandzn"
-  },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/"
+    "@id": "/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Focus On Myself",
+    "name": "",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://quicksandznzn.github.io/favicon.ico"
+      "url": "favicon.ico"
     }
   }
 }
@@ -151,15 +134,14 @@ if (!doNotTrack) {
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://quicksandznzn.github.io/" accesskey="h" title="Focus On Myself (Alt + H)">Focus On Myself</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -176,26 +158,6 @@ if (!doNotTrack) {
             </div>
         </div>
         <ul id="menu">
-            <li>
-                <a href="https://quicksandznzn.github.io/archives" title="Archive">
-                    <span>Archive</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://quicksandznzn.github.io/tags/" title="Tags">
-                    <span>Tags</span>
-                </a>
-            </li>
         </ul>
     </nav>
 </header>
@@ -210,463 +172,463 @@ if (!doNotTrack) {
     <div class="post-description">
       基于Nacos-Client-1.4.1
     </div>
-    <div class="post-meta"><span title='2022-06-15 00:00:00 +0000 UTC'>June 15, 2022</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;quicksandzn
+    <div class="post-meta"><span title='2022-06-15 00:00:00 +0000 UTC'>June 15, 2022</span>
 
 </div>
   </header> 
   <div class="post-content"><h3 id="初始化将参数配置追加到environment">初始化将参数配置追加到Environment<a hidden class="anchor" aria-hidden="true" href="#初始化将参数配置追加到environment">#</a></h3>
 <p>spring.factories</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cloud</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">.</span><span style="color:#a6e22e">BootstrapConfiguration</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">\</span>
-com<span style="color:#f92672">.</span><span style="color:#a6e22e">alibaba</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cloud</span><span style="color:#f92672">.</span><span style="color:#a6e22e">nacos</span><span style="color:#f92672">.</span><span style="color:#a6e22e">NacosConfigBootstrapConfiguration</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NacosConfigBootstrapConfiguration</span> <span style="color:#f92672">{</span> 
-    
-   <span style="color:#75715e">// 初始化Nacos配置信息
-</span><span style="color:#75715e"></span>   <span style="color:#a6e22e">@Bean</span>
-   <span style="color:#a6e22e">@ConditionalOnMissingBean</span>
-   <span style="color:#66d9ef">public</span> NacosConfigProperties <span style="color:#a6e22e">nacosConfigProperties</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> NacosConfigProperties<span style="color:#f92672">();</span>
-   <span style="color:#f92672">}</span>
-	 
-   <span style="color:#75715e">// 初始化NacosConfigService
-</span><span style="color:#75715e"></span>   <span style="color:#a6e22e">@Bean</span>
-   <span style="color:#a6e22e">@ConditionalOnMissingBean</span>
-   <span style="color:#66d9ef">public</span> NacosConfigManager <span style="color:#a6e22e">nacosConfigManager</span><span style="color:#f92672">(</span>
-         NacosConfigProperties nacosConfigProperties<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> NacosConfigManager<span style="color:#f92672">(</span>nacosConfigProperties<span style="color:#f92672">);</span>
-   <span style="color:#f92672">}</span>
-	 
-   <span style="color:#75715e">// 从Nacos加载远程配置文件
-</span><span style="color:#75715e"></span>   <span style="color:#a6e22e">@Bean</span>
-   <span style="color:#66d9ef">public</span> NacosPropertySourceLocator <span style="color:#a6e22e">nacosPropertySourceLocator</span><span style="color:#f92672">(</span>
-         NacosConfigManager nacosConfigManager<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> NacosPropertySourceLocator<span style="color:#f92672">(</span>nacosConfigManager<span style="color:#f92672">);</span>
-   <span style="color:#f92672">}</span>
-
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NacosPropertySourceLocator</span> <span style="color:#66d9ef">implements</span> PropertySourceLocator <span style="color:#f92672">{</span>
-
-   <span style="color:#a6e22e">@Override</span>
-   <span style="color:#66d9ef">public</span> PropertySource<span style="color:#f92672">&lt;?&gt;</span> locate<span style="color:#f92672">(</span>Environment env<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      nacosConfigProperties<span style="color:#f92672">.</span><span style="color:#a6e22e">setEnvironment</span><span style="color:#f92672">(</span>env<span style="color:#f92672">);</span>
-      ConfigService configService <span style="color:#f92672">=</span> nacosConfigManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getConfigService</span><span style="color:#f92672">();</span>
-
-      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">null</span> <span style="color:#f92672">==</span> configService<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-         log<span style="color:#f92672">.</span><span style="color:#a6e22e">warn</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;no instance of config service found, can&#39;t load config from nacos&#34;</span><span style="color:#f92672">);</span>
-         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">}</span>
-      <span style="color:#66d9ef">long</span> timeout <span style="color:#f92672">=</span> nacosConfigProperties<span style="color:#f92672">.</span><span style="color:#a6e22e">getTimeout</span><span style="color:#f92672">();</span>
-      nacosPropertySourceBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NacosPropertySourceBuilder<span style="color:#f92672">(</span>configService<span style="color:#f92672">,</span>
-            timeout<span style="color:#f92672">);</span>
-      String name <span style="color:#f92672">=</span> nacosConfigProperties<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">();</span>
-
-      String dataIdPrefix <span style="color:#f92672">=</span> nacosConfigProperties<span style="color:#f92672">.</span><span style="color:#a6e22e">getPrefix</span><span style="color:#f92672">();</span>
-      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>StringUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">(</span>dataIdPrefix<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-         dataIdPrefix <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
-      <span style="color:#f92672">}</span>
-
-      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>StringUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">(</span>dataIdPrefix<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-         dataIdPrefix <span style="color:#f92672">=</span> env<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;spring.application.name&#34;</span><span style="color:#f92672">);</span>
-      <span style="color:#f92672">}</span>
-
-      CompositePropertySource composite <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CompositePropertySource<span style="color:#f92672">(</span>
-            NACOS_PROPERTY_SOURCE_NAME<span style="color:#f92672">);</span>
-      
-      <span style="color:#75715e">// 优先级 本应用配置&gt;扩展配置&gt;共享配置
-</span><span style="color:#75715e"></span>	  <span style="color:#75715e">// 加载共享配置
-</span><span style="color:#75715e"></span>      loadSharedConfiguration<span style="color:#f92672">(</span>composite<span style="color:#f92672">);</span>
-      <span style="color:#75715e">// 加载扩展配置
-</span><span style="color:#75715e"></span>      loadExtConfiguration<span style="color:#f92672">(</span>composite<span style="color:#f92672">);</span>
-      <span style="color:#75715e">// 加载本应用配置
-</span><span style="color:#75715e"></span>      loadApplicationConfiguration<span style="color:#f92672">(</span>composite<span style="color:#f92672">,</span> dataIdPrefix<span style="color:#f92672">,</span> nacosConfigProperties<span style="color:#f92672">,</span> env<span style="color:#f92672">);</span>
-      <span style="color:#66d9ef">return</span> composite<span style="color:#f92672">;</span>
-   <span style="color:#f92672">}</span>
-</code></pre></div><p>三类配置的加载源码主要逻辑是从NacosConfigService.getConfigInner方法根据dataId和group远程获取配置（/v1/cs/configs），存本地快照</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>org.<span style="color:#a6e22e">springframework</span>.<span style="color:#a6e22e">cloud</span>.<span style="color:#a6e22e">bootstrap</span>.<span style="color:#a6e22e">BootstrapConfiguration</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">\</span>
+</span></span><span style="display:flex;"><span>com.<span style="color:#a6e22e">alibaba</span>.<span style="color:#a6e22e">cloud</span>.<span style="color:#a6e22e">nacos</span>.<span style="color:#a6e22e">NacosConfigBootstrapConfiguration</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NacosConfigBootstrapConfiguration</span> { 
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 初始化Nacos配置信息</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">@ConditionalOnMissingBean</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> NacosConfigProperties <span style="color:#a6e22e">nacosConfigProperties</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> NacosConfigProperties();
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>	 
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 初始化NacosConfigService</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">@ConditionalOnMissingBean</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> NacosConfigManager <span style="color:#a6e22e">nacosConfigManager</span>(
+</span></span><span style="display:flex;"><span>         NacosConfigProperties nacosConfigProperties) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> NacosConfigManager(nacosConfigProperties);
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>	 
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 从Nacos加载远程配置文件</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> NacosPropertySourceLocator <span style="color:#a6e22e">nacosPropertySourceLocator</span>(
+</span></span><span style="display:flex;"><span>         NacosConfigManager nacosConfigManager) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> NacosPropertySourceLocator(nacosConfigManager);
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NacosPropertySourceLocator</span> <span style="color:#66d9ef">implements</span> PropertySourceLocator {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> PropertySource<span style="color:#f92672">&lt;?&gt;</span> locate(Environment env) {
+</span></span><span style="display:flex;"><span>      nacosConfigProperties.<span style="color:#a6e22e">setEnvironment</span>(env);
+</span></span><span style="display:flex;"><span>      ConfigService configService <span style="color:#f92672">=</span> nacosConfigManager.<span style="color:#a6e22e">getConfigService</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">null</span> <span style="color:#f92672">==</span> configService) {
+</span></span><span style="display:flex;"><span>         log.<span style="color:#a6e22e">warn</span>(<span style="color:#e6db74">&#34;no instance of config service found, can&#39;t load config from nacos&#34;</span>);
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">long</span> timeout <span style="color:#f92672">=</span> nacosConfigProperties.<span style="color:#a6e22e">getTimeout</span>();
+</span></span><span style="display:flex;"><span>      nacosPropertySourceBuilder <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NacosPropertySourceBuilder(configService,
+</span></span><span style="display:flex;"><span>            timeout);
+</span></span><span style="display:flex;"><span>      String name <span style="color:#f92672">=</span> nacosConfigProperties.<span style="color:#a6e22e">getName</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      String dataIdPrefix <span style="color:#f92672">=</span> nacosConfigProperties.<span style="color:#a6e22e">getPrefix</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (StringUtils.<span style="color:#a6e22e">isEmpty</span>(dataIdPrefix)) {
+</span></span><span style="display:flex;"><span>         dataIdPrefix <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (StringUtils.<span style="color:#a6e22e">isEmpty</span>(dataIdPrefix)) {
+</span></span><span style="display:flex;"><span>         dataIdPrefix <span style="color:#f92672">=</span> env.<span style="color:#a6e22e">getProperty</span>(<span style="color:#e6db74">&#34;spring.application.name&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      CompositePropertySource composite <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CompositePropertySource(
+</span></span><span style="display:flex;"><span>            NACOS_PROPERTY_SOURCE_NAME);
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 优先级 本应用配置&gt;扩展配置&gt;共享配置</span>
+</span></span><span style="display:flex;"><span>	  <span style="color:#75715e">// 加载共享配置</span>
+</span></span><span style="display:flex;"><span>      loadSharedConfiguration(composite);
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 加载扩展配置</span>
+</span></span><span style="display:flex;"><span>      loadExtConfiguration(composite);
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 加载本应用配置</span>
+</span></span><span style="display:flex;"><span>      loadApplicationConfiguration(composite, dataIdPrefix, nacosConfigProperties, env);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> composite;
+</span></span><span style="display:flex;"><span>   }
+</span></span></code></pre></div><p>三类配置的加载源码主要逻辑是从NacosConfigService.getConfigInner方法根据dataId和group远程获取配置（/v1/cs/configs），存本地快照</p>
 <h3 id="nacos配置修改动态刷新">Nacos配置修改动态刷新<a hidden class="anchor" aria-hidden="true" href="#nacos配置修改动态刷新">#</a></h3>
 <h4 id="初始化nacoscontextrefresher给所有data-id添加监听器">初始化NacosContextRefresher给所有data-id添加监听器<a hidden class="anchor" aria-hidden="true" href="#初始化nacoscontextrefresher给所有data-id添加监听器">#</a></h4>
 <p>spring.factories</p>
-<pre><code>org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+<pre tabindex="0"><code>org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.alibaba.cloud.nacos.NacosConfigAutoConfiguration
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NacosConfigAutoConfiguration</span> <span style="color:#f92672">{</span>
-
-	
-   <span style="color:#75715e">// 初始化NacosContextRefresher
-</span><span style="color:#75715e"></span>   <span style="color:#a6e22e">@Bean</span>
-   <span style="color:#66d9ef">public</span> NacosContextRefresher <span style="color:#a6e22e">nacosContextRefresher</span><span style="color:#f92672">(</span>
-         NacosConfigManager nacosConfigManager<span style="color:#f92672">,</span>
-         NacosRefreshHistory nacosRefreshHistory<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      <span style="color:#75715e">// Consider that it is not necessary to be compatible with the previous
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// configuration
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// and use the new configuration if necessary.
-</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> NacosContextRefresher<span style="color:#f92672">(</span>nacosConfigManager<span style="color:#f92672">,</span> nacosRefreshHistory<span style="color:#f92672">);</span>
-   <span style="color:#f92672">}</span>
-
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NacosContextRefresher</span>
-      <span style="color:#66d9ef">implements</span> ApplicationListener<span style="color:#f92672">&lt;</span>ApplicationReadyEvent<span style="color:#f92672">&gt;,</span> ApplicationContextAware <span style="color:#f92672">{</span>
-	 
-   <span style="color:#75715e">// 遍历所有data-id添加监听器
-</span><span style="color:#75715e"></span>   <span style="color:#75715e">/**
-</span><span style="color:#75715e">    * register Nacos Listeners.
-</span><span style="color:#75715e">    */</span>
-   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">registerNacosListenersForApplications</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isRefreshEnabled<span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-         <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>NacosPropertySource propertySource <span style="color:#f92672">:</span> NacosPropertySourceRepository
-               <span style="color:#f92672">.</span><span style="color:#a6e22e">getAll</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>propertySource<span style="color:#f92672">.</span><span style="color:#a6e22e">isRefreshable</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-               <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
-            <span style="color:#f92672">}</span>
-            String dataId <span style="color:#f92672">=</span> propertySource<span style="color:#f92672">.</span><span style="color:#a6e22e">getDataId</span><span style="color:#f92672">();</span>
-            registerNacosListener<span style="color:#f92672">(</span>propertySource<span style="color:#f92672">.</span><span style="color:#a6e22e">getGroup</span><span style="color:#f92672">(),</span> dataId<span style="color:#f92672">);</span>
-         <span style="color:#f92672">}</span>
-      <span style="color:#f92672">}</span>
-   <span style="color:#f92672">}</span>
-	 
-   <span style="color:#75715e">// 有变化发送RefreshEvent事件 
-</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">registerNacosListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String groupKey<span style="color:#f92672">,</span> <span style="color:#66d9ef">final</span> String dataKey<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      String key <span style="color:#f92672">=</span> NacosPropertySourceRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">getMapKey</span><span style="color:#f92672">(</span>dataKey<span style="color:#f92672">,</span> groupKey<span style="color:#f92672">);</span>
-      Listener listener <span style="color:#f92672">=</span> listenerMap<span style="color:#f92672">.</span><span style="color:#a6e22e">computeIfAbsent</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span>
-            lst <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> AbstractSharedListener<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-               <span style="color:#a6e22e">@Override</span>
-               <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">innerReceive</span><span style="color:#f92672">(</span>String dataId<span style="color:#f92672">,</span> String group<span style="color:#f92672">,</span>
-                     String configInfo<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                  refreshCountIncrement<span style="color:#f92672">();</span>
-                  nacosRefreshHistory<span style="color:#f92672">.</span><span style="color:#a6e22e">addRefreshRecord</span><span style="color:#f92672">(</span>dataId<span style="color:#f92672">,</span> group<span style="color:#f92672">,</span> configInfo<span style="color:#f92672">);</span>
-                  <span style="color:#75715e">// todo feature: support single refresh for listening
-</span><span style="color:#75715e"></span>                  applicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">publishEvent</span><span style="color:#f92672">(</span>
-                        <span style="color:#66d9ef">new</span> RefreshEvent<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Refresh Nacos config&#34;</span><span style="color:#f92672">));</span>
-                  <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>log<span style="color:#f92672">.</span><span style="color:#a6e22e">isDebugEnabled</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-                     log<span style="color:#f92672">.</span><span style="color:#a6e22e">debug</span><span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span>
-                           <span style="color:#e6db74">&#34;Refresh Nacos config group=%s,dataId=%s,configInfo=%s&#34;</span><span style="color:#f92672">,</span>
-                           group<span style="color:#f92672">,</span> dataId<span style="color:#f92672">,</span> configInfo<span style="color:#f92672">));</span>
-                  <span style="color:#f92672">}</span>
-               <span style="color:#f92672">}</span>
-            <span style="color:#f92672">});</span>
-      <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-         configService<span style="color:#f92672">.</span><span style="color:#a6e22e">addListener</span><span style="color:#f92672">(</span>dataKey<span style="color:#f92672">,</span> groupKey<span style="color:#f92672">,</span> listener<span style="color:#f92672">);</span>
-      <span style="color:#f92672">}</span>
-      <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NacosException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-         log<span style="color:#f92672">.</span><span style="color:#a6e22e">warn</span><span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span>
-               <span style="color:#e6db74">&#34;register fail for nacos listener ,dataId=[%s],group=[%s]&#34;</span><span style="color:#f92672">,</span> dataKey<span style="color:#f92672">,</span>
-               groupKey<span style="color:#f92672">),</span> e<span style="color:#f92672">);</span>
-      <span style="color:#f92672">}</span>
-   <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><h4 id="客户端长轮询拉取nacos配置">客户端长轮询拉取Nacos配置<a hidden class="anchor" aria-hidden="true" href="#客户端长轮询拉取nacos配置">#</a></h4>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NacosConfigAutoConfiguration</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 初始化NacosContextRefresher</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">@Bean</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> NacosContextRefresher <span style="color:#a6e22e">nacosContextRefresher</span>(
+</span></span><span style="display:flex;"><span>         NacosConfigManager nacosConfigManager,
+</span></span><span style="display:flex;"><span>         NacosRefreshHistory nacosRefreshHistory) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Consider that it is not necessary to be compatible with the previous</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// configuration</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// and use the new configuration if necessary.</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> NacosContextRefresher(nacosConfigManager, nacosRefreshHistory);
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NacosContextRefresher</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">implements</span> ApplicationListener<span style="color:#f92672">&lt;</span>ApplicationReadyEvent<span style="color:#f92672">&gt;</span>, ApplicationContextAware {
+</span></span><span style="display:flex;"><span>	 
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 遍历所有data-id添加监听器</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    * register Nacos Listeners.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    */</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">registerNacosListenersForApplications</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (isRefreshEnabled()) {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">for</span> (NacosPropertySource propertySource : NacosPropertySourceRepository
+</span></span><span style="display:flex;"><span>               .<span style="color:#a6e22e">getAll</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>propertySource.<span style="color:#a6e22e">isRefreshable</span>()) {
+</span></span><span style="display:flex;"><span>               <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            String dataId <span style="color:#f92672">=</span> propertySource.<span style="color:#a6e22e">getDataId</span>();
+</span></span><span style="display:flex;"><span>            registerNacosListener(propertySource.<span style="color:#a6e22e">getGroup</span>(), dataId);
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>	 
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 有变化发送RefreshEvent事件 </span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">registerNacosListener</span>(<span style="color:#66d9ef">final</span> String groupKey, <span style="color:#66d9ef">final</span> String dataKey) {
+</span></span><span style="display:flex;"><span>      String key <span style="color:#f92672">=</span> NacosPropertySourceRepository.<span style="color:#a6e22e">getMapKey</span>(dataKey, groupKey);
+</span></span><span style="display:flex;"><span>      Listener listener <span style="color:#f92672">=</span> listenerMap.<span style="color:#a6e22e">computeIfAbsent</span>(key,
+</span></span><span style="display:flex;"><span>            lst <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> AbstractSharedListener() {
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">innerReceive</span>(String dataId, String group,
+</span></span><span style="display:flex;"><span>                     String configInfo) {
+</span></span><span style="display:flex;"><span>                  refreshCountIncrement();
+</span></span><span style="display:flex;"><span>                  nacosRefreshHistory.<span style="color:#a6e22e">addRefreshRecord</span>(dataId, group, configInfo);
+</span></span><span style="display:flex;"><span>                  <span style="color:#75715e">// todo feature: support single refresh for listening</span>
+</span></span><span style="display:flex;"><span>                  applicationContext.<span style="color:#a6e22e">publishEvent</span>(
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">new</span> RefreshEvent(<span style="color:#66d9ef">this</span>, <span style="color:#66d9ef">null</span>, <span style="color:#e6db74">&#34;Refresh Nacos config&#34;</span>));
+</span></span><span style="display:flex;"><span>                  <span style="color:#66d9ef">if</span> (log.<span style="color:#a6e22e">isDebugEnabled</span>()) {
+</span></span><span style="display:flex;"><span>                     log.<span style="color:#a6e22e">debug</span>(String.<span style="color:#a6e22e">format</span>(
+</span></span><span style="display:flex;"><span>                           <span style="color:#e6db74">&#34;Refresh Nacos config group=%s,dataId=%s,configInfo=%s&#34;</span>,
+</span></span><span style="display:flex;"><span>                           group, dataId, configInfo));
+</span></span><span style="display:flex;"><span>                  }
+</span></span><span style="display:flex;"><span>               }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>         configService.<span style="color:#a6e22e">addListener</span>(dataKey, groupKey, listener);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">catch</span> (NacosException e) {
+</span></span><span style="display:flex;"><span>         log.<span style="color:#a6e22e">warn</span>(String.<span style="color:#a6e22e">format</span>(
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;register fail for nacos listener ,dataId=[%s],group=[%s]&#34;</span>, dataKey,
+</span></span><span style="display:flex;"><span>               groupKey), e);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="客户端长轮询拉取nacos配置">客户端长轮询拉取Nacos配置<a hidden class="anchor" aria-hidden="true" href="#客户端长轮询拉取nacos配置">#</a></h4>
 <p>初始化NacosConfigService的时候会初始化ClientWorker</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">NacosConfigService</span><span style="color:#f92672">(</span>Properties properties<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> NacosException <span style="color:#f92672">{</span>
-    ValidatorUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">checkInitParam</span><span style="color:#f92672">(</span>properties<span style="color:#f92672">);</span>
-    String encodeTmp <span style="color:#f92672">=</span> properties<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span>PropertyKeyConst<span style="color:#f92672">.</span><span style="color:#a6e22e">ENCODE</span><span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>StringUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">isBlank</span><span style="color:#f92672">(</span>encodeTmp<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span> <span style="color:#f92672">=</span> Constants<span style="color:#f92672">.</span><span style="color:#a6e22e">ENCODE</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">encode</span> <span style="color:#f92672">=</span> encodeTmp<span style="color:#f92672">.</span><span style="color:#a6e22e">trim</span><span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-    initNamespace<span style="color:#f92672">(</span>properties<span style="color:#f92672">);</span>
-    
-    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">agent</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MetricsHttpAgent<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ServerHttpAgent<span style="color:#f92672">(</span>properties<span style="color:#f92672">));</span>
-    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">agent</span><span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
-  	<span style="color:#75715e">// 初始化ClientWorker
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">worker</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClientWorker<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">agent</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">configFilterChainManager</span><span style="color:#f92672">,</span> properties<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ClientWorker</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> HttpAgent agent<span style="color:#f92672">,</span> <span style="color:#66d9ef">final</span> ConfigFilterChainManager configFilterChainManager<span style="color:#f92672">,</span>
-        <span style="color:#66d9ef">final</span> Properties properties<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#75715e">// 初始化单线程线程池，每10MS执行一次checkConfigInfo()
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">executor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">scheduleWithFixedDelay</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Runnable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#a6e22e">@Override</span>
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-                checkConfigInfo<span style="color:#f92672">();</span>
-            <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Throwable e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                LOGGER<span style="color:#f92672">.</span><span style="color:#a6e22e">error</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;[&#34;</span> <span style="color:#f92672">+</span> agent<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;] [sub-check] rotate check error&#34;</span><span style="color:#f92672">,</span> e<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">},</span> 1L<span style="color:#f92672">,</span> 10L<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">MILLISECONDS</span><span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>执行LongPollingRunnable</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LongPollingRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
-    
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> taskId<span style="color:#f92672">;</span>
-    
-    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">LongPollingRunnable</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> taskId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">taskId</span> <span style="color:#f92672">=</span> taskId<span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-    
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        
-        List<span style="color:#f92672">&lt;</span>CacheData<span style="color:#f92672">&gt;</span> cacheDatas <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>CacheData<span style="color:#f92672">&gt;();</span>
-        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> inInitializingCacheList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
-        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-            <span style="color:#75715e">// 检查本地配置
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// check failover config
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>CacheData cacheData <span style="color:#f92672">:</span> cacheMap<span style="color:#f92672">.</span><span style="color:#a6e22e">values</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">getTaskId</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> taskId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                    cacheDatas<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>cacheData<span style="color:#f92672">);</span>
-                    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-                        checkLocalConfig<span style="color:#f92672">(</span>cacheData<span style="color:#f92672">);</span>
-                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">isUseLocalConfigInfo</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-                            cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">checkListenerMd5</span><span style="color:#f92672">();</span>
-                        <span style="color:#f92672">}</span>
-                    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                        LOGGER<span style="color:#f92672">.</span><span style="color:#a6e22e">error</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;get local config info error&#34;</span><span style="color:#f92672">,</span> e<span style="color:#f92672">);</span>
-                    <span style="color:#f92672">}</span>
-                <span style="color:#f92672">}</span>
-            <span style="color:#f92672">}</span>
-            
-          	<span style="color:#75715e">// 长轮询-根据dataId和group 服务端获取配置(/v1/cs/configs/listener)  
-</span><span style="color:#75715e"></span>          	<span style="color:#75715e">// 如果有变化返回group
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// check server config
-</span><span style="color:#75715e"></span>            List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> changedGroupKeys <span style="color:#f92672">=</span> checkUpdateDataIds<span style="color:#f92672">(</span>cacheDatas<span style="color:#f92672">,</span> inInitializingCacheList<span style="color:#f92672">);</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>CollectionUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">(</span>changedGroupKeys<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-                LOGGER<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;get changedGroupKeys:&#34;</span> <span style="color:#f92672">+</span> changedGroupKeys<span style="color:#f92672">);</span>
-            <span style="color:#f92672">}</span>
-            
-            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String groupKey <span style="color:#f92672">:</span> changedGroupKeys<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                String<span style="color:#f92672">[]</span> key <span style="color:#f92672">=</span> GroupKey<span style="color:#f92672">.</span><span style="color:#a6e22e">parseKey</span><span style="color:#f92672">(</span>groupKey<span style="color:#f92672">);</span>
-                String dataId <span style="color:#f92672">=</span> key<span style="color:#f92672">[</span>0<span style="color:#f92672">];</span>
-                String group <span style="color:#f92672">=</span> key<span style="color:#f92672">[</span>1<span style="color:#f92672">];</span>
-                String tenant <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
-                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>key<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">==</span> 3<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                    tenant <span style="color:#f92672">=</span> key<span style="color:#f92672">[</span>2<span style="color:#f92672">];</span>
-                <span style="color:#f92672">}</span>
-                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-                    <span style="color:#75715e">// 去服务端获取最新的配置更新本地数据cacheMap
-</span><span style="color:#75715e"></span>                    String<span style="color:#f92672">[]</span> ct <span style="color:#f92672">=</span> getServerConfig<span style="color:#f92672">(</span>dataId<span style="color:#f92672">,</span> group<span style="color:#f92672">,</span> tenant<span style="color:#f92672">,</span> 3000L<span style="color:#f92672">);</span>
-                    CacheData cache <span style="color:#f92672">=</span> cacheMap<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>GroupKey<span style="color:#f92672">.</span><span style="color:#a6e22e">getKeyTenant</span><span style="color:#f92672">(</span>dataId<span style="color:#f92672">,</span> group<span style="color:#f92672">,</span> tenant<span style="color:#f92672">));</span>
-                    cache<span style="color:#f92672">.</span><span style="color:#a6e22e">setContent</span><span style="color:#f92672">(</span>ct<span style="color:#f92672">[</span>0<span style="color:#f92672">]);</span>
-                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">null</span> <span style="color:#f92672">!=</span> ct<span style="color:#f92672">[</span>1<span style="color:#f92672">])</span> <span style="color:#f92672">{</span>
-                        cache<span style="color:#f92672">.</span><span style="color:#a6e22e">setType</span><span style="color:#f92672">(</span>ct<span style="color:#f92672">[</span>1<span style="color:#f92672">]);</span>
-                    <span style="color:#f92672">}</span>
-                    LOGGER<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;[{}] [data-received] dataId={}, group={}, tenant={}, md5={}, content={}, type={}&#34;</span><span style="color:#f92672">,</span>
-                            agent<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">(),</span> dataId<span style="color:#f92672">,</span> group<span style="color:#f92672">,</span> tenant<span style="color:#f92672">,</span> cache<span style="color:#f92672">.</span><span style="color:#a6e22e">getMd5</span><span style="color:#f92672">(),</span>
-                            ContentUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">truncateContent</span><span style="color:#f92672">(</span>ct<span style="color:#f92672">[</span>0<span style="color:#f92672">]),</span> ct<span style="color:#f92672">[</span>1<span style="color:#f92672">]);</span>
-                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NacosException ioe<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                    String message <span style="color:#f92672">=</span> String
-                            <span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;[%s] [get-update] get changed config exception. dataId=%s, group=%s, tenant=%s&#34;</span><span style="color:#f92672">,</span>
-                                    agent<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">(),</span> dataId<span style="color:#f92672">,</span> group<span style="color:#f92672">,</span> tenant<span style="color:#f92672">);</span>
-                    LOGGER<span style="color:#f92672">.</span><span style="color:#a6e22e">error</span><span style="color:#f92672">(</span>message<span style="color:#f92672">,</span> ioe<span style="color:#f92672">);</span>
-                <span style="color:#f92672">}</span>
-            <span style="color:#f92672">}</span>
-            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>CacheData cacheData <span style="color:#f92672">:</span> cacheDatas<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">isInitializing</span><span style="color:#f92672">()</span> <span style="color:#f92672">||</span> inInitializingCacheList
-                        <span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>GroupKey<span style="color:#f92672">.</span><span style="color:#a6e22e">getKeyTenant</span><span style="color:#f92672">(</span>cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">dataId</span><span style="color:#f92672">,</span> cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">group</span><span style="color:#f92672">,</span> cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">tenant</span><span style="color:#f92672">)))</span> <span style="color:#f92672">{</span>
-                    <span style="color:#75715e">// 遍历listeners，取到NacosContextRefresher注册的listener，执行innerReceive方法，发送RefreshEvent事件
-</span><span style="color:#75715e"></span>                    cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">checkListenerMd5</span><span style="color:#f92672">();</span>
-                    cacheData<span style="color:#f92672">.</span><span style="color:#a6e22e">setInitializing</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
-                <span style="color:#f92672">}</span>
-            <span style="color:#f92672">}</span>
-            inInitializingCacheList<span style="color:#f92672">.</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
-            
-            executorService<span style="color:#f92672">.</span><span style="color:#a6e22e">execute</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
-            
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Throwable e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            
-            <span style="color:#75715e">// If the rotation training task is abnormal, the next execution time of the task will be punished
-</span><span style="color:#75715e"></span>            LOGGER<span style="color:#f92672">.</span><span style="color:#a6e22e">error</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;longPolling error : &#34;</span><span style="color:#f92672">,</span> e<span style="color:#f92672">);</span>
-            executorService<span style="color:#f92672">.</span><span style="color:#a6e22e">schedule</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> taskPenaltyTime<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">MILLISECONDS</span><span style="color:#f92672">);</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>					
-</code></pre></div><h4 id="服务端长轮询逻辑">服务端长轮询逻辑<a hidden class="anchor" aria-hidden="true" href="#服务端长轮询逻辑">#</a></h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">doPollingConfig</span><span style="color:#f92672">(</span>HttpServletRequest request<span style="color:#f92672">,</span> HttpServletResponse response<span style="color:#f92672">,</span>
-        Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> clientMd5Map<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> probeRequestSize<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
-    
-    <span style="color:#75715e">// Long polling.
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 判断是否是长轮询
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>LongPollingService<span style="color:#f92672">.</span><span style="color:#a6e22e">isSupportLongPolling</span><span style="color:#f92672">(</span>request<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-        longPollingService<span style="color:#f92672">.</span><span style="color:#a6e22e">addLongPollingClient</span><span style="color:#f92672">(</span>request<span style="color:#f92672">,</span> response<span style="color:#f92672">,</span> clientMd5Map<span style="color:#f92672">,</span> probeRequestSize<span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">return</span> HttpServletResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">SC_OK</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">}</span>
-    
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addLongPollingClient</span><span style="color:#f92672">(</span>HttpServletRequest req<span style="color:#f92672">,</span> HttpServletResponse rsp<span style="color:#f92672">,</span> Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> clientMd5Map<span style="color:#f92672">,</span>
-        <span style="color:#66d9ef">int</span> probeRequestSize<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    
-    String str <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getHeader</span><span style="color:#f92672">(</span>LongPollingService<span style="color:#f92672">.</span><span style="color:#a6e22e">LONG_POLLING_HEADER</span><span style="color:#f92672">);</span>
-    String noHangUpFlag <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getHeader</span><span style="color:#f92672">(</span>LongPollingService<span style="color:#f92672">.</span><span style="color:#a6e22e">LONG_POLLING_NO_HANG_UP_HEADER</span><span style="color:#f92672">);</span>
-    String appName <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getHeader</span><span style="color:#f92672">(</span>RequestUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">CLIENT_APPNAME_HEADER</span><span style="color:#f92672">);</span>
-    String tag <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">getHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Vipserver-Tag&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">int</span> delayTime <span style="color:#f92672">=</span> SwitchService<span style="color:#f92672">.</span><span style="color:#a6e22e">getSwitchInteger</span><span style="color:#f92672">(</span>SwitchService<span style="color:#f92672">.</span><span style="color:#a6e22e">FIXED_DELAY_TIME</span><span style="color:#f92672">,</span> 500<span style="color:#f92672">);</span>
-    
-    <span style="color:#75715e">// 长轮询时间为30s-500ms=29.5s
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Add delay time for LoadBalance, and one response is returned 500 ms in advance to avoid client timeout.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> timeout <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>10000<span style="color:#f92672">,</span> Long<span style="color:#f92672">.</span><span style="color:#a6e22e">parseLong</span><span style="color:#f92672">(</span>str<span style="color:#f92672">)</span> <span style="color:#f92672">-</span> delayTime<span style="color:#f92672">);</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isFixedPolling<span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-        timeout <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>10000<span style="color:#f92672">,</span> getFixedPollingInterval<span style="color:#f92672">());</span>
-        <span style="color:#75715e">// Do nothing but set fix polling timeout.
-</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">long</span> start <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">();</span>
-        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> changedGroups <span style="color:#f92672">=</span> MD5Util<span style="color:#f92672">.</span><span style="color:#a6e22e">compareMd5</span><span style="color:#f92672">(</span>req<span style="color:#f92672">,</span> rsp<span style="color:#f92672">,</span> clientMd5Map<span style="color:#f92672">);</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>changedGroups<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            generateResponse<span style="color:#f92672">(</span>req<span style="color:#f92672">,</span> rsp<span style="color:#f92672">,</span> changedGroups<span style="color:#f92672">);</span>
-            LogUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">CLIENT_LOG</span><span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}|{}&#34;</span><span style="color:#f92672">,</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> start<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;instant&#34;</span><span style="color:#f92672">,</span>
-                    RequestUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getRemoteIp</span><span style="color:#f92672">(</span>req<span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;polling&#34;</span><span style="color:#f92672">,</span> clientMd5Map<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(),</span> probeRequestSize<span style="color:#f92672">,</span>
-                    changedGroups<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">());</span>
-            <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>noHangUpFlag <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> noHangUpFlag<span style="color:#f92672">.</span><span style="color:#a6e22e">equalsIgnoreCase</span><span style="color:#f92672">(</span>TRUE_STR<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            LogUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">CLIENT_LOG</span><span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}|{}&#34;</span><span style="color:#f92672">,</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> start<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;nohangup&#34;</span><span style="color:#f92672">,</span>
-                    RequestUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getRemoteIp</span><span style="color:#f92672">(</span>req<span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;polling&#34;</span><span style="color:#f92672">,</span> clientMd5Map<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(),</span> probeRequestSize<span style="color:#f92672">,</span>
-                    changedGroups<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">());</span>
-            <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-    String ip <span style="color:#f92672">=</span> RequestUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getRemoteIp</span><span style="color:#f92672">(</span>req<span style="color:#f92672">);</span>
-    
-    <span style="color:#75715e">// Must be called by http thread, or send response.
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">final</span> AsyncContext asyncContext <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span><span style="color:#a6e22e">startAsync</span><span style="color:#f92672">();</span>
-    
-    <span style="color:#75715e">// AsyncContext.setTimeout() is incorrect, Control by oneself
-</span><span style="color:#75715e"></span>    asyncContext<span style="color:#f92672">.</span><span style="color:#a6e22e">setTimeout</span><span style="color:#f92672">(</span>0L<span style="color:#f92672">);</span>
-    
-    ConfigExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">executeLongPolling</span><span style="color:#f92672">(</span>
-            <span style="color:#66d9ef">new</span> ClientLongPolling<span style="color:#f92672">(</span>asyncContext<span style="color:#f92672">,</span> clientMd5Map<span style="color:#f92672">,</span> ip<span style="color:#f92672">,</span> probeRequestSize<span style="color:#f92672">,</span> timeout<span style="color:#f92672">,</span> appName<span style="color:#f92672">,</span> tag<span style="color:#f92672">));</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClientLongPolling</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
-    
-    <span style="color:#75715e">// 29.5s后执行
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 无变化从allSubs移除当前请求
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 响应客户端
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        asyncTimeoutFuture <span style="color:#f92672">=</span> ConfigExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">scheduleLongPolling</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Runnable<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#a6e22e">@Override</span>
-            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-                    getRetainIps<span style="color:#f92672">().</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>ClientLongPolling<span style="color:#f92672">.</span><span style="color:#a6e22e">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ip</span><span style="color:#f92672">,</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">());</span>
-                    
-                    <span style="color:#75715e">// Delete subsciber&#39;s relations.
-</span><span style="color:#75715e"></span>                    allSubs<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>ClientLongPolling<span style="color:#f92672">.</span><span style="color:#a6e22e">this</span><span style="color:#f92672">);</span>
-                    
-                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isFixedPolling<span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-                        LogUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">CLIENT_LOG</span>
-                                <span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}&#34;</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> createTime<span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;fix&#34;</span><span style="color:#f92672">,</span>
-                                        RequestUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getRemoteIp</span><span style="color:#f92672">((</span>HttpServletRequest<span style="color:#f92672">)</span> asyncContext<span style="color:#f92672">.</span><span style="color:#a6e22e">getRequest</span><span style="color:#f92672">()),</span>
-                                        <span style="color:#e6db74">&#34;polling&#34;</span><span style="color:#f92672">,</span> clientMd5Map<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(),</span> probeRequestSize<span style="color:#f92672">);</span>
-                        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> changedGroups <span style="color:#f92672">=</span> MD5Util
-                                <span style="color:#f92672">.</span><span style="color:#a6e22e">compareMd5</span><span style="color:#f92672">((</span>HttpServletRequest<span style="color:#f92672">)</span> asyncContext<span style="color:#f92672">.</span><span style="color:#a6e22e">getRequest</span><span style="color:#f92672">(),</span>
-                                        <span style="color:#f92672">(</span>HttpServletResponse<span style="color:#f92672">)</span> asyncContext<span style="color:#f92672">.</span><span style="color:#a6e22e">getResponse</span><span style="color:#f92672">(),</span> clientMd5Map<span style="color:#f92672">);</span>
-                        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>changedGroups<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                            sendResponse<span style="color:#f92672">(</span>changedGroups<span style="color:#f92672">);</span>
-                        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-                            sendResponse<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
-                        <span style="color:#f92672">}</span>
-                    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-                        LogUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">CLIENT_LOG</span>
-                                <span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}&#34;</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> createTime<span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;timeout&#34;</span><span style="color:#f92672">,</span>
-                                        RequestUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getRemoteIp</span><span style="color:#f92672">((</span>HttpServletRequest<span style="color:#f92672">)</span> asyncContext<span style="color:#f92672">.</span><span style="color:#a6e22e">getRequest</span><span style="color:#f92672">()),</span>
-                                        <span style="color:#e6db74">&#34;polling&#34;</span><span style="color:#f92672">,</span> clientMd5Map<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(),</span> probeRequestSize<span style="color:#f92672">);</span>
-                        sendResponse<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
-                    <span style="color:#f92672">}</span>
-                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Throwable t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                    LogUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">DEFAULT_LOG</span><span style="color:#f92672">.</span><span style="color:#a6e22e">error</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;long polling error:&#34;</span> <span style="color:#f92672">+</span> t<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">(),</span> t<span style="color:#f92672">.</span><span style="color:#a6e22e">getCause</span><span style="color:#f92672">());</span>
-                <span style="color:#f92672">}</span>
-                
-            <span style="color:#f92672">}</span>
-            
-        <span style="color:#f92672">},</span> timeoutTime<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">MILLISECONDS</span><span style="color:#f92672">);</span>
-        <span style="color:#75715e">// 将当前请求加入到allSubs
-</span><span style="color:#75715e"></span>        allSubs<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-</code></pre></div><p>如果这期间发生变更，会发送 LocalDataChangeEvent事件,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">LongPollingService</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    allSubs <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentLinkedQueue<span style="color:#f92672">&lt;</span>ClientLongPolling<span style="color:#f92672">&gt;();</span>
-    
-    ConfigExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">scheduleLongPolling</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StatTask<span style="color:#f92672">(),</span> 0L<span style="color:#f92672">,</span> 10L<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">);</span>
-    
-    <span style="color:#75715e">// Register LocalDataChangeEvent to NotifyCenter.
-</span><span style="color:#75715e"></span>    NotifyCenter<span style="color:#f92672">.</span><span style="color:#a6e22e">registerToPublisher</span><span style="color:#f92672">(</span>LocalDataChangeEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> NotifyCenter<span style="color:#f92672">.</span><span style="color:#a6e22e">ringBufferSize</span><span style="color:#f92672">);</span>
-    
-    <span style="color:#75715e">// 注册订阅者监听LocalDataChangeEvent事件
-</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Register A Subscriber to subscribe LocalDataChangeEvent.
-</span><span style="color:#75715e"></span>    NotifyCenter<span style="color:#f92672">.</span><span style="color:#a6e22e">registerSubscriber</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Subscriber<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        
-        <span style="color:#a6e22e">@Override</span>
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onEvent</span><span style="color:#f92672">(</span>Event event<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isFixedPolling<span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
-                <span style="color:#75715e">// Ignore.
-</span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>event <span style="color:#66d9ef">instanceof</span> LocalDataChangeEvent<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                    LocalDataChangeEvent evt <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>LocalDataChangeEvent<span style="color:#f92672">)</span> event<span style="color:#f92672">;</span>
-                    ConfigExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">executeLongPolling</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> DataChangeTask<span style="color:#f92672">(</span>evt<span style="color:#f92672">.</span><span style="color:#a6e22e">groupKey</span><span style="color:#f92672">,</span> evt<span style="color:#f92672">.</span><span style="color:#a6e22e">isBeta</span><span style="color:#f92672">,</span> evt<span style="color:#f92672">.</span><span style="color:#a6e22e">betaIps</span><span style="color:#f92672">));</span>
-                <span style="color:#f92672">}</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-        
-        <span style="color:#a6e22e">@Override</span>
-        <span style="color:#66d9ef">public</span> Class<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> Event<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">subscribeType</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> LocalDataChangeEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">});</span>
-    
-<span style="color:#f92672">}</span>
-</code></pre></div><p>DataChangeTask接收消息遍历allSubs 找到对应的客户端请求返回给客户端结果（group+dataId）</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataChangeTask</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
-    
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-            ConfigCacheService<span style="color:#f92672">.</span><span style="color:#a6e22e">getContentBetaMd5</span><span style="color:#f92672">(</span>groupKey<span style="color:#f92672">);</span>
-            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Iterator<span style="color:#f92672">&lt;</span>ClientLongPolling<span style="color:#f92672">&gt;</span> iter <span style="color:#f92672">=</span> allSubs<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span> iter<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">();</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-                ClientLongPolling clientSub <span style="color:#f92672">=</span> iter<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
-                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>clientSub<span style="color:#f92672">.</span><span style="color:#a6e22e">clientMd5Map</span><span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>groupKey<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-                    <span style="color:#75715e">// If published tag is not in the beta list, then it skipped.
-</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>isBeta <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>CollectionUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>betaIps<span style="color:#f92672">,</span> clientSub<span style="color:#f92672">.</span><span style="color:#a6e22e">ip</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-                        <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
-                    <span style="color:#f92672">}</span>
-                    
-                    <span style="color:#75715e">// If published tag is not in the tag list, then it skipped.
-</span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>StringUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">isNotBlank</span><span style="color:#f92672">(</span>tag<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>tag<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>clientSub<span style="color:#f92672">.</span><span style="color:#a6e22e">tag</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-                        <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
-                    <span style="color:#f92672">}</span>
-                    
-                    getRetainIps<span style="color:#f92672">().</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>clientSub<span style="color:#f92672">.</span><span style="color:#a6e22e">ip</span><span style="color:#f92672">,</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">());</span>
-                    iter<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">();</span> <span style="color:#75715e">// Delete subscribers&#39; relationships.
-</span><span style="color:#75715e"></span>                    LogUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">CLIENT_LOG</span>
-                            <span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}|{}&#34;</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> changeTime<span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;in-advance&#34;</span><span style="color:#f92672">,</span>
-                                    RequestUtil
-                                            <span style="color:#f92672">.</span><span style="color:#a6e22e">getRemoteIp</span><span style="color:#f92672">((</span>HttpServletRequest<span style="color:#f92672">)</span> clientSub<span style="color:#f92672">.</span><span style="color:#a6e22e">asyncContext</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getRequest</span><span style="color:#f92672">()),</span>
-                                    <span style="color:#e6db74">&#34;polling&#34;</span><span style="color:#f92672">,</span> clientSub<span style="color:#f92672">.</span><span style="color:#a6e22e">clientMd5Map</span><span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(),</span> clientSub<span style="color:#f92672">.</span><span style="color:#a6e22e">probeRequestSize</span><span style="color:#f92672">,</span> groupKey<span style="color:#f92672">);</span>
-                    <span style="color:#75715e">// 会cancelasyncTimeoutFuture
-</span><span style="color:#75715e"></span>                    <span style="color:#75715e">// 响应客户端变化的group
-</span><span style="color:#75715e"></span>                    clientSub<span style="color:#f92672">.</span><span style="color:#a6e22e">sendResponse</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>groupKey<span style="color:#f92672">));</span>
-                <span style="color:#f92672">}</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Throwable t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            LogUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">DEFAULT_LOG</span><span style="color:#f92672">.</span><span style="color:#a6e22e">error</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;data change error: {}&#34;</span><span style="color:#f92672">,</span> ExceptionUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getStackTrace</span><span style="color:#f92672">(</span>t<span style="color:#f92672">));</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-</code></pre></div><h4 id="spring-refreshevent事件刷新配置文件解析">Spring RefreshEvent事件刷新配置文件解析<a hidden class="anchor" aria-hidden="true" href="#spring-refreshevent事件刷新配置文件解析">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">NacosConfigService</span>(Properties properties) <span style="color:#66d9ef">throws</span> NacosException {
+</span></span><span style="display:flex;"><span>    ValidatorUtils.<span style="color:#a6e22e">checkInitParam</span>(properties);
+</span></span><span style="display:flex;"><span>    String encodeTmp <span style="color:#f92672">=</span> properties.<span style="color:#a6e22e">getProperty</span>(PropertyKeyConst.<span style="color:#a6e22e">ENCODE</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (StringUtils.<span style="color:#a6e22e">isBlank</span>(encodeTmp)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">encode</span> <span style="color:#f92672">=</span> Constants.<span style="color:#a6e22e">ENCODE</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">encode</span> <span style="color:#f92672">=</span> encodeTmp.<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    initNamespace(properties);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">agent</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MetricsHttpAgent(<span style="color:#66d9ef">new</span> ServerHttpAgent(properties));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">agent</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>  	<span style="color:#75715e">// 初始化ClientWorker</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">worker</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ClientWorker(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">agent</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">configFilterChainManager</span>, properties);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ClientWorker</span>(<span style="color:#66d9ef">final</span> HttpAgent agent, <span style="color:#66d9ef">final</span> ConfigFilterChainManager configFilterChainManager,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> Properties properties) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 初始化单线程线程池，每10MS执行一次checkConfigInfo()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">executor</span>.<span style="color:#a6e22e">scheduleWithFixedDelay</span>(<span style="color:#66d9ef">new</span> Runnable() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                checkConfigInfo();
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">catch</span> (Throwable e) {
+</span></span><span style="display:flex;"><span>                LOGGER.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;[&#34;</span> <span style="color:#f92672">+</span> agent.<span style="color:#a6e22e">getName</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;] [sub-check] rotate check error&#34;</span>, e);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }, 1L, 10L, TimeUnit.<span style="color:#a6e22e">MILLISECONDS</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>执行LongPollingRunnable</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LongPollingRunnable</span> <span style="color:#66d9ef">implements</span> Runnable {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> taskId;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">LongPollingRunnable</span>(<span style="color:#66d9ef">int</span> taskId) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">taskId</span> <span style="color:#f92672">=</span> taskId;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>CacheData<span style="color:#f92672">&gt;</span> cacheDatas <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>CacheData<span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> inInitializingCacheList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 检查本地配置</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// check failover config</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (CacheData cacheData : cacheMap.<span style="color:#a6e22e">values</span>()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (cacheData.<span style="color:#a6e22e">getTaskId</span>() <span style="color:#f92672">==</span> taskId) {
+</span></span><span style="display:flex;"><span>                    cacheDatas.<span style="color:#a6e22e">add</span>(cacheData);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                        checkLocalConfig(cacheData);
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> (cacheData.<span style="color:#a6e22e">isUseLocalConfigInfo</span>()) {
+</span></span><span style="display:flex;"><span>                            cacheData.<span style="color:#a6e22e">checkListenerMd5</span>();
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>                        LOGGER.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;get local config info error&#34;</span>, e);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>          	<span style="color:#75715e">// 长轮询-根据dataId和group 服务端获取配置(/v1/cs/configs/listener)  </span>
+</span></span><span style="display:flex;"><span>          	<span style="color:#75715e">// 如果有变化返回group</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// check server config</span>
+</span></span><span style="display:flex;"><span>            List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> changedGroupKeys <span style="color:#f92672">=</span> checkUpdateDataIds(cacheDatas, inInitializingCacheList);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>CollectionUtils.<span style="color:#a6e22e">isEmpty</span>(changedGroupKeys)) {
+</span></span><span style="display:flex;"><span>                LOGGER.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;get changedGroupKeys:&#34;</span> <span style="color:#f92672">+</span> changedGroupKeys);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (String groupKey : changedGroupKeys) {
+</span></span><span style="display:flex;"><span>                String<span style="color:#f92672">[]</span> key <span style="color:#f92672">=</span> GroupKey.<span style="color:#a6e22e">parseKey</span>(groupKey);
+</span></span><span style="display:flex;"><span>                String dataId <span style="color:#f92672">=</span> key<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>                String group <span style="color:#f92672">=</span> key<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>                String tenant <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (key.<span style="color:#a6e22e">length</span> <span style="color:#f92672">==</span> 3) {
+</span></span><span style="display:flex;"><span>                    tenant <span style="color:#f92672">=</span> key<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 去服务端获取最新的配置更新本地数据cacheMap</span>
+</span></span><span style="display:flex;"><span>                    String<span style="color:#f92672">[]</span> ct <span style="color:#f92672">=</span> getServerConfig(dataId, group, tenant, 3000L);
+</span></span><span style="display:flex;"><span>                    CacheData cache <span style="color:#f92672">=</span> cacheMap.<span style="color:#a6e22e">get</span>(GroupKey.<span style="color:#a6e22e">getKeyTenant</span>(dataId, group, tenant));
+</span></span><span style="display:flex;"><span>                    cache.<span style="color:#a6e22e">setContent</span>(ct<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">null</span> <span style="color:#f92672">!=</span> ct<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>) {
+</span></span><span style="display:flex;"><span>                        cache.<span style="color:#a6e22e">setType</span>(ct<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    LOGGER.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;[{}] [data-received] dataId={}, group={}, tenant={}, md5={}, content={}, type={}&#34;</span>,
+</span></span><span style="display:flex;"><span>                            agent.<span style="color:#a6e22e">getName</span>(), dataId, group, tenant, cache.<span style="color:#a6e22e">getMd5</span>(),
+</span></span><span style="display:flex;"><span>                            ContentUtils.<span style="color:#a6e22e">truncateContent</span>(ct<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span>), ct<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">catch</span> (NacosException ioe) {
+</span></span><span style="display:flex;"><span>                    String message <span style="color:#f92672">=</span> String
+</span></span><span style="display:flex;"><span>                            .<span style="color:#a6e22e">format</span>(<span style="color:#e6db74">&#34;[%s] [get-update] get changed config exception. dataId=%s, group=%s, tenant=%s&#34;</span>,
+</span></span><span style="display:flex;"><span>                                    agent.<span style="color:#a6e22e">getName</span>(), dataId, group, tenant);
+</span></span><span style="display:flex;"><span>                    LOGGER.<span style="color:#a6e22e">error</span>(message, ioe);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (CacheData cacheData : cacheDatas) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>cacheData.<span style="color:#a6e22e">isInitializing</span>() <span style="color:#f92672">||</span> inInitializingCacheList
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">contains</span>(GroupKey.<span style="color:#a6e22e">getKeyTenant</span>(cacheData.<span style="color:#a6e22e">dataId</span>, cacheData.<span style="color:#a6e22e">group</span>, cacheData.<span style="color:#a6e22e">tenant</span>))) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 遍历listeners，取到NacosContextRefresher注册的listener，执行innerReceive方法，发送RefreshEvent事件</span>
+</span></span><span style="display:flex;"><span>                    cacheData.<span style="color:#a6e22e">checkListenerMd5</span>();
+</span></span><span style="display:flex;"><span>                    cacheData.<span style="color:#a6e22e">setInitializing</span>(<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            inInitializingCacheList.<span style="color:#a6e22e">clear</span>();
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            executorService.<span style="color:#a6e22e">execute</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Throwable e) {
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// If the rotation training task is abnormal, the next execution time of the task will be punished</span>
+</span></span><span style="display:flex;"><span>            LOGGER.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;longPolling error : &#34;</span>, e);
+</span></span><span style="display:flex;"><span>            executorService.<span style="color:#a6e22e">schedule</span>(<span style="color:#66d9ef">this</span>, taskPenaltyTime, TimeUnit.<span style="color:#a6e22e">MILLISECONDS</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}					
+</span></span></code></pre></div><h4 id="服务端长轮询逻辑">服务端长轮询逻辑<a hidden class="anchor" aria-hidden="true" href="#服务端长轮询逻辑">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">doPollingConfig</span>(HttpServletRequest request, HttpServletResponse response,
+</span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> clientMd5Map, <span style="color:#66d9ef">int</span> probeRequestSize) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Long polling.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 判断是否是长轮询</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (LongPollingService.<span style="color:#a6e22e">isSupportLongPolling</span>(request)) {
+</span></span><span style="display:flex;"><span>        longPollingService.<span style="color:#a6e22e">addLongPollingClient</span>(request, response, clientMd5Map, probeRequestSize);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpServletResponse.<span style="color:#a6e22e">SC_OK</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addLongPollingClient</span>(HttpServletRequest req, HttpServletResponse rsp, Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> clientMd5Map,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> probeRequestSize) {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    String str <span style="color:#f92672">=</span> req.<span style="color:#a6e22e">getHeader</span>(LongPollingService.<span style="color:#a6e22e">LONG_POLLING_HEADER</span>);
+</span></span><span style="display:flex;"><span>    String noHangUpFlag <span style="color:#f92672">=</span> req.<span style="color:#a6e22e">getHeader</span>(LongPollingService.<span style="color:#a6e22e">LONG_POLLING_NO_HANG_UP_HEADER</span>);
+</span></span><span style="display:flex;"><span>    String appName <span style="color:#f92672">=</span> req.<span style="color:#a6e22e">getHeader</span>(RequestUtil.<span style="color:#a6e22e">CLIENT_APPNAME_HEADER</span>);
+</span></span><span style="display:flex;"><span>    String tag <span style="color:#f92672">=</span> req.<span style="color:#a6e22e">getHeader</span>(<span style="color:#e6db74">&#34;Vipserver-Tag&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> delayTime <span style="color:#f92672">=</span> SwitchService.<span style="color:#a6e22e">getSwitchInteger</span>(SwitchService.<span style="color:#a6e22e">FIXED_DELAY_TIME</span>, 500);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 长轮询时间为30s-500ms=29.5s</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Add delay time for LoadBalance, and one response is returned 500 ms in advance to avoid client timeout.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> timeout <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">max</span>(10000, Long.<span style="color:#a6e22e">parseLong</span>(str) <span style="color:#f92672">-</span> delayTime);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (isFixedPolling()) {
+</span></span><span style="display:flex;"><span>        timeout <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">max</span>(10000, getFixedPollingInterval());
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Do nothing but set fix polling timeout.</span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">long</span> start <span style="color:#f92672">=</span> System.<span style="color:#a6e22e">currentTimeMillis</span>();
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> changedGroups <span style="color:#f92672">=</span> MD5Util.<span style="color:#a6e22e">compareMd5</span>(req, rsp, clientMd5Map);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (changedGroups.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>            generateResponse(req, rsp, changedGroups);
+</span></span><span style="display:flex;"><span>            LogUtil.<span style="color:#a6e22e">CLIENT_LOG</span>.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}|{}&#34;</span>, System.<span style="color:#a6e22e">currentTimeMillis</span>() <span style="color:#f92672">-</span> start, <span style="color:#e6db74">&#34;instant&#34;</span>,
+</span></span><span style="display:flex;"><span>                    RequestUtil.<span style="color:#a6e22e">getRemoteIp</span>(req), <span style="color:#e6db74">&#34;polling&#34;</span>, clientMd5Map.<span style="color:#a6e22e">size</span>(), probeRequestSize,
+</span></span><span style="display:flex;"><span>                    changedGroups.<span style="color:#a6e22e">size</span>());
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (noHangUpFlag <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> noHangUpFlag.<span style="color:#a6e22e">equalsIgnoreCase</span>(TRUE_STR)) {
+</span></span><span style="display:flex;"><span>            LogUtil.<span style="color:#a6e22e">CLIENT_LOG</span>.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}|{}&#34;</span>, System.<span style="color:#a6e22e">currentTimeMillis</span>() <span style="color:#f92672">-</span> start, <span style="color:#e6db74">&#34;nohangup&#34;</span>,
+</span></span><span style="display:flex;"><span>                    RequestUtil.<span style="color:#a6e22e">getRemoteIp</span>(req), <span style="color:#e6db74">&#34;polling&#34;</span>, clientMd5Map.<span style="color:#a6e22e">size</span>(), probeRequestSize,
+</span></span><span style="display:flex;"><span>                    changedGroups.<span style="color:#a6e22e">size</span>());
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    String ip <span style="color:#f92672">=</span> RequestUtil.<span style="color:#a6e22e">getRemoteIp</span>(req);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Must be called by http thread, or send response.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> AsyncContext asyncContext <span style="color:#f92672">=</span> req.<span style="color:#a6e22e">startAsync</span>();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// AsyncContext.setTimeout() is incorrect, Control by oneself</span>
+</span></span><span style="display:flex;"><span>    asyncContext.<span style="color:#a6e22e">setTimeout</span>(0L);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    ConfigExecutor.<span style="color:#a6e22e">executeLongPolling</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> ClientLongPolling(asyncContext, clientMd5Map, ip, probeRequestSize, timeout, appName, tag));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClientLongPolling</span> <span style="color:#66d9ef">implements</span> Runnable {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 29.5s后执行</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 无变化从allSubs移除当前请求</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 响应客户端</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        asyncTimeoutFuture <span style="color:#f92672">=</span> ConfigExecutor.<span style="color:#a6e22e">scheduleLongPolling</span>(<span style="color:#66d9ef">new</span> Runnable() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>                    getRetainIps().<span style="color:#a6e22e">put</span>(ClientLongPolling.<span style="color:#a6e22e">this</span>.<span style="color:#a6e22e">ip</span>, System.<span style="color:#a6e22e">currentTimeMillis</span>());
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// Delete subsciber&#39;s relations.</span>
+</span></span><span style="display:flex;"><span>                    allSubs.<span style="color:#a6e22e">remove</span>(ClientLongPolling.<span style="color:#a6e22e">this</span>);
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (isFixedPolling()) {
+</span></span><span style="display:flex;"><span>                        LogUtil.<span style="color:#a6e22e">CLIENT_LOG</span>
+</span></span><span style="display:flex;"><span>                                .<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}&#34;</span>, (System.<span style="color:#a6e22e">currentTimeMillis</span>() <span style="color:#f92672">-</span> createTime), <span style="color:#e6db74">&#34;fix&#34;</span>,
+</span></span><span style="display:flex;"><span>                                        RequestUtil.<span style="color:#a6e22e">getRemoteIp</span>((HttpServletRequest) asyncContext.<span style="color:#a6e22e">getRequest</span>()),
+</span></span><span style="display:flex;"><span>                                        <span style="color:#e6db74">&#34;polling&#34;</span>, clientMd5Map.<span style="color:#a6e22e">size</span>(), probeRequestSize);
+</span></span><span style="display:flex;"><span>                        List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> changedGroups <span style="color:#f92672">=</span> MD5Util
+</span></span><span style="display:flex;"><span>                                .<span style="color:#a6e22e">compareMd5</span>((HttpServletRequest) asyncContext.<span style="color:#a6e22e">getRequest</span>(),
+</span></span><span style="display:flex;"><span>                                        (HttpServletResponse) asyncContext.<span style="color:#a6e22e">getResponse</span>(), clientMd5Map);
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> (changedGroups.<span style="color:#a6e22e">size</span>() <span style="color:#f92672">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>                            sendResponse(changedGroups);
+</span></span><span style="display:flex;"><span>                        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                            sendResponse(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                        LogUtil.<span style="color:#a6e22e">CLIENT_LOG</span>
+</span></span><span style="display:flex;"><span>                                .<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}&#34;</span>, (System.<span style="color:#a6e22e">currentTimeMillis</span>() <span style="color:#f92672">-</span> createTime), <span style="color:#e6db74">&#34;timeout&#34;</span>,
+</span></span><span style="display:flex;"><span>                                        RequestUtil.<span style="color:#a6e22e">getRemoteIp</span>((HttpServletRequest) asyncContext.<span style="color:#a6e22e">getRequest</span>()),
+</span></span><span style="display:flex;"><span>                                        <span style="color:#e6db74">&#34;polling&#34;</span>, clientMd5Map.<span style="color:#a6e22e">size</span>(), probeRequestSize);
+</span></span><span style="display:flex;"><span>                        sendResponse(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">catch</span> (Throwable t) {
+</span></span><span style="display:flex;"><span>                    LogUtil.<span style="color:#a6e22e">DEFAULT_LOG</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;long polling error:&#34;</span> <span style="color:#f92672">+</span> t.<span style="color:#a6e22e">getMessage</span>(), t.<span style="color:#a6e22e">getCause</span>());
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        }, timeoutTime, TimeUnit.<span style="color:#a6e22e">MILLISECONDS</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 将当前请求加入到allSubs</span>
+</span></span><span style="display:flex;"><span>        allSubs.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>如果这期间发生变更，会发送 LocalDataChangeEvent事件,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">LongPollingService</span>() {
+</span></span><span style="display:flex;"><span>    allSubs <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConcurrentLinkedQueue<span style="color:#f92672">&lt;</span>ClientLongPolling<span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    ConfigExecutor.<span style="color:#a6e22e">scheduleLongPolling</span>(<span style="color:#66d9ef">new</span> StatTask(), 0L, 10L, TimeUnit.<span style="color:#a6e22e">SECONDS</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Register LocalDataChangeEvent to NotifyCenter.</span>
+</span></span><span style="display:flex;"><span>    NotifyCenter.<span style="color:#a6e22e">registerToPublisher</span>(LocalDataChangeEvent.<span style="color:#a6e22e">class</span>, NotifyCenter.<span style="color:#a6e22e">ringBufferSize</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 注册订阅者监听LocalDataChangeEvent事件</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Register A Subscriber to subscribe LocalDataChangeEvent.</span>
+</span></span><span style="display:flex;"><span>    NotifyCenter.<span style="color:#a6e22e">registerSubscriber</span>(<span style="color:#66d9ef">new</span> Subscriber() {
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onEvent</span>(Event event) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (isFixedPolling()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// Ignore.</span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (event <span style="color:#66d9ef">instanceof</span> LocalDataChangeEvent) {
+</span></span><span style="display:flex;"><span>                    LocalDataChangeEvent evt <span style="color:#f92672">=</span> (LocalDataChangeEvent) event;
+</span></span><span style="display:flex;"><span>                    ConfigExecutor.<span style="color:#a6e22e">executeLongPolling</span>(<span style="color:#66d9ef">new</span> DataChangeTask(evt.<span style="color:#a6e22e">groupKey</span>, evt.<span style="color:#a6e22e">isBeta</span>, evt.<span style="color:#a6e22e">betaIps</span>));
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> Class<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> Event<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">subscribeType</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> LocalDataChangeEvent.<span style="color:#a6e22e">class</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>DataChangeTask接收消息遍历allSubs 找到对应的客户端请求返回给客户端结果（group+dataId）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataChangeTask</span> <span style="color:#66d9ef">implements</span> Runnable {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            ConfigCacheService.<span style="color:#a6e22e">getContentBetaMd5</span>(groupKey);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (Iterator<span style="color:#f92672">&lt;</span>ClientLongPolling<span style="color:#f92672">&gt;</span> iter <span style="color:#f92672">=</span> allSubs.<span style="color:#a6e22e">iterator</span>(); iter.<span style="color:#a6e22e">hasNext</span>(); ) {
+</span></span><span style="display:flex;"><span>                ClientLongPolling clientSub <span style="color:#f92672">=</span> iter.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (clientSub.<span style="color:#a6e22e">clientMd5Map</span>.<span style="color:#a6e22e">containsKey</span>(groupKey)) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// If published tag is not in the beta list, then it skipped.</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (isBeta <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>CollectionUtils.<span style="color:#a6e22e">contains</span>(betaIps, clientSub.<span style="color:#a6e22e">ip</span>)) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// If published tag is not in the tag list, then it skipped.</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (StringUtils.<span style="color:#a6e22e">isNotBlank</span>(tag) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>tag.<span style="color:#a6e22e">equals</span>(clientSub.<span style="color:#a6e22e">tag</span>)) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    getRetainIps().<span style="color:#a6e22e">put</span>(clientSub.<span style="color:#a6e22e">ip</span>, System.<span style="color:#a6e22e">currentTimeMillis</span>());
+</span></span><span style="display:flex;"><span>                    iter.<span style="color:#a6e22e">remove</span>(); <span style="color:#75715e">// Delete subscribers&#39; relationships.</span>
+</span></span><span style="display:flex;"><span>                    LogUtil.<span style="color:#a6e22e">CLIENT_LOG</span>
+</span></span><span style="display:flex;"><span>                            .<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;{}|{}|{}|{}|{}|{}|{}&#34;</span>, (System.<span style="color:#a6e22e">currentTimeMillis</span>() <span style="color:#f92672">-</span> changeTime), <span style="color:#e6db74">&#34;in-advance&#34;</span>,
+</span></span><span style="display:flex;"><span>                                    RequestUtil
+</span></span><span style="display:flex;"><span>                                            .<span style="color:#a6e22e">getRemoteIp</span>((HttpServletRequest) clientSub.<span style="color:#a6e22e">asyncContext</span>.<span style="color:#a6e22e">getRequest</span>()),
+</span></span><span style="display:flex;"><span>                                    <span style="color:#e6db74">&#34;polling&#34;</span>, clientSub.<span style="color:#a6e22e">clientMd5Map</span>.<span style="color:#a6e22e">size</span>(), clientSub.<span style="color:#a6e22e">probeRequestSize</span>, groupKey);
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 会cancelasyncTimeoutFuture</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 响应客户端变化的group</span>
+</span></span><span style="display:flex;"><span>                    clientSub.<span style="color:#a6e22e">sendResponse</span>(Arrays.<span style="color:#a6e22e">asList</span>(groupKey));
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (Throwable t) {
+</span></span><span style="display:flex;"><span>            LogUtil.<span style="color:#a6e22e">DEFAULT_LOG</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;data change error: {}&#34;</span>, ExceptionUtil.<span style="color:#a6e22e">getStackTrace</span>(t));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h4 id="spring-refreshevent事件刷新配置文件解析">Spring RefreshEvent事件刷新配置文件解析<a hidden class="anchor" aria-hidden="true" href="#spring-refreshevent事件刷新配置文件解析">#</a></h4>
 <p>RefreshEvent监听者</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RefreshEventListener</span> <span style="color:#66d9ef">implements</span> SmartApplicationListener <span style="color:#f92672">{</span>
-   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handle</span><span style="color:#f92672">(</span>RefreshEvent event<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ready</span><span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// don&#39;t handle events before app is ready
-</span><span style="color:#75715e"></span>         log<span style="color:#f92672">.</span><span style="color:#a6e22e">debug</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Event received &#34;</span> <span style="color:#f92672">+</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getEventDesc</span><span style="color:#f92672">());</span>
-         <span style="color:#75715e">// 执行刷新
-</span><span style="color:#75715e"></span>         Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> keys <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">refresh</span><span style="color:#f92672">.</span><span style="color:#a6e22e">refresh</span><span style="color:#f92672">();</span>
-         log<span style="color:#f92672">.</span><span style="color:#a6e22e">info</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Refresh keys changed: &#34;</span> <span style="color:#f92672">+</span> keys<span style="color:#f92672">);</span>
-      <span style="color:#f92672">}</span>
-   <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ContextRefresher</span> <span style="color:#f92672">{</span>
-
-   <span style="color:#66d9ef">private</span> RefreshScope scope<span style="color:#f92672">;</span>
-
-   <span style="color:#66d9ef">protected</span> RefreshScope <span style="color:#a6e22e">getScope</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">scope</span><span style="color:#f92672">;</span>
-   <span style="color:#f92672">}</span>
-
-   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">refresh</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-      <span style="color:#75715e">// 发送EnvironmentChangeEvent事件
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// 监听该事件的监听器多个，只需要关注LoggingBebinde和ConfigurationPropertiesRebinder
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// ConfigurationPropertiesRebinder.rebind() 销毁原有的Bean,在重新初始化Bean
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// LoggingBebinde通过LoggingSystem重新设置日志级别
-</span><span style="color:#75715e"></span>      Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> keys <span style="color:#f92672">=</span> refreshEnvironment<span style="color:#f92672">();</span>
-      <span style="color:#75715e">// 刷新@RefreshScope注解的类
-</span><span style="color:#75715e"></span>      <span style="color:#75715e">// 对于@RefreshScope注解的类，当每次被调用的时候，都会进行初始化，同时采用懒代理的方法，将作用域充当				初始值的缓存，当缓存存在时，不会再进行初始化。因此，对于刷新@RefreshScope注解的类，只需要将其缓存					进行清空，则在下一次访问的时候，依赖新的配置源，将生成新的缓存
-</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">scope</span><span style="color:#f92672">.</span><span style="color:#a6e22e">refreshAll</span><span style="color:#f92672">();</span>
-      <span style="color:#66d9ef">return</span> keys<span style="color:#f92672">;</span>
-   <span style="color:#f92672">}</span>
-</code></pre></div><h3 id="tips">Tips:<a hidden class="anchor" aria-hidden="true" href="#tips">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RefreshEventListener</span> <span style="color:#66d9ef">implements</span> SmartApplicationListener {
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handle</span>(RefreshEvent event) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">ready</span>.<span style="color:#a6e22e">get</span>()) { <span style="color:#75715e">// don&#39;t handle events before app is ready</span>
+</span></span><span style="display:flex;"><span>         log.<span style="color:#a6e22e">debug</span>(<span style="color:#e6db74">&#34;Event received &#34;</span> <span style="color:#f92672">+</span> event.<span style="color:#a6e22e">getEventDesc</span>());
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">// 执行刷新</span>
+</span></span><span style="display:flex;"><span>         Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> keys <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">refresh</span>.<span style="color:#a6e22e">refresh</span>();
+</span></span><span style="display:flex;"><span>         log.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;Refresh keys changed: &#34;</span> <span style="color:#f92672">+</span> keys);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ContextRefresher</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">private</span> RefreshScope scope;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">protected</span> RefreshScope <span style="color:#a6e22e">getScope</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">scope</span>;
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">refresh</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 发送EnvironmentChangeEvent事件</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 监听该事件的监听器多个，只需要关注LoggingBebinde和ConfigurationPropertiesRebinder</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// ConfigurationPropertiesRebinder.rebind() 销毁原有的Bean,在重新初始化Bean</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// LoggingBebinde通过LoggingSystem重新设置日志级别</span>
+</span></span><span style="display:flex;"><span>      Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> keys <span style="color:#f92672">=</span> refreshEnvironment();
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 刷新@RefreshScope注解的类</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// 对于@RefreshScope注解的类，当每次被调用的时候，都会进行初始化，同时采用懒代理的方法，将作用域充当				初始值的缓存，当缓存存在时，不会再进行初始化。因此，对于刷新@RefreshScope注解的类，只需要将其缓存					进行清空，则在下一次访问的时候，依赖新的配置源，将生成新的缓存</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">scope</span>.<span style="color:#a6e22e">refreshAll</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> keys;
+</span></span><span style="display:flex;"><span>   }
+</span></span></code></pre></div><h3 id="tips">Tips:<a hidden class="anchor" aria-hidden="true" href="#tips">#</a></h3>
 <p>Nacos2.0+采用grpc替换长轮询，后面分享</p>
 
 
@@ -674,27 +636,14 @@ com.alibaba.cloud.nacos.NacosConfigAutoConfiguration
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://quicksandznzn.github.io/tags/2022/">2022</a></li>
+      <li><a href="/tags/2022/">2022</a></li>
     </ul>
-<nav class="paginav">
-  <a class="prev" href="https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>网络是怎样连接的</span>
-  </a>
-  <a class="next" href="https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/">
-    <span class="title">Next »</span>
-    <br>
-    <span>Apk脱壳</span>
-  </a>
-</nav>
-
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://quicksandznzn.github.io/">Focus On Myself</a></span>
+    <span>&copy; 2023 <a href=""></a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -760,53 +709,6 @@ com.alibaba.cloud.nacos.NacosConfigAutoConfiguration
         }
     })
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
-
-        function copyingDone() {
-            copybutton.innerHTML = 'copied!';
-            setTimeout(() => {
-                copybutton.innerHTML = 'copy';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
 </script>
 </body>
 

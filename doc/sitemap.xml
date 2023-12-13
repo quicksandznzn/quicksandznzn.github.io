@@ -2,100 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://quicksandznzn.github.io/tags/2023/</loc>
+    <loc>/</loc>
     <lastmod>2023-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/</loc>
+    <loc>/tags/2023/</loc>
     <lastmod>2023-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/</loc>
+    <loc>/categories/</loc>
     <lastmod>2023-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2023-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/stable-diffusion/</loc>
+    <loc>/categories/stable-diffusion/</loc>
     <lastmod>2023-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/stable-diffusion/sd_01/</loc>
+    <loc>/posts/stable-diffusion/sd_01/</loc>
     <lastmod>2023-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2023-05-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/tags/2022/</loc>
+    <loc>/tags/2022/</loc>
     <lastmod>2022-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/media/ffmpeg/</loc>
+    <loc>/posts/media/ffmpeg/</loc>
     <lastmod>2022-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/media/</loc>
+    <loc>/categories/media/</loc>
     <lastmod>2022-09-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/search/elasticsearch_5.1.2/</loc>
+    <loc>/posts/search/elasticsearch_5.1.2/</loc>
     <lastmod>2022-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/crawler/scrapy/</loc>
+    <loc>/posts/crawler/scrapy/</loc>
     <lastmod>2022-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</loc>
+    <loc>/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</loc>
     <lastmod>2022-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/</loc>
+    <loc>/categories/%E7%88%AC%E8%99%AB/</loc>
     <lastmod>2022-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/%E7%BD%91%E7%BB%9C/</loc>
+    <loc>/categories/%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2022-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/</loc>
+    <loc>/posts/network/how_is_the_network_connected/</loc>
     <lastmod>2022-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</loc>
+    <loc>/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</loc>
     <lastmod>2022-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/springcloud/</loc>
+    <loc>/categories/springcloud/</loc>
     <lastmod>2022-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/</loc>
+    <loc>/categories/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/</loc>
     <lastmod>2022-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/tags/2021/</loc>
+    <loc>/tags/2021/</loc>
     <lastmod>2021-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/</loc>
+    <loc>/posts/crawler/crawler_frida_hook/</loc>
     <lastmod>2021-12-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/</loc>
+    <loc>/posts/crawler/crawler_mini_program_crack/</loc>
     <lastmod>2021-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</loc>
+    <loc>/posts/crawler/crawler_font_crack/</loc>
     <lastmod>2021-07-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/</loc>
+    <loc>/posts/gateway/zuul_cross_domain/</loc>
     <lastmod>2021-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/</loc>
+    <loc>/categories/%E7%BD%91%E5%85%B3/</loc>
     <lastmod>2021-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/redis/redis_rehash/</loc>
+    <loc>/posts/redis/redis_rehash/</loc>
     <lastmod>2021-07-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/categories/%E7%BC%93%E5%AD%98/</loc>
+    <loc>/categories/%E7%BC%93%E5%AD%98/</loc>
     <lastmod>2021-07-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/redis/redis_data_persistence/</loc>
+    <loc>/posts/redis/redis_data_persistence/</loc>
     <lastmod>2021-07-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/redis/redis_data_type/</loc>
+    <loc>/posts/redis/redis_data_type/</loc>
     <lastmod>2021-07-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/posts/cache/cache_problem/</loc>
+    <loc>/posts/cache/cache_problem/</loc>
     <lastmod>2021-07-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quicksandznzn.github.io/archives/</loc>
+    <loc>/archives/</loc>
   </url><url>
-    <loc>https://quicksandznzn.github.io/search/</loc>
-  </url><url>
-    <loc>https://quicksandznzn.github.io/series/</loc>
+    <loc>/search/</loc>
   </url>
 </urlset>
