@@ -1,59 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2022 on Focus On Myself</title>
     <link>https://quicksandznzn.github.io/tags/2022/</link>
     <description>Recent content in 2022 on Focus On Myself</description>
-    <image>
-      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
-      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/tags/2022/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://quicksandznzn.github.io/tags/2022/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>FFmpeg</title>
       <link>https://quicksandznzn.github.io/posts/media/ffmpeg/</link>
       <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/posts/media/ffmpeg/</guid>
-      <description>FFmpeg 学习笔记</description>
+      <description>FFmpeg官方文档 https://ffmpeg.org/ffmpeg-all.html&#xA;https://ffmpeg.org/ffmpeg.html&#xA;视频信息 ffmpeg -i input.mp4 Metadata: major_brand : mp42 minor_version : 0 compatible_brands: mp42mp41 creation_time : 2022-01-12T11:23:45.000000Z Duration: 00:00:59.52, start: 0.000000, bitrate: 12123 kb/s Stream #0:0[0x1](eng): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1080x1920 [SAR 1:1 DAR 9:16], 11802 kb/s, 25 fps, 25 tbr, 25k tbn (default) Metadata: creation_time : 2022-01-12T11:23:45.000000Z handler_name : ?Mainconcept Video Media Handler vendor_id : [0][0][0][0] encoder : AVC Coding Stream #0:1[0x2](eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 317 kb/s (default) Metadata: creation_time : 2022-01-12T11:23:54.</description>
     </item>
-    
     <item>
       <title>Elasticsearch</title>
       <link>https://quicksandznzn.github.io/posts/search/elasticsearch_5.1.2/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/posts/search/elasticsearch_5.1.2/</guid>
-      <description>Elasticsearch5.1.2部分源码阅读思维导图</description>
+      <description>Elasticsearch </description>
     </item>
-    
     <item>
       <title>Scrapy</title>
       <link>https://quicksandznzn.github.io/posts/crawler/scrapy/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/posts/crawler/scrapy/</guid>
-      <description>Scrapy架构、组件和流程</description>
+      <description>Scrapy </description>
     </item>
-    
     <item>
       <title>网络是怎样连接的</title>
       <link>https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/</guid>
-      <description>关于户根勤-网络是怎样连接的这本书的思维导图整理</description>
+      <description>How is the network connected </description>
     </item>
-    
     <item>
       <title>spring-cloud-starter-alibaba-nacos-config源码分析</title>
       <link>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</guid>
-      <description>基于Nacos-Client-1.4.1</description>
+      <description>初始化将参数配置追加到Environment spring.factories&#xA;org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration public class NacosConfigBootstrapConfiguration { // 初始化Nacos配置信息 @Bean @ConditionalOnMissingBean public NacosConfigProperties nacosConfigProperties() { return new NacosConfigProperties(); } // 初始化NacosConfigService @Bean @ConditionalOnMissingBean public NacosConfigManager nacosConfigManager( NacosConfigProperties nacosConfigProperties) { return new NacosConfigManager(nacosConfigProperties); } // 从Nacos加载远程配置文件 @Bean public NacosPropertySourceLocator nacosPropertySourceLocator( NacosConfigManager nacosConfigManager) { return new NacosPropertySourceLocator(nacosConfigManager); } } public class NacosPropertySourceLocator implements PropertySourceLocator { @Override public PropertySource&amp;lt;?&amp;gt; locate(Environment env) { nacosConfigProperties.setEnvironment(env); ConfigService configService = nacosConfigManager.getConfigService(); if (null == configService) { log.</description>
     </item>
-    
   </channel>
 </rss>

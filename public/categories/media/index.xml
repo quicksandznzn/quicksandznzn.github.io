@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>media on Focus On Myself</title>
     <link>https://quicksandznzn.github.io/categories/media/</link>
     <description>Recent content in media on Focus On Myself</description>
-    <image>
-      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
-      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/media/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Thu, 01 Sep 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://quicksandznzn.github.io/categories/media/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>FFmpeg</title>
       <link>https://quicksandznzn.github.io/posts/media/ffmpeg/</link>
       <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/posts/media/ffmpeg/</guid>
-      <description>FFmpeg 学习笔记</description>
+      <description>FFmpeg官方文档 https://ffmpeg.org/ffmpeg-all.html&#xA;https://ffmpeg.org/ffmpeg.html&#xA;视频信息 ffmpeg -i input.mp4 Metadata: major_brand : mp42 minor_version : 0 compatible_brands: mp42mp41 creation_time : 2022-01-12T11:23:45.000000Z Duration: 00:00:59.52, start: 0.000000, bitrate: 12123 kb/s Stream #0:0[0x1](eng): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1080x1920 [SAR 1:1 DAR 9:16], 11802 kb/s, 25 fps, 25 tbr, 25k tbn (default) Metadata: creation_time : 2022-01-12T11:23:45.000000Z handler_name : ?Mainconcept Video Media Handler vendor_id : [0][0][0][0] encoder : AVC Coding Stream #0:1[0x2](eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 317 kb/s (default) Metadata: creation_time : 2022-01-12T11:23:54.</description>
     </item>
-    
   </channel>
 </rss>

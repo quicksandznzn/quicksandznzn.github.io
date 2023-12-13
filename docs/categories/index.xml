@@ -1,95 +1,75 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Focus On Myself</title>
     <link>https://quicksandznzn.github.io/categories/</link>
     <description>Recent content in Categories on Focus On Myself</description>
-    <image>
-      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
-      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 17 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Wed, 17 May 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://quicksandznzn.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Stable Diffusion</title>
       <link>https://quicksandznzn.github.io/categories/stable-diffusion/</link>
       <pubDate>Wed, 17 May 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/stable-diffusion/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>media</title>
       <link>https://quicksandznzn.github.io/categories/media/</link>
       <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/media/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>搜索引擎</title>
       <link>https://quicksandznzn.github.io/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>爬虫</title>
       <link>https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>网络</title>
       <link>https://quicksandznzn.github.io/categories/%E7%BD%91%E7%BB%9C/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/%E7%BD%91%E7%BB%9C/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>SpringCloud</title>
       <link>https://quicksandznzn.github.io/categories/springcloud/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/springcloud/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>配置中心</title>
       <link>https://quicksandznzn.github.io/categories/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>网关</title>
       <link>https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/</link>
       <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/%E7%BD%91%E5%85%B3/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>缓存</title>
       <link>https://quicksandznzn.github.io/categories/%E7%BC%93%E5%AD%98/</link>
       <pubDate>Thu, 22 Jul 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/categories/%E7%BC%93%E5%AD%98/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

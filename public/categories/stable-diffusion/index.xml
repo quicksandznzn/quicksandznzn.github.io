@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Stable Diffusion on Focus On Myself</title>
     <link>https://quicksandznzn.github.io/categories/stable-diffusion/</link>
     <description>Recent content in Stable Diffusion on Focus On Myself</description>
-    <image>
-      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
-      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 17 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/stable-diffusion/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Wed, 17 May 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://quicksandznzn.github.io/categories/stable-diffusion/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Stable Diffusion</title>
       <link>https://quicksandznzn.github.io/posts/stable-diffusion/sd_01/</link>
       <pubDate>Wed, 17 May 2023 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/posts/stable-diffusion/sd_01/</guid>
-      <description>Stable Diffusion 学习笔记</description>
+      <description>Case 生成一组人物IP Stable Diffusion模型ReV Animated + ControlNet模型 control_v11p_sd15_openpose text2img - prompt&#xA;Prompt (masterpiece, best quality, ultra-detailed), (full body:1.2, beautiful detailed face, beautiful detailed eyes, white background,simple background), 1 girl,Splatoon,cute,smile,gray blue hair,Orange sweater,light blue short skirt Negative Prompt (low quality:1.3),(worst quality:1.3) ControlNet骨架图片&#xA;效果图片&#xA;Reference B站 Stable Diffusion Video ControlNet Stable Diffusion Models ControlNet Models </description>
     </item>
-    
   </channel>
 </rss>

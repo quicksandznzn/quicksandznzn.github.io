@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网络 on Focus On Myself</title>
     <link>https://quicksandznzn.github.io/categories/%E7%BD%91%E7%BB%9C/</link>
     <description>Recent content in 网络 on Focus On Myself</description>
-    <image>
-      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
-      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
-    </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://quicksandznzn.github.io/categories/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>网络是怎样连接的</title>
       <link>https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/</guid>
-      <description>关于户根勤-网络是怎样连接的这本书的思维导图整理</description>
+      <description>How is the network connected </description>
     </item>
-    
   </channel>
 </rss>
