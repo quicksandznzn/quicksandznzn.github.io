@@ -1,1 +1,148 @@
-theme = 'PaperMod'
+baseURL = "https://quicksandznzn.github.io/"
+title = "Focus On Myself"
+paginate = 10
+theme = "PaperMod"
+enableInlineShortcodes = true
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+enableEmoji = true
+googleAnalytics = "G-R3QCJGM8T9"
+
+[minify]
+disableXML = true
+
+[languages.en]
+languageName = "English"
+weight = 1
+
+[[languages.en.menu.main]]
+name = "Archive"
+url = "archives"
+weight = 5
+
+[[languages.en.menu.main]]
+name = "Search"
+url = "search/"
+weight = 10
+
+[[languages.en.menu.main]]
+name = "Tags"
+url = "tags/"
+weight = 10
+
+[[languages.en.menu.main]]
+name = "Categories"
+url = "categories/"
+weight = 10
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]
+
+[params]
+env = "production"
+description = "quicksandzn - https://github.com/quicksandznzn"
+keywords = [
+    "技术",
+    "Java",
+    "quicksandzn",
+    "Spring",
+    "Spring Cloud",
+    "Spring Boot",
+    "Redis",
+    "Elasticsearch",
+    "Python",
+    "Lucene",
+    "Solr",
+    "爬虫"
+]
+author = "quicksandzn"
+defaultTheme = "auto"
+ShowShareButtons = false
+ShowReadingTime = true
+displayFullLangName = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = false
+ShowCodeCopyButtons = true
+ShowToc = false
+images = [ "papermod-cover.png" ]
+
+[params.profileMode]
+enabled = false
+title = "PaperMod"
+imageUrl = "#"
+imageTitle = "my image"
+
+[[params.profileMode.buttons]]
+name = "Archives"
+url = "archives"
+
+[[params.profileMode.buttons]]
+name = "Tags"
+url = "tags"
+
+[params.homeInfoParams]
+Title = "🏂🏂🏂🏂🏂🏻"
+Content = """
+You Only Live Once！
+"""
+
+[[params.socialIcons]]
+name = "email"
+url = "mailto:quicksandzn@gmail.com"
+
+[[params.socialIcons]]
+name = "instagram"
+url = "https://www.instagram.com/quicksandznzn"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/quicksandznzn"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+
+[markup]
+font-size = "11d"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+anchorLineNos = false
+codeFences = true
+guessSyntax = false
+hl_Lines = ""
+lineAnchors = ""
+lineNoStart = 1
+lineNos = false
+lineNumbersInTable = true
+noClasses = true
+style = "monokai"
+tabWidth = 4
+
+[privacy.vimeo]
+disabled = false
+simple = true
+
+[privacy.twitter]
+disabled = false
+enableDNT = true
+simple = true
+
+[privacy.instagram]
+disabled = false
+simple = true
+
+[privacy.youtube]
+disabled = false
+privacyEnhanced = true
+
+[services.instagram]
+disableInlineCSS = true
+
+[services.twitter]
+disableInlineCSS = true

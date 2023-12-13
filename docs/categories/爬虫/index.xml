@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>爬虫 on </title>
-    <link>/categories/%E7%88%AC%E8%99%AB/</link>
-    <description>Recent content in 爬虫 on </description>
+    <title>爬虫 on Focus On Myself</title>
+    <link>https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/</link>
+    <description>Recent content in 爬虫 on Focus On Myself</description>
+    <image>
+      <title>Focus On Myself</title>
+      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
+      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Scrapy</title>
-      <link>/posts/crawler/scrapy/</link>
+      <link>https://quicksandznzn.github.io/posts/crawler/scrapy/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>/posts/crawler/scrapy/</guid>
+      <guid>https://quicksandznzn.github.io/posts/crawler/scrapy/</guid>
       <description>Scrapy架构、组件和流程</description>
     </item>
     
     <item>
       <title>Apk脱壳</title>
-      <link>/posts/crawler/crawler_frida_hook/</link>
+      <link>https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/</link>
       <pubDate>Mon, 13 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/crawler/crawler_frida_hook/</guid>
+      <guid>https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/</guid>
       <description>记录一次Apk脱壳</description>
     </item>
     
     <item>
       <title>微信小程序反编译</title>
-      <link>/posts/crawler/crawler_mini_program_crack/</link>
+      <link>https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/</link>
       <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/crawler/crawler_mini_program_crack/</guid>
+      <guid>https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/</guid>
       <description>记录一次小程序反编译过程</description>
     </item>
     
     <item>
       <title>字体加密破解</title>
-      <link>/posts/crawler/crawler_font_crack/</link>
+      <link>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/crawler/crawler_font_crack/</guid>
+      <guid>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</guid>
       <description>记录一次某二手车网站woff2字体加密破解，静态字体文件</description>
     </item>
     

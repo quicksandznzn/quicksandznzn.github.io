@@ -5,20 +5,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>SpringCloud | </title>
+<title>SpringCloud | Focus On Myself</title>
 <meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="canonical" href="/categories/springcloud/">
+<meta name="description" content="quicksandzn - https://github.com/quicksandznzn">
+<meta name="author" content="quicksandzn">
+<link rel="canonical" href="https://quicksandznzn.github.io/categories/springcloud/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.9329d037bc79464b26647fb72e079cd738f5d2418b1df4da3b515db9e22cb4d9.css" integrity="sha256-kynQN7x5RksmZH&#43;3Lgec1zj10kGLHfTaO1FdueIstNk=" rel="preload stylesheet" as="style">
-<link rel="icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="mask-icon" href="safari-pinned-tab.svg">
+<link rel="icon" href="https://quicksandznzn.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://quicksandznzn.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://quicksandznzn.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://quicksandznzn.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://quicksandznzn.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="/categories/springcloud/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://quicksandznzn.github.io/categories/springcloud/index.xml">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,14 +55,27 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="SpringCloud" />
-<meta property="og:description" content="" />
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R3QCJGM8T9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-R3QCJGM8T9', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="SpringCloud" />
+<meta property="og:description" content="quicksandzn - https://github.com/quicksandznzn" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/categories/springcloud/" />
+<meta property="og:url" content="https://quicksandznzn.github.io/categories/springcloud/" /><meta property="og:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
 
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://quicksandznzn.github.io/papermod-cover.png"/>
+
 <meta name="twitter:title" content="SpringCloud"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="quicksandzn - https://github.com/quicksandznzn"/>
 
 </head>
 
@@ -81,6 +94,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
+            <a href="https://quicksandznzn.github.io/" accesskey="h" title="Focus On Myself (Alt + H)">Focus On Myself</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -105,6 +119,26 @@
             </div>
         </div>
         <ul id="menu">
+            <li>
+                <a href="https://quicksandznzn.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://quicksandznzn.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -124,13 +158,13 @@
     <p>初始化将参数配置追加到Environment spring.factories
 org.springframework.cloud.bootstrap.BootstrapConfiguration=\ com.alibaba.cloud.nacos.NacosConfigBootstrapConfiguration public class NacosConfigBootstrapConfiguration { // 初始化Nacos配置信息 @Bean @ConditionalOnMissingBean public NacosConfigProperties nacosConfigProperties() { return new NacosConfigProperties(); } // 初始化NacosConfigService @Bean @ConditionalOnMissingBean public NacosConfigManager nacosConfigManager( NacosConfigProperties nacosConfigProperties) { return new NacosConfigManager(nacosConfigProperties); } // 从Nacos加载远程配置文件 @Bean public NacosPropertySourceLocator nacosPropertySourceLocator( NacosConfigManager nacosConfigManager) { return new NacosPropertySourceLocator(nacosConfigManager); } } public class NacosPropertySourceLocator implements PropertySourceLocator { @Override public PropertySource&lt;?&gt; locate(Environment env) { nacosConfigProperties.setEnvironment(env); ConfigService configService = nacosConfigManager.getConfigService(); if (null == configService) { log....</p>
   </div>
-  <footer class="entry-footer"><span title='2022-06-15 00:00:00 +0000 UTC'>June 15, 2022</span></footer>
-  <a class="entry-link" aria-label="post link to spring-cloud-starter-alibaba-nacos-config源码分析" href="/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/"></a>
+  <footer class="entry-footer"><span title='2022-06-15 00:00:00 +0000 UTC'>June 15, 2022</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;quicksandzn</footer>
+  <a class="entry-link" aria-label="post link to spring-cloud-starter-alibaba-nacos-config源码分析" href="https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/"></a>
 </article>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2023 <a href=""></a></span>
+    <span>&copy; 2023 <a href="https://quicksandznzn.github.io/">Focus On Myself</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

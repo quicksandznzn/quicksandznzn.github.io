@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>SpringCloud on </title>
-    <link>/categories/springcloud/</link>
-    <description>Recent content in SpringCloud on </description>
+    <title>SpringCloud on Focus On Myself</title>
+    <link>https://quicksandznzn.github.io/categories/springcloud/</link>
+    <description>Recent content in SpringCloud on Focus On Myself</description>
+    <image>
+      <title>Focus On Myself</title>
+      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
+      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/springcloud/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 15 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/categories/springcloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>spring-cloud-starter-alibaba-nacos-config源码分析</title>
-      <link>/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</link>
+      <link>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</guid>
+      <guid>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</guid>
       <description>基于Nacos-Client-1.4.1</description>
     </item>
     

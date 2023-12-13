@@ -1,135 +1,140 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title></title>
-    <link>/</link>
-    <description>Recent content on </description>
+    <title>Focus On Myself</title>
+    <link>https://quicksandznzn.github.io/</link>
+    <description>Recent content on Focus On Myself</description>
+    <image>
+      <title>Focus On Myself</title>
+      <url>https://quicksandznzn.github.io/papermod-cover.png</url>
+      <link>https://quicksandznzn.github.io/papermod-cover.png</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 17 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://quicksandznzn.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Stable Diffusion</title>
-      <link>/posts/stable-diffusion/sd_01/</link>
+      <link>https://quicksandznzn.github.io/posts/stable-diffusion/sd_01/</link>
       <pubDate>Wed, 17 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>/posts/stable-diffusion/sd_01/</guid>
+      <guid>https://quicksandznzn.github.io/posts/stable-diffusion/sd_01/</guid>
       <description>Stable Diffusion 学习笔记</description>
     </item>
     
     <item>
       <title>FFmpeg</title>
-      <link>/posts/media/ffmpeg/</link>
+      <link>https://quicksandznzn.github.io/posts/media/ffmpeg/</link>
       <pubDate>Thu, 01 Sep 2022 00:00:00 +0000</pubDate>
       
-      <guid>/posts/media/ffmpeg/</guid>
+      <guid>https://quicksandznzn.github.io/posts/media/ffmpeg/</guid>
       <description>FFmpeg 学习笔记</description>
     </item>
     
     <item>
       <title>Elasticsearch</title>
-      <link>/posts/search/elasticsearch_5.1.2/</link>
+      <link>https://quicksandznzn.github.io/posts/search/elasticsearch_5.1.2/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>/posts/search/elasticsearch_5.1.2/</guid>
+      <guid>https://quicksandznzn.github.io/posts/search/elasticsearch_5.1.2/</guid>
       <description>Elasticsearch5.1.2部分源码阅读思维导图</description>
     </item>
     
     <item>
       <title>Scrapy</title>
-      <link>/posts/crawler/scrapy/</link>
+      <link>https://quicksandznzn.github.io/posts/crawler/scrapy/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>/posts/crawler/scrapy/</guid>
+      <guid>https://quicksandznzn.github.io/posts/crawler/scrapy/</guid>
       <description>Scrapy架构、组件和流程</description>
     </item>
     
     <item>
       <title>网络是怎样连接的</title>
-      <link>/posts/network/how_is_the_network_connected/</link>
+      <link>https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
       
-      <guid>/posts/network/how_is_the_network_connected/</guid>
+      <guid>https://quicksandznzn.github.io/posts/network/how_is_the_network_connected/</guid>
       <description>关于户根勤-网络是怎样连接的这本书的思维导图整理</description>
     </item>
     
     <item>
       <title>spring-cloud-starter-alibaba-nacos-config源码分析</title>
-      <link>/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</link>
+      <link>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</link>
       <pubDate>Wed, 15 Jun 2022 00:00:00 +0000</pubDate>
       
-      <guid>/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</guid>
+      <guid>https://quicksandznzn.github.io/posts/springcloud/alibaba/nacos/spring-cloud-starter-alibaba-nacos-config/</guid>
       <description>基于Nacos-Client-1.4.1</description>
     </item>
     
     <item>
       <title>Apk脱壳</title>
-      <link>/posts/crawler/crawler_frida_hook/</link>
+      <link>https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/</link>
       <pubDate>Mon, 13 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/crawler/crawler_frida_hook/</guid>
+      <guid>https://quicksandznzn.github.io/posts/crawler/crawler_frida_hook/</guid>
       <description>记录一次Apk脱壳</description>
     </item>
     
     <item>
       <title>微信小程序反编译</title>
-      <link>/posts/crawler/crawler_mini_program_crack/</link>
+      <link>https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/</link>
       <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/crawler/crawler_mini_program_crack/</guid>
+      <guid>https://quicksandznzn.github.io/posts/crawler/crawler_mini_program_crack/</guid>
       <description>记录一次小程序反编译过程</description>
     </item>
     
     <item>
       <title>字体加密破解</title>
-      <link>/posts/crawler/crawler_font_crack/</link>
+      <link>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</link>
       <pubDate>Tue, 27 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/crawler/crawler_font_crack/</guid>
+      <guid>https://quicksandznzn.github.io/posts/crawler/crawler_font_crack/</guid>
       <description>记录一次某二手车网站woff2字体加密破解，静态字体文件</description>
     </item>
     
     <item>
       <title>Zuul网关跨域问题</title>
-      <link>/posts/gateway/zuul_cross_domain/</link>
+      <link>https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/</link>
       <pubDate>Fri, 23 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/gateway/zuul_cross_domain/</guid>
+      <guid>https://quicksandznzn.github.io/posts/gateway/zuul_cross_domain/</guid>
       <description>Zuul跨域问题，记录一次重复配置导致的问题</description>
     </item>
     
     <item>
       <title>Redis Rehash</title>
-      <link>/posts/redis/redis_rehash/</link>
+      <link>https://quicksandznzn.github.io/posts/redis/redis_rehash/</link>
       <pubDate>Thu, 22 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/redis/redis_rehash/</guid>
+      <guid>https://quicksandznzn.github.io/posts/redis/redis_rehash/</guid>
       <description>Redis Rehash 参考Redis3.2源码</description>
     </item>
     
     <item>
       <title>Redis 持久化方式</title>
-      <link>/posts/redis/redis_data_persistence/</link>
+      <link>https://quicksandznzn.github.io/posts/redis/redis_data_persistence/</link>
       <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/redis/redis_data_persistence/</guid>
+      <guid>https://quicksandznzn.github.io/posts/redis/redis_data_persistence/</guid>
       <description>Redis 持久化方式</description>
     </item>
     
     <item>
       <title>Redis 数据类型</title>
-      <link>/posts/redis/redis_data_type/</link>
+      <link>https://quicksandznzn.github.io/posts/redis/redis_data_type/</link>
       <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/redis/redis_data_type/</guid>
+      <guid>https://quicksandznzn.github.io/posts/redis/redis_data_type/</guid>
       <description>Redis 数据类型 参考Redis3.2源码</description>
     </item>
     
     <item>
       <title>缓存的场景问题及解决方案</title>
-      <link>/posts/cache/cache_problem/</link>
+      <link>https://quicksandznzn.github.io/posts/cache/cache_problem/</link>
       <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/cache/cache_problem/</guid>
+      <guid>https://quicksandznzn.github.io/posts/cache/cache_problem/</guid>
       <description>缓存的场景问题及解决方案</description>
     </item>
     
