@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>搜索引擎 on Focus On Myself</title>
+    <link>https://quicksandznzn.github.io/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
+    <description>Recent content in 搜索引擎 on Focus On Myself</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://quicksandznzn.github.io/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch</title>
+      <link>https://quicksandznzn.github.io/posts/search/elasticsearch_5.1.2/</link>
+      <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://quicksandznzn.github.io/posts/search/elasticsearch_5.1.2/</guid>
+      <description>Elasticsearch </description>
+    </item>
+  </channel>
+</rss>
