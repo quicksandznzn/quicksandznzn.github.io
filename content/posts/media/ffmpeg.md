@@ -110,6 +110,12 @@ ffmpeg -hide_banner -safe 0 -re -stream_loop -1 -f concat -i video_list.txt -c:v
 ffmpeg  -y -i input.mov -c:v libx264   result.mp4
 ```
 
+#### 绿幕抠图
+
+```shell
+ffmpeg -i input_video.mp4 -i background.jpg -filter_complex "[0:v]scale=688:1188,chromakey=0x00FF00:0.1:0.2[fg];[1:v][fg]overlay[outv]" -map "[outv]" -c:v libx264 -preset ultrafast -crf 23 -c:a copy output_video.mp4
+```
+
 #### 裁剪
 
 ```shell
