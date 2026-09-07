@@ -1,11 +1,12 @@
 import * as stylex from '@stylexjs/stylex';
 import { s } from './styles/ui';
+import { ThemeToggle } from './components/ThemeToggle';
 import { dateLabel, postUrl, type PostMeta } from './types';
 
 export function Home({ posts }: { posts: PostMeta[] }) {
   return <>
     <header {...stylex.props(s.homeHeader)}>
-      <div {...stylex.props(s.homeTop)}><h1 {...stylex.props(s.homeTitle)}>Focus On Myself</h1><div {...stylex.props(s.homeLinks)}><a href="https://github.com/quicksandznzn">GitHub</a><a href="mailto:quicksandzn@gmail.com">Email</a></div></div>
+      <div {...stylex.props(s.homeTop)}><h1 {...stylex.props(s.homeTitle)}>Focus On Myself</h1><div {...stylex.props(s.homeLinks)}><a href="https://github.com/quicksandznzn">GitHub</a><a href="mailto:quicksandzn@gmail.com">Email</a><ThemeToggle /></div></div>
       <p {...stylex.props(s.homeIntro)}>你好，我是 quicksandzn。这里记录编程、源码阅读和技术实践。</p>
     </header>
     <main id="main">

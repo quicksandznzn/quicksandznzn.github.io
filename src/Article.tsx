@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as stylex from '@stylexjs/stylex';
 import { s } from './styles/ui';
+import { ThemeToggle } from './components/ThemeToggle';
 import { dateLabel, type Post } from './types';
 
 export function Article({ post }: { post: Post }) {
@@ -22,7 +23,7 @@ export function Article({ post }: { post: Post }) {
     return () => { buttons.forEach(button => button.remove()); timers.forEach(clearTimeout); };
   }, [post]);
   return <main id="main">
-    <header {...stylex.props(s.articleHeader)}><a {...stylex.props(s.back)} href="/">← Focus On Myself</a><h1 {...stylex.props(s.articleTitle)}>{post.title}</h1><p {...stylex.props(s.articleDescription)}>{post.description}</p><div {...stylex.props(s.meta)}><time dateTime={post.date}>{dateLabel(post.date)}</time><span>{post.minutes} 分钟阅读</span></div></header>
+    <header {...stylex.props(s.articleHeader)}><div {...stylex.props(s.articleTop)}><a {...stylex.props(s.back)} href="/">← Focus On Myself</a><ThemeToggle /></div><h1 {...stylex.props(s.articleTitle)}>{post.title}</h1><p {...stylex.props(s.articleDescription)}>{post.description}</p><div {...stylex.props(s.meta)}><time dateTime={post.date}>{dateLabel(post.date)}</time><span>{post.minutes} 分钟阅读</span></div></header>
     <article ref={body} {...stylex.props(s.articleBody)} className={`${stylex.props(s.articleBody).className} prose`} dangerouslySetInnerHTML={{ __html: post.html }} />
   </main>;
 }
