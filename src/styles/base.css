@@ -11,17 +11,17 @@
 }
 :root { font-family:'Geist', 'PingFang SC', 'Microsoft YaHei', sans-serif; font-synthesis:none; }
 :root[data-theme=light] { color-scheme:light; }
-:root[data-theme=dark] { --page:#17191f; --panel:#20232c; --ink:#e9ecf3; --muted:#a4acbd; --line:#343947; --accent:#9cb5ff; --tint:#242d45; color-scheme:dark; }
-body { background:var(--page); color:var(--ink); line-height:1.65; }
+:root[data-theme=dark] { --page:#151614; --panel:#242520; --ink:#e8e8e3; --muted:#a6a7a0; --line:#35362f; --accent:#aec0c8; --tint:#252b2d; color-scheme:dark; }
+body { background:var(--page); color:var(--ink); line-height:1.65; transition:background-color 180ms ease,color 180ms ease; }
 :focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
 ::selection { background:var(--accent); color:var(--page); }
 html { scroll-padding-top:32px; }
-.prose { font-size:16px; line-height:1.95; overflow-wrap:anywhere; }
-.prose>*+* { margin-top:22px; }
-.prose h2 { font-size:26px; }
-.prose h3 { font-size:21px; }
+.prose { font-size:16px; line-height:1.9; overflow-wrap:anywhere; }
+.prose>*+* { margin-top:20px; }
+.prose h2 { font-size:24px; }
+.prose h3 { font-size:20px; }
 .prose h4 { font-size:18px; }
-.prose h2,.prose h3,.prose h4 { margin-top:42px; margin-bottom:18px; line-height:1.5; }
+.prose h2,.prose h3,.prose h4 { margin-top:40px; margin-bottom:16px; line-height:1.45; letter-spacing:-.02em; }
 .prose>:first-child { margin-top:0; }
 .prose p { margin-bottom:16px; }
 .prose ul,.prose ol { padding-left:24px; }
@@ -29,7 +29,7 @@ html { scroll-padding-top:32px; }
 .prose a { color:var(--accent); text-decoration:underline; text-underline-offset:4px; }
 .prose img { border-radius:8px; height:auto; max-width:100%; display:inline-block; vertical-align:top; }
 .prose iframe { max-width:100%; border:1px solid var(--line); border-radius:8px; display:block; }
-.prose pre { position:relative; overflow:auto; padding:24px; border:1px solid var(--line); border-radius:8px; font-size:12px; line-height:1.8; tab-size:4; }
+.prose pre { position:relative; overflow:auto; padding:24px; border:1px solid var(--line); border-radius:6px; font-size:12px; line-height:1.8; tab-size:4; }
 .prose code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
 .prose :not(pre)>code { font-size:.88em; background:var(--panel); padding:3px 5px; border-radius:4px; }
 .prose pre code { display:block; min-width:max-content; padding-right:48px; }

@@ -10,7 +10,7 @@ export function Home({ posts }: { posts: PostMeta[] }) {
       <p {...stylex.props(s.homeIntro)}>你好，我是 quicksandzn。这里记录编程、源码阅读和技术实践。</p>
     </header>
     <main id="main">
-      <h2 {...stylex.props(s.visuallyHidden)}>文章</h2>
+      <h2 {...stylex.props(s.sectionTitle)}>Writing</h2>
       <ul {...stylex.props(s.postList)}>
         {posts.map(post => <li key={post.slug} {...stylex.props(s.postItem)}>
           <time dateTime={post.date} {...stylex.props(s.postDate)}>{dateLabel(post.date)}</time>

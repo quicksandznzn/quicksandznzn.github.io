@@ -1,11 +1,11 @@
 import * as stylex from '@stylexjs/stylex';
 
 export const colors = stylex.defineVars({
-  '--page': '#ffffff',
-  '--panel': '#f5f5f5',
-  '--ink': '#252525',
-  '--muted': '#666666',
-  '--line': '#e5e5e5',
-  '--accent': '#245edb',
-  '--tint': '#f3f6ff',
+  '--page': '#f7f7f5',
+  '--panel': '#ecece8',
+  '--ink': '#20211f',
+  '--muted': '#62635f',
+  '--line': '#deded8',
+  '--accent': '#466776',
+  '--tint': '#e8edef',
 });
